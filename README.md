@@ -2,6 +2,6 @@
 
 Los integrantes del proyecto son:
 - Jonathan Parra Landinez
-- Carol Muñoz
+- Daniela Muñoz Cubides
 - Juan Enrique Galeano
 - David Santiago Granja
