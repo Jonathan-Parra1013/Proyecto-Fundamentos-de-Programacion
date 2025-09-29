@@ -1,7 +1,10 @@
 # Proyecto-Fundamentos-de-Programacion
 
 Los integrantes del proyecto son:
-- Jonathan Parra Landinez
-- Daniela Muñoz Cubides
-- Juan Enrique Galeano
-- David Santiago Granja
+- Galeano Vargas Juan Enrique
+- Granja Espinosa David Santiago
+- Muñoz Cubides Carol Daniela 
+- Parra Landinez Jonathan
+
+
+
