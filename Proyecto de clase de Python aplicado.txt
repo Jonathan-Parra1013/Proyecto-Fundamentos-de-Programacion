@@ -3,30 +3,49 @@ Fundamentos de Programación
 
 Nombre del Proyecto
 1. Información General
-* Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja y Juan Enrique Galeano
+* Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja Espinosa y Juan Enrique Galeano.
 * Curso / Grupo: A
 * Fecha de entrega: 17/11/2025
 * Profesor: Pablo Enrique Carreño
+
 2. Título del Proyecto
 Analisis de datos de la Premier League
+
 3. Descripción del Proyecto
-Breve resumen del proyecto, incluyendo:
-* Propósito o problema que resuelve
-* Público objetivo o aplicación práctica
-* Resultado esperado
+* Este proyecto tiene como propósito analizar las estadisticas de la liga inglesa o la premier league, con el fin de extraer información clave sobre el rendimiento de los equipos, partidos y estadisticas de los jugadores de la premier league. La idea es facilitar el acceso a datos relevantes de forma automatizada, utilizando herramientas de programación en phyton.
+Propósito del proyecto:
+* Este proyecto les permite a los usuarios obtener información clave de manera automatizada y eficiente, resolviendo el problema de la inaccesibilidad de interpretar grandes cantidades de datos estadísticos sin las herramientas adecuadas. Además de esto, automatizar la recopilación y el análisis de estadísticas, les permite a los usuarioscentrarse en el análisis en lugar de la extensa recolección manual de datos.
+Público objetivo:
+* Este proyecto está dirigido principalmente a fanáticos del fútbol,analistas deportivos, entrenadores y periodistas, quienes podrán usar el programa con el fin de analizar los resultados obtenidos para tomar decisiones informadas, seguir las estadisticas de los equipos y jugadores, y generar reportes de manera más eficiente.
+Resultado esperado:
+* Se espera que este proyecto genere las estadisticas permitiendole visualizarlas ayudando a identificar patrones, tendencias y precciones sobre las estadisticas de los jugadores y equipos de la premiere league. Al final, el objetivo es mejorar la comprensión de las estadísticas y proporcionar a los usuarios una herramienta potente para hacer análisis deportivos profundos de manera rápida y precisa.
+
 4. Objetivos
 General:
 * Desarrollar una herramienta que permita analizar las estadisticas deportivas de la Premier League temporada 2024-25 de forma automatizada, que permita obtener, procesar y visualizar datos relevantes sobre los equipos que compiten en esta misma (incluyendo partidos, goles y asistencias). Facilitando a los fanaticos, analistas deportivos, entrenadores y periodistas a tener esta informacion de manera clara, sencilla y actualizada. 
 Específicos:
 * Mostrar las listas, tuplas, diccionarios, para almancenar y manipular grandes cantidades de datos.
-* Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos
+* Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos.
+
 5. Requisitos
 * Herramientas y tecnologías utilizadas (Python, librerías, etc.)
 * Requisitos de instalación o ejecución
+
 6. Diseño del Proyecto
-* Arquitectura o estructura del programa: (modularización, funciones, clases, etc.)
-* Diagrama de flujo 
-* Interfaz (si aplica): descripción o imagen de la interfaz gráfica o consola
+Arquitectura o estructura del programa:
+* El proyecto se divide en funciones que cumplen tareas específicas tales como:
+-cargar_datos(): Almacena equipos y resultados.
+-calcular_estadisticas(): Obtiene partidos ganados, empatados, perdidos, goles y puntos.
+-mostrar_resultados(): Imprime en pantalla las estadísticas.
+-ver_goleador(): Muestra el máximo goleador con sus goles.
+Diagrama de flujo:
+* Inicio → Cargar datos → Procesar estadísticas → Mostrar resultados y estádisticas → Fin.
+Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
+1. Inicio.
+2. Ver tabla de equipos.
+3. Ver estádisticas.
+4. Salir.
+
 7. Desarrollo
 * Explicación paso a paso de cómo se desarrolló el proyecto
 * Fragmentos de código relevantes comentados
@@ -42,6 +61,7 @@ Específicos:
 * Posibles mejoras o ideas futuras
 10. Bibliografía / Recursos
 * Sitios web, documentación, libros o videos utilizados, mínimo 10
+
 
 
 
