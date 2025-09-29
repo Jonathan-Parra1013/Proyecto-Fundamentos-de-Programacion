@@ -1,2 +1,7 @@
 #CODIGO PROYECTO
 #AQUI VA EL CODIGO DEL PROYECTO
+
+cargar_datos() 
+calcular_estadisticas()
+mostrar_resultados()
+ver_goleador()
