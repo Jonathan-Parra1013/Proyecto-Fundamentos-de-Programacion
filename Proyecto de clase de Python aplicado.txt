@@ -3,7 +3,7 @@ Fundamentos de Programación
 
 Nombre del Proyecto
 1. Información General
-* Nombre estudiantes: Juan Enrique Galeano Vargas, David Santiago Granja Espinosa, Jonathan Parra Landinez, Carol Daniel Muñoz
+* Nombre estudiantes: 
 * Curso / Grupo: A
 * Fecha de entrega: 17/11/2025
 * Profesor: Pablo Enrique Carreño
@@ -41,5 +41,6 @@ Específicos:
 * Posibles mejoras o ideas futuras
 10. Bibliografía / Recursos
 * Sitios web, documentación, libros o videos utilizados, mínimo 10
+
 
 
