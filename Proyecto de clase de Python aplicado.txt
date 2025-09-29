@@ -1,44 +1,45 @@
 Proyecto de clase de Python aplicado.
-Fundamentos de ProgramaciÛn
+Fundamentos de Programaci√≥n
 
 Nombre del Proyecto
-1. InformaciÛn General
-* Nombre estudiantes:
-* Curso / Grupo:
-* Fecha de entrega:
-* Profesor:
-2. TÌtulo del Proyecto
-Un tÌtulo claro y conciso que refleje la naturaleza del proyecto.
-3. DescripciÛn del Proyecto
+1. Informaci√≥n General
+* Nombre estudiantes: Juan Enrique Galeano Vargas, David Santiago Granja Espinosa, Jonathan Parra Landinez, Carol Daniel Mu√±oz
+* Curso / Grupo: A
+* Fecha de entrega: 17/11/2025
+* Profesor: Pablo Enrique Carre√±o
+2. T√≠tulo del Proyecto
+Un t√≠tulo claro y conciso que refleje la naturaleza del proyecto.
+3. Descripci√≥n del Proyecto
 Breve resumen del proyecto, incluyendo:
-* PropÛsito o problema que resuelve
-* P˙blico objetivo o aplicaciÛn pr·ctica
+* Prop√≥sito o problema que resuelve
+* P√∫blico objetivo o aplicaci√≥n pr√°ctica
 * Resultado esperado
 4. Objetivos
 General:
-* Describir el propÛsito principal del proyecto.
-EspecÌficos:
-* Enumerar los objetivos tÈcnicos o de aprendizaje especÌficos (ej. usar estructuras de datos, aplicar funciones, temas vistos en clase, etc.).
+* Describir el prop√≥sito principal del proyecto.
+Espec√≠ficos:
+* Enumerar los objetivos t√©cnicos o de aprendizaje espec√≠ficos (ej. usar estructuras de datos, aplicar funciones, temas vistos en clase, etc.).
 5. Requisitos
-* Herramientas y tecnologÌas utilizadas (Python, librerÌas, etc.)
-* Requisitos de instalaciÛn o ejecuciÛn
-6. DiseÒo del Proyecto
-* Arquitectura o estructura del programa: (modularizaciÛn, funciones, clases, etc.)
+* Herramientas y tecnolog√≠as utilizadas (Python, librer√≠as, etc.)
+* Requisitos de instalaci√≥n o ejecuci√≥n
+6. Dise√±o del Proyecto
+* Arquitectura o estructura del programa: (modularizaci√≥n, funciones, clases, etc.)
 * Diagrama de flujo 
-* Interfaz (si aplica): descripciÛn o imagen de la interfaz gr·fica o consola
+* Interfaz (si aplica): descripci√≥n o imagen de la interfaz gr√°fica o consola
 7. Desarrollo
-* ExplicaciÛn paso a paso de cÛmo se desarrollÛ el proyecto
-* Fragmentos de cÛdigo relevantes comentados
-* DescripciÛn de las funciones principales
+* Explicaci√≥n paso a paso de c√≥mo se desarroll√≥ el proyecto
+* Fragmentos de c√≥digo relevantes comentados
+* Descripci√≥n de las funciones principales
 8. Pruebas y Resultados
-* CÛmo se probÛ el programa
-* Capturas de pantalla o ejemplos de ejecuciÛn
+* C√≥mo se prob√≥ el programa
+* Capturas de pantalla o ejemplos de ejecuci√≥n
 * Resultados obtenidos
 * Manual de usuario
 9. Conclusiones
 * Lecciones aprendidas
-* Dificultades encontradas y cÛmo se resolvieron
+* Dificultades encontradas y c√≥mo se resolvieron
 * Posibles mejoras o ideas futuras
-10. BibliografÌa / Recursos
-* Sitios web, documentaciÛn, libros o videos utilizados, mÌnimo 10
+10. Bibliograf√≠a / Recursos
+* Sitios web, documentaci√≥n, libros o videos utilizados, m√≠nimo 10
+
 
