@@ -3,12 +3,12 @@ Fundamentos de Programación
 
 Nombre del Proyecto
 1. Información General
-* Nombre estudiantes: 
+* Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja y Juan Enrique Galeano
 * Curso / Grupo: A
 * Fecha de entrega: 17/11/2025
 * Profesor: Pablo Enrique Carreño
 2. Título del Proyecto
-Un título claro y conciso que refleje la naturaleza del proyecto.
+Analisis de datos de la Premier League
 3. Descripción del Proyecto
 Breve resumen del proyecto, incluyendo:
 * Propósito o problema que resuelve
@@ -16,9 +16,10 @@ Breve resumen del proyecto, incluyendo:
 * Resultado esperado
 4. Objetivos
 General:
-* Describir el propósito principal del proyecto.
+* Desarrollar una herramienta que permita analizar las estadisticas deportivas de la Premier League temporada 2024-25 de forma automatizada, que permita obtener, procesar y visualizar datos relevantes sobre los equipos que compiten en esta misma (incluyendo partidos, goles y asistencias). Facilitando a los fanaticos, analistas deportivos, entrenadores y periodistas a tener esta informacion de manera clara, sencilla y actualizada. 
 Específicos:
-* Enumerar los objetivos técnicos o de aprendizaje específicos (ej. usar estructuras de datos, aplicar funciones, temas vistos en clase, etc.).
+* Mostrar las listas, tuplas, diccionarios, para almancenar y manipular grandes cantidades de datos.
+* Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos
 5. Requisitos
 * Herramientas y tecnologías utilizadas (Python, librerías, etc.)
 * Requisitos de instalación o ejecución
@@ -41,6 +42,7 @@ Específicos:
 * Posibles mejoras o ideas futuras
 10. Bibliografía / Recursos
 * Sitios web, documentación, libros o videos utilizados, mínimo 10
+
 
 
 
