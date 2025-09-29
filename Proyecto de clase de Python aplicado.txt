@@ -28,8 +28,35 @@ Específicos:
 * Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos.
 
 5. Requisitos
-* Herramientas y tecnologías utilizadas (Python, librerías, etc.)
-* Requisitos de instalación o ejecución
+   1. BUCLE FOR: Permite iterar sobre secuencias como listas, cadenas o rangos numericos. Su uso fue clave para recorrer listas de           jugadores, equipos o partidos, facilitando el procesamiento individual de cada elemento.
+   2. BUCLE WHILE: Ejecuta un bloque de instrucciones mientras se cumpla una condición lógica. Este tipo de bucle resulto útil en            procesos donde se requeria esperar hasta que cierta condición se cumpliera, por ejemplo: para validar entradas de usuario o realizar      cálculos acumulativos.
+   3. ESTRUCTURAS CONDICIONALES IF-ELIF-ELSE: Estas sentencias fueron utilizadas para tomar decisiones dentro del programa, permitiendo      ejecutar distintas acciones según las condiciones del flujo de datos, como comparar estadisticas o filtrar información relevante.
+   4. FUNCION RANGE(): Se utilizó para generar secuencias de números enteros especialmente útil en bucles for, permitiendo iteraciones       controladas, como al recorrer listas con indices o establecer limites numéricos en analisis estadisticos.
+   5. FUNCION INPUT: Permitió la interacción con el usuario mediante la recolección de datos desde la consola, fundamental para              aplicaciones dinámicas donde se requiere personalizar las consultas según el interés del usuario.
+   6. FUNCION LEN(): Se utilizó para conocer la cantidad de elementos presentes en listas o cadenas, siendo útil al contar registros,        validar datos o controlar ciclos.
+   7. FUNCIONES DE CONVERSION DE TIPO (INT(), FLOAT(), STR()): Estas funciones facilitaron la transformación de datos entre tipos            numéricos y cadenas, algo indispensable al trabajar con datos provenientes de fuentes externas o entradas del usuario.
+   8. DEFINICION DE FUNCIONES MEDIANTE DEF: Se crearon funciones personalizadas para modularizar el código, facilitando su mantenimiento,    reutilización y claridad. Cada función resolvía una tarea específica, como analizar un partido, calcular promedios o generar reportes.
+   9. INSTRUCCIÓN RETURN: Utilizada dentro de funciones para devolver resultado al programa principal, haciendo posible encadenar cádenas    o reutilizar valores procesados.
+   10. MÉTODO APPEND() DE LISTAS: Permitió agregar elementos dinámicamente a una lista, como al construir una colección de partidos o        estadísticas filtradas por algún criterio específico.
+   11. USO DE DICCIONARIOS: Los diccionarios fueron una estructura clave para organizar datos relacionados por claves y valores, por         ejemplo, para representar los atributos de un jugador o los resultados de un partido
+   12: INSTRUCCIONES BRAK Y CONTINUE: El break fue utilizado para interrumpir bucles cuando se cumplía cierta condición, mientras que        continue permitió omitir una iteración específica y continuar con el resto del ciclo. Ambas instrucciones ofrecieron mayor control        sobre la lógica del programa.
+
+ REQUISITOS DE PROGRAMACIÓN:
+    1. LISTAS Y DICCIONARIOS: Para guardar y organizar la información de equipos, jugadores y partidos.
+    2. BUCLES (FOR Y WHILE): Para recorrer los datos y realizar cálculos automáticos.
+    3. CONDICIONALES (IF, ELIF, ELSE): Para tomar decisiones (Ejemplo: Si un equipo ganó, empató o perdió.)
+    4. FUNCIONES: Para dividir el programa en partes más pequeñas y faciles de entender.
+    5. ENTRADA Y SALIDA DE DATOS: Con input() para que el usuario consulte información y print() para mostrar resultados.
+    6. MANEJO DE TIPOS DE DATOS: Transformar texto en números (int, float, str) para hacer operaciones.
+
+REQUISITOS TÉCNICOS:
+    1. Tener instalado (PYTHON 3.10 O SUPERIOR)
+    2. Usar un editor de código como: (VS code, PyCharme o incluso Google Colab) para ejecutar el programa.
+
+EJEMPLO DE APLICACION:
+    1. Guardar en una lista los equipos de la Premier League.
+    2  Usar un Bucle FOR para recorrer esa lista y mostrar cada equipo.
+    3. Crear un diccionario para un equipo, con claves como: {"Goles":10, "Partidos":5, "Puntos":12}.
 
 6. Diseño del Proyecto
 Arquitectura o estructura del programa:
@@ -64,6 +91,7 @@ Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
 
 10. Bibliografía / Recursos
 * Sitios web, documentación, libros o videos utilizados, mínimo 10
+
 
 
 
