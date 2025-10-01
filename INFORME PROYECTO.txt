@@ -4,7 +4,7 @@ Fundamentos de Programación
 Nombre del Proyecto
 
 1. Información General
-   * Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja Espinosa y Juan Enrique Galeano.
+   * Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja Espinosa y Juan Enrique Galeano Vargas.
    * Curso/Grupo: A
    * Fecha de entrega: 17/11/2025
    * Profesor: Pablo Enrique Carreño
@@ -73,7 +73,7 @@ Nombre del Proyecto
       -mostrar_resultados(): Imprime en pantalla las estadísticas.
       -ver_goleador(): Muestra el máximo goleador con sus goles.
 -Diagrama de flujo:
-   * Inicio ---→ Cargar datos ---→ Procesar estadísticas ---→ Mostrar resultados y estádisticas ---→ Fin.
+   * Inicio ---> Cargar datos ---> Procesar estadísticas ---> Mostrar resultados y estádisticas ---> Fin.
 -Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
    1. Inicio.
    2. Cargar datos.
@@ -107,6 +107,7 @@ Nombre del Proyecto
   * Understad: https://understat.com/
   * StatsBomb: https://statsbomb.com/
   * https://www.datacamp.com/es/blog/60-python-projects-for-all-levels-expertise
+
 
 
 
