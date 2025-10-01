@@ -57,6 +57,7 @@ Nombre del Proyecto
 -REQUISITOS TÉCNICOS:
     1. Tener instalado (PYTHON 3.10 O SUPERIOR)
     2. Usar un editor de código como: (VS code, PyCharme o incluso Google Colab) para ejecutar el programa.
+    3. Que sea compatible con Windows, macOS y/o Linux
 
 -EJEMPLO DE APLICACION:
     1. Guardar en una lista los equipos de la Premier League.
@@ -106,6 +107,7 @@ Nombre del Proyecto
   * Understad: https://understat.com/
   * StatsBomb: https://statsbomb.com/
   * https://www.datacamp.com/es/blog/60-python-projects-for-all-levels-expertise
+
 
 
 
