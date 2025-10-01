@@ -2,6 +2,7 @@ Proyecto de clase de Python aplicado.
 Fundamentos de Programación
 
 Nombre del Proyecto
+
 1. Información General
    * Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja Espinosa y Juan Enrique Galeano.
    * Curso/Grupo: A
@@ -9,25 +10,29 @@ Nombre del Proyecto
    * Profesor: Pablo Enrique Carreño
 
 2. Título del Proyecto
-Análisis de datos de la Premier League.
+
+* Análisis de datos de la Premier League.
 
 3. Descripción del Proyecto
+
    * Este proyecto tiene como propósito analizar las estadisticas de la liga inglesa o la premier league, con el fin de extraer información clave sobre el rendimiento de los equipos, partidos y estadisticas de los jugadores de la premier league. La idea es facilitar el acceso a datos relevantes de forma automatizada, utilizando herramientas de programación en phyton.
-Propósito del proyecto:
+-Propósito del proyecto:
    * Este proyecto les permite a los usuarios obtener información clave de manera automatizada y eficiente, resolviendo el problema de la inaccesibilidad de interpretar grandes cantidades de datos estadísticos sin las herramientas adecuadas. Además de esto, automatizar la recopilación y el análisis de estadísticas, les permite a los usuarioscentrarse en el análisis en lugar de la extensa recolección manual de datos.
-Público objetivo:
+-Público objetivo:
    * Este proyecto está dirigido principalmente a fanáticos del fútbol,analistas deportivos, entrenadores y periodistas, quienes podrán usar el programa con el fin de analizar los resultados obtenidos para tomar decisiones informadas, seguir las estadisticas de los equipos y jugadores, y generar reportes de manera más eficiente.
-Resultado esperado:
+-Resultado esperado:
    * Se espera que este proyecto genere las estadisticas permitiendole visualizarlas ayudando a identificar patrones, tendencias y precciones sobre las estadisticas de los jugadores y equipos de la premiere league. Al final, el objetivo es mejorar la comprensión de las estadísticas y proporcionar a los usuarios una herramienta potente para hacer análisis deportivos profundos de manera rápida y precisa.
 
 4. Objetivos
-General:
+
+-General:
    * Desarrollar una herramienta que permita analizar las estadisticas deportivas de la Premier League temporada 2024-25 de forma automatizada, que permita obtener, procesar y visualizar datos relevantes sobre los equipos que compiten en esta misma (incluyendo partidos, goles y asistencias). Facilitando a los fanaticos, analistas deportivos, entrenadores y periodistas a tener esta informacion de manera clara, sencilla y actualizada. 
-Específicos:
+-Específicos:
    * Mostrar las listas, tuplas, diccionarios, para almancenar y manipular grandes cantidades de datos.
    * Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos.
 
 5. Requisitos
+
    1. BUCLE FOR: Permite iterar sobre secuencias como listas, cadenas o rangos numericos. Su uso fue clave para recorrer listas de jugadores, equipos o partidos, facilitando el procesamiento individual de cada elemento.
    2. BUCLE WHILE: Ejecuta un bloque de instrucciones mientras se cumpla una condición lógica. Este tipo de bucle resulto útil en procesos donde se requeria esperar hasta que cierta condición se cumpliera, por ejemplo: para validar entradas de usuario o realizar cálculos acumulativos.
    3. ESTRUCTURAS CONDICIONALES IF-ELIF-ELSE: Estas sentencias fueron utilizadas para tomar decisiones dentro del programa, permitiendo ejecutar distintas acciones según las condiciones del flujo de datos, como comparar estadisticas o filtrar información relevante.
@@ -41,7 +46,7 @@ Específicos:
    11. USO DE DICCIONARIOS: Los diccionarios fueron una estructura clave para organizar datos relacionados por claves y valores, por ejemplo, para representar los atributos de un jugador o los resultados de un partido
    12: INSTRUCCIONES BRAK Y CONTINUE: El break fue utilizado para interrumpir bucles cuando se cumplía cierta condición, mientras que continue permitió omitir una iteración específica y continuar con el resto del ciclo. Ambas instrucciones ofrecieron mayor control sobre la lógica del programa.
 
- REQUISITOS DE PROGRAMACIÓN:
+ -REQUISITOS DE PROGRAMACIÓN:
     1. LISTAS Y DICCIONARIOS: Para guardar y organizar la información de equipos, jugadores y partidos.
     2. BUCLES (FOR Y WHILE): Para recorrer los datos y realizar cálculos automáticos.
     3. CONDICIONALES (IF, ELIF, ELSE): Para tomar decisiones (Ejemplo: Si un equipo ganó, empató o perdió.)
@@ -49,25 +54,26 @@ Específicos:
     5. ENTRADA Y SALIDA DE DATOS: Con input() para que el usuario consulte información y print() para mostrar resultados.
     6. MANEJO DE TIPOS DE DATOS: Transformar texto en números (int, float, str) para hacer operaciones.
 
-REQUISITOS TÉCNICOS:
+-REQUISITOS TÉCNICOS:
     1. Tener instalado (PYTHON 3.10 O SUPERIOR)
     2. Usar un editor de código como: (VS code, PyCharme o incluso Google Colab) para ejecutar el programa.
 
-EJEMPLO DE APLICACION:
+-EJEMPLO DE APLICACION:
     1. Guardar en una lista los equipos de la Premier League.
     2  Usar un Bucle FOR para recorrer esa lista y mostrar cada equipo.
     3. Crear un diccionario para un equipo, con claves como: {"Goles":10, "Partidos":5, "Puntos":12}.
 
 6. Diseño del Proyecto
-Arquitectura o estructura del programa:
+
+-Arquitectura o estructura del programa:
    * El proyecto se divide en funciones que cumplen tareas específicas tales como:
       -cargar_datos(): Almacena equipos y resultados.
       -calcular_estadisticas(): Obtiene partidos ganados, empatados, perdidos, goles y puntos.
       -mostrar_resultados(): Imprime en pantalla las estadísticas.
       -ver_goleador(): Muestra el máximo goleador con sus goles.
-Diagrama de flujo:
-   * Inicio -→ Cargar datos -→ Procesar estadísticas -→ Mostrar resultados y estádisticas -→ Fin.
-Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
+-Diagrama de flujo:
+   * Inicio ---→ Cargar datos ---→ Procesar estadísticas ---→ Mostrar resultados y estádisticas ---→ Fin.
+-Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
    1. Inicio.
    2. Cargar datos.
    3. Ver tabla de equipos.
@@ -91,13 +97,16 @@ Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
 * Posibles mejoras o ideas futuras
 
 10. Bibliografía / Recursos
-   * Premier League–Página oficial: https://www.premierleague.com/
-   * OneFootball–Estadísticas deportivas: https://onefootball.com/
-   * SofaScore–Resultados deportivos: https://www.sofascore.com/
-   * Score360–Datos de fútbol: https://www.score360.com/
-   * Football-Data: https://www.football-data.com
-   * Understad: https://understat.com/
-   * StatsBomb: https://statsbomb.com/
+
+  * Premier League–Página oficial: https://www.premierleague.com/
+  * OneFootball–Estadísticas deportivas: https://onefootball.com/
+  * SofaScore–Resultados deportivos: https://www.sofascore.com/
+  * Score360–Datos de fútbol: https://www.score360.com/
+  * Football-Data: https://www.football-data.com
+  * Understad: https://understat.com/
+  * StatsBomb: https://statsbomb.com/
+  * https://www.datacamp.com/es/blog/60-python-projects-for-all-levels-expertise
+
 
 
 
