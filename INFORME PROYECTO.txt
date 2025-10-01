@@ -80,7 +80,7 @@ Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
 * Descripción de las funciones principales
 
 8. Pruebas y Resultados
-* Cómo se probó el programa
+* 
 * Capturas de pantalla o ejemplos de ejecución
 * Resultados obtenidos
 * Manual de usuario
@@ -98,6 +98,7 @@ Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
    * Football-Data: https://www.football-data.com
    * Understad: https://understat.com/
    * StatsBomb: https://statsbomb.com/
+
 
 
 
