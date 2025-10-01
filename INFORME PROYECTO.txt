@@ -95,6 +95,10 @@ Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
    * OneFootball–Estadísticas deportivas: https://onefootball.com/
    * SofaScore–Resultados deportivos: https://www.sofascore.com/
    * Score360–Datos de fútbol: https://www.score360.com/
+   * Football-Data: https://www.football-data.com
+   * Understad: https://understat.com/
+   * StatsBomb: https://statsbomb.com/
+
 
 
 
