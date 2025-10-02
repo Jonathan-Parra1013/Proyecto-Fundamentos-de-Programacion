@@ -82,8 +82,22 @@ Nombre del Proyecto
    5. Salir.
 
 7. Desarrollo
-* Explicación paso a paso de cómo se desarrolló el proyecto
-* Fragmentos de código relevantes comentados
+A continuacion explicaremos a detalle el proceso de desarrollo de nuestro proyecto, dando a detalle sus caracteristicas y requisitos solicitados:
+1 Explicación paso a paso de cómo se desarrolló el proyecto
+ 1.1 Primero planteamos objetivamente la Metodología y pasos de desarrollo: Fue la guia principal para idear como queriamos plantear el proyecto, su esructura y caracteristicas, ademas de empezar a construir nuestro proyecto ya con un enfoque determinado, es decir el resultado final que queremos proyectarle al usuario.
+Los puntos principales a tener en cuenta fueron planificación y alcance, para esto trabajamos en base a nuestro tema central, es decir:
+Analizar la Premier League 2024–25 (equipos, partidos, goles, asistencias y goleadores) y en consecuencia a esto nos fue fundamental la eleccion del público objetivo que en este caso son: analistas, entrenadores, periodistas y aficionados. 
+Una vez tenemos esto claro se nos facilita idear cual seria la interfaz más acertada y comoda para el publico ya mencionado.
+ 1.2 Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
+Debemos buscar fuentes confiables como: 
+Archivos CSV públicos (CSV =(Comma Separated Values) archivo con datos guardados en tabla (separados por comas).)
+APIs ((Application Programming Interface) Es una manera de conectarse en línea para pedir datos actualizados como resultados en vivo). En el contexto deportivo podriamos llegar a  ver  (p. ej. football-data.org, API-Football, o datasets en Kaggle/FBref)
+ 1.3 En este punto es fundamental el diseño de la estructura del programa
+ 
+
+
+
+Fragmentos de código relevantes comentados
 * Descripción de las funciones principales
 
 8. Pruebas y Resultados
