@@ -1,0 +1,54 @@
+# --- Análisis sencillo de datos de la Premier League ---
+import pandas as pd
+def analizar_premier():
+    equipos = [] # Lista para guardar los nombres de los equipos
+    goles = [] # Lista para guardar los goles de cada equipo
+
+    print("=== Análisis de datos de la Premier League ===")
+    
+    # Bucle while para ingresar datos
+    while True:
+        nombre = input("Ingrese el nombre del equipo (o 'fin' para terminar): ")
+        if nombre.lower() == "fin":
+            break # Termina el bucle si el usuario escribe 'fin'
+        
+        # Validar que el número de goles sea un entero
+        goles_equipo = int(input(f"Ingrese los goles anotados por {nombre}: "))
+        equipos.append(nombre)
+        goles.append(goles_equipo)
+    
+    # Si no se ingresaron equipos
+    if len(equipos) == 0:
+        print("No se ingresaron datos.")
+        return # Sale de la función
+
+    # Calcular el promedio de goles
+    promedio = sum(goles) / len(goles)
+    
+    # Encontrar el equipo con más y menos goles
+    mayor_goles = max(goles)
+    menor_goles = min(goles)
+    mejor_equipo = equipos[goles.index(mayor_goles)]
+    peor_equipo = equipos[goles.index(menor_goles)]
+    
+    # Mostrar resultados
+    print("\n=== Resultados del análisis ===")
+    print(f"Equipos analizados: {len(equipos)}")
+    print(f"Promedio de goles: {promedio:.2f}")
+    print(f"Equipo con más goles: {mejor_equipo} ({mayor_goles} goles)")
+    print(f"Equipo con menos goles: {peor_equipo} ({menor_goles} goles)")
+
+    # Evaluación con if, elif, else
+    if promedio >= 3:
+        print("¡Temporada muy ofensiva!")
+    elif promedio >= 1.5:
+        print("Temporada equilibrada.")
+    else:
+        print("Pocos goles esta temporada.")
+    
+    return promedio # Devuelve el promedio por si se quiere usar luego
+
+
+# --- Programa principal ---
+resultado = analizar_premier()
+print("\nAnálisis finalizado.")
