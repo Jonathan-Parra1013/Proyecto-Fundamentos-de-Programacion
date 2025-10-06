@@ -10,9 +10,64 @@ mostrar_resultados()
 Segunda funcion ---> Donde se calcula el campeon (el equipo que quedo con mas puntos), los primeros 5 puestos de champions league (los que tuvieron mayor cantidad de puntos en la tabla), luego se calcula el siguiente puesto de europa league (el que quede de sextas) y los 3 equipos que descienden a la segunda division de Inglaterra (Football League Championship)
 -(FUNCION PARA __MOSTRAR__ EL GOLEADOR Y EL ASISTIDOR, EL CAMPEÓN, 5 EQUIPOS QUE JUGARAN CHAMPIONS, EL EQUIPO QUE JUGARA EUROPA, Y LOS 3 QUE DESCIENDEN DE LA PREMIER.)
 ver_goleador()
-Tercera funcion ---> Donde se calcula el jugador que haya hecho mas goles y los 2 que le siguen (1er, 2do y 3er lugar)
-  El que haya hecho mas asistencias y los 2 que le siguen (1er, 2do y 3er lugar)
+Tercera funcion ---> Donde se calcula el jugador que haya hecho mas goles.
+  El que haya hecho mas asistencias.
   Se calcula el campeón (equipo con mayor cantidad de puntos), 
   5 equipos que jugaras champions (los 5 primeros puestos de la tabla), 
   El unico equipo que va a jugar europa league (el sexto de la tabla) y los 3 que descienden a la championship (los ultimos 3 puestos de la tabla)
--(FUNCION PARA __MOSTRAR__ EL GOLEADOR (1-2-3) y el asistidor (1-2-3).)
+-(FUNCION PARA __MOSTRAR__ EL GOLEADOR)
+
+
+
+def analizar_premier():
+    equipos=[] # Lista para guardar los nombres de los equipos
+    goles=[] # Lista para guardar los goles de cada equipo
+
+    print("=== Análisis de datos de la Premier League ===")
+    
+    # Bucle while para ingresar datos
+    while True:
+        nombre = input("Ingrese el nombre del equipo (o 'fin' para terminar): ")
+        if nombre.lower() == "fin":
+            break # Termina el bucle si el usuario escribe 'fin'
+        
+        # Validar que el número de goles sea un entero
+        goles_equipo = int(input(f"Ingrese los goles anotados por {nombre}: "))
+        equipos.append(nombre)
+        goles.append(goles_equipo)
+    
+    # Si no se ingresaron equipos
+    if len(equipos) == 0:
+        print("No se ingresaron datos.")
+        return # Sale de la función
+
+    # Calcular el promedio de goles
+    promedio = sum(goles) / len(goles)
+    
+    # Encontrar el equipo con más y menos goles
+    mayor_goles = max(goles)
+    menor_goles = min(goles)
+    mejor_equipo = equipos[goles.index(mayor_goles)]
+    peor_equipo = equipos[goles.index(menor_goles)]
+    
+    # Mostrar resultados
+    print("\n=== Resultados del análisis ===")
+    print(f"Equipos analizados: {len(equipos)}")
+    print(f"Promedio de goles: {promedio:.2f}")
+    print(f"Equipo con más goles: {mejor_equipo} ({mayor_goles} goles)")
+    print(f"Equipo con menos goles: {peor_equipo} ({menor_goles} goles)")
+
+    # Evaluación con if, elif, else
+    if promedio >= 3:
+        print("¡Temporada muy ofensiva!")
+    elif promedio >= 1.5:
+        print("Temporada equilibrada.")
+    else:
+        print("Pocos goles esta temporada.")
+    
+    return promedio # Devuelve el promedio por si se quiere usar luego
+
+
+# --- Programa principal ---
+resultado = analizar_premier()
+print("\nAnálisis finalizado.")
