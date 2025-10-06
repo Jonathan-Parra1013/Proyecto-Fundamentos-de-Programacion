@@ -85,17 +85,92 @@ Nombre del Proyecto
 
 -A continuacion explicaremos a detalle el proceso de desarrollo de nuestro proyecto, dando a detalle sus caracteristicas y requisitos solicitados:
   * Explicación paso a paso de cómo se desarrolló el proyecto
-   - Primero planteamos objetivamente la Metodología y pasos de desarrollo: Fue la guia principal para idear como queriamos plantear el proyecto, su esructura y caracteristicas, ademas de empezar a construir nuestro proyecto ya con un enfoque determinado, es decir el resultado final que queremos proyectarle al usuario.
+   1. Primero planteamos objetivamente la Metodología y pasos de desarrollo: Fue la guia principal para idear como queriamos plantear el proyecto, su esructura y caracteristicas, ademas de empezar a construir nuestro proyecto ya con un enfoque determinado, es decir el resultado final que queremos proyectarle al usuario.
 Los puntos principales a tener en cuenta fueron planificación y alcance, para esto trabajamos en base a nuestro tema central, es decir:
-  - Analizar la Premier League 2024–25 (equipos, partidos, goles, asistencias y goleadores) y en consecuencia a esto nos fue fundamental la eleccion del público objetivo que en este caso son: analistas, entrenadores, periodistas y aficionados. 
-Una vez tenemos esto claro se nos facilita idear cual seria la interfaz más acertada y comoda para el publico ya mencionado.
-  - Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
-Debemos buscar fuentes confiables como: 
-Archivos CSV públicos (CSV =(Comma Separated Values) archivo con datos guardados en tabla (separados por comas).)
-APIs ((Application Programming Interface) Es una manera de conectarse en línea para pedir datos actualizados como resultados en vivo). En el contexto deportivo podriamos llegar a  ver  (p. ej. football-data.org, API-Football, o datasets en Kaggle/FBref)
-  - En este punto es fundamental el diseño de la estructura del programa
- 
-Fragmentos de código relevantes comentados
+  2. Analizar la Premier League 2024–25 (equipos, partidos, goles, asistencias y goleadores) y en consecuencia a esto nos fue fundamental la eleccion del público objetivo que en este caso son: analistas, entrenadores, periodistas y aficionados. 
+Una vez tenemos esto claro se nos facilita idear cual seria la interfaz más acertada y comoda para el publico ya mencionado. 
+Pensamos que la elección de usar una interfaz basada en consola es una forma eficaz de alcanzar a este público, ya que la mayor parte del trabajo será el análisis de datos y no tanto la parte visual. Esto tiene concuerda con nuestro planteamiento de brindar una interfaz cómoda para el público objetivo.
+
+  3. Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
+  Si bien en la versión actual los datos se ingresan manualmente (como parte de muestro planteamiento inicial), nos basamos en fuentes reales y confiables para entender qué tipo de datos estamos procesando, cómo se estructuran y cómo podrían integrarse en futuras versiones del proyecto mediante archivos CSV o APIs.
+
+Algunas de las fuentes  principales de consulta y análisis de datos fueron:
+ Premier League – Página oficial:
+Este fue el sitio principal para consultar resultados oficiales, estadísticas por equipo, calendario de partidos entre otros, Nos fue fundamental para validar que los datos que usamos en el análisis estén alineados con la realidad.
+ SofaScore:
+Nos permitio ampliar el análisis más allá de lo básico (goles y puntos), hacia parametros más amplios, teniendo mas disponilibilidad y acceso a informacion reelevante para el desarrollo de nuestrom proyecto.
+Encontramos informacion acerca de:
+Rendimiento por jugador (pases, duelos ganados, precisión), Mapas de calor, estadísticas avanzadas y comparativas, Clasificaciones de goleadores y asistidores.
+ Football-Data:
+Nos permitio visualizar datasets en formato CSV (Valores Separados por Comas o Comma Separated Values) es un formato de archivo de texto simple que almacena datos en formato tabular, y que son descargables , lo cual es una de las bases centrales de este proyecto.
+Encontramos archivos que contenian informacion acerca de: Resultados de partidos, Cuotas de apuestas, estadísticas históricas por temporada, etc.
+ Understat:
+Este sitio web es especializado en estadísticas avanzadas tales como:(xG (goles esperados), xA (asistencias esperadas), Rendimiento individual y colectivo de los equipos)
+ OneFootball:
+Nos sirvio como fuente complementaria para validar datos de rendimiento, consultar alineaciones o seguir la evolución de jugadores destacados, lo cual es muy  útil en la interpretación e ingreso de los resultados en el programa.
+ (Tambien empleamos el uso de librerías externas: pandas y openpyxl:)
+Para mejorar el manejo y análisis de datos en nuestro proyecto, utilizamos las librerías pandas y openpyxl, herramientas fundamentales para trabajar con grandes volúmenes de datos deportivos de manera eficiente.
+ pandas:
+Esta biblioteca nos permitió cargar, manipular y analizar los datos de la Premier League de forma estructurada y sencilla. Con pandas pudimos leer archivos en formato CSV y Excel, organizar la información en tablas (DataFrames), realizar cálculos estadísticos como promedios y totales, y filtrar datos relevantes para nuestro análisis. Gracias a pandas, la gestión de la información fue mucho más rápida y menos propensa a errores en comparación con la manipulación manual mediante listas o diccionarios.
+ openpyxl:
+Esta librería se utilizó para trabajar con archivos Excel (.xlsx), permitiéndonos leer y escribir datos en este formato. Fue especialmente útil para importar información estadística proveniente de archivos Excel y para exportar los resultados y reportes generados, facilitando la consulta y difusión de la información. Openpyxl complementa a pandas como motor para manipular archivos Excel dentro de nuestro flujo de trabajo, debido a que es utilizada por pandas para abrir y guardar archivos Excel.
+
+¿Como adaptamos estas librerias a nuestro proyecto?
+Para poder utilizar las librerías pandas y openpyxl en nuestro proyecto de Python, nos fue necesario instalarlas previamente en nuestro entorno de desarrollo, que en esta ocasion es  Visual Studio Code, usamos comandos como pip install pandas y pip istall openpyxl en la terminal de VS Code, pip descarga las librerías desde internet y las instala en el Python
+Dentro de VS Code, abrimos la terminal integrada para poder ejecutar comandos directamente, consecuente a estos pasos verificamos que Python y pip estén instalados para correr adecuadamente el programa.
+
+Por ahora, en esta versión principal, desarrollamo un modelo de entrada manual de datos a través de consola, pero como una visualizacion a futuro proyectamos la integración de fuentes externas y avanzadas para automatizar la recopilación y análisis de información en las siguientes etapas del proyecto.
+   
+   4. Diseño general de la estructura del programa
+El proyecto se organiza mediante funciones que cumplen tareas específicas, como la recopilación de datos (analizar_premier()), el cálculo de estadísticas y la visualización de los resultados, nos basamos en los principios básicos de la programación estructurada y modular en python, con el objetivo de hacerlo claro, ordenado, fácil de entender,  mantener y asi mismo evolucionar.
+La parte del ingreso de datos es interactivo (a través de la consola) como primera fase esto encaja con la idea de que los usuarios puedan ingresar información y obtener resultados rápidos.
+ Como estructura general del programa podemos describir los dos componentes principales:
+
+-Una función principal llamada analizar_premier() que contiene toda la lógica de procesamiento de datos.
+
+-El bloque de ejecución del programa, donde se llama a la función y se imprime el mensaje de finalización.
+
+  5. Descripcion detallada de la estructura del programa
+ A continuacion explicaremos un poco mas a detalle el funcionamiento principal evidenciado en estas dos divisiones del programa, es decir la estructura del código, incluyendo las funciones utilizadas, procesos desarrollados y su propósito, incluyendo fragmentos de código relevantes comentados
+- Función analizar_premier()
+Esta función es el núcleo del programa. Se encarga de todo el proceso de entrada, procesamiento y salida de los datos estadísticos. 
+Aqui empleamos la declaracion de listas, y las usamos para almacenar múltiples elementos relacionados.
+equipos = []  # Lista para guardar los nombres de los equipos
+goles = []    # Lista para guardar los goles de cada equipo
+
+-Entrada de datos (bucle while)
+while True:
+    nombre = input("Ingrese el nombre del equipo (o 'fin' para terminar): ")
+    if nombre.lower() == "fin":
+        break
+    goles_equipo = int(input(f"Ingrese los goles anotados por {nombre}: "))
+    equipos.append(nombre)
+    goles.append(goles_equipo)
+
+Se utiliza un bucle while infinito que solo se detiene cuando el usuario escribe "fin".
+Dentro del bucle:
+Se solicita al usuario el nombre del equipo y sus goles.
+Se hace conversión de tipo con int() para convertir la entrada del usuario (texto) en número.
+Se utiliza el método .append() para agregar dinámicamente los datos a las listas.
+Esto permite una entrada flexible de datos sin necesidad de definir la cantidad de equipos de antemano.
+
+- Validación de datos
+
+if len(equipos) == 0:
+    print("No se ingresaron datos.")
+    return
+
+Se usa la función len() para verificar si se ingresaron equipos.
+Si no hay datos, se finaliza la función con return.
+
+- Cálculo del promedio de goles
+
+promedio = sum(goles) / len(goles)
+
+Se utiliza la función sum() para sumar todos los goles.
+
+
+
 
 
 * Descripción de las funciones principales
