@@ -61,7 +61,7 @@ Nombre del Proyecto
 
 -EJEMPLO DE APLICACION:
     1. Guardar en una lista los equipos de la Premier League.
-    2  Usar un Bucle FOR para recorrer esa lista y mostrar cada equipo.
+    2  Usar un Bucle FOR para recorrer esa lista y mostrar cada equipo, tabla de goleadores, tabla de asistidores, equipos que juegan champions league, europa league y los equipos que descienden.
     3. Crear un diccionario para un equipo, con claves como: {"Goles":10, "Partidos":5, "Puntos":12}.
 
 6. Diseño del Proyecto
@@ -122,6 +122,7 @@ Fragmentos de código relevantes comentados
   * StatsBomb: https://statsbomb.com/
   * https://www.datacamp.com/es/blog/60-python-projects-for-all-levels-expertise
   * https://prezi.com/p/hftmx3o1n96q/analisis-de-datos-de-la-premier-league/
+
 
 
 
