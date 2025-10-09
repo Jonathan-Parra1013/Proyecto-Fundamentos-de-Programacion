@@ -9,4 +9,4 @@ def Datos():
         Equipo = input("Ingrese nombre del equipo que desea conocer su informacion - (INGRESE 'FIN' PARA SALIR): ")
         if Equipo.lower() == "fin":
             break
-    
+Datos()
