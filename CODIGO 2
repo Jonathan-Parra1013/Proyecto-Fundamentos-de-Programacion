@@ -1,7 +1,7 @@
 import pandas as pd 
-df = pd.read_excel('data/base.xlsx', sheet_name='LeagueTableExport')
+df = pd.read_excel('data/TABLAPREMIERE.xlsx', sheet_name='Hoja1')
 print("Los equipos que jugaron en la PREMIER LEAGUE (2024-2025) son: ")
-print(df['Team'])
+print(df['Equipo'])
 
 
 def Datos():
