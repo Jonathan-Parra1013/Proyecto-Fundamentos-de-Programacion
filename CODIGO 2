@@ -1,13 +1,12 @@
 import pandas as pd 
-df = pd.read_excel('data/base.xlsx')
+df = pd.read_excel('data/base.xlsx', sheet_name='LeagueTableExport')
+print("Los equipos que jugaron en la PREMIER LEAGUE (2024-2025) son: ")
+print(df['Team'])
+
 
 def Datos():
     while True:
-        Equipo = input("Ingrese nombre del equipo (INGRESE 'FIN' PARA SALIR): ")
+        Equipo = input("Ingrese nombre del equipo que desea conocer su informacion - (INGRESE 'FIN' PARA SALIR): ")
         if Equipo.lower() == "fin":
             break
-
     
-
-
-print(df.head())
