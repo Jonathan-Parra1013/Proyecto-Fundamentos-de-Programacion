@@ -1,0 +1,7 @@
+import pandas as pd 
+df = pd.read_excel('data/base.xlsx')
+def Datos():
+    Equipo = input("Ingrese nombre del equipo: ")
+    
+
+print(df.head())
