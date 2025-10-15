@@ -87,12 +87,30 @@ Nombre del Proyecto
   * Explicación paso a paso de cómo se desarrolló el proyecto
    1. Primero planteamos objetivamente la Metodología y pasos de desarrollo: Fue la guia principal para idear como queriamos plantear el proyecto, su esructura y caracteristicas, ademas de empezar a construir nuestro proyecto ya con un enfoque determinado, es decir el resultado final que queremos proyectarle al usuario.
 Los puntos principales a tener en cuenta fueron planificación y alcance, para esto trabajamos en base a nuestro tema central, es decir:
+Analizar la Premier League 2024–25 (equipos, partidos, goles, asistencias y goleadores) y en consecuencia a esto nos fue fundamental la eleccion del público objetivo que en este caso son: analistas, entrenadores, periodistas y aficionados. 
+Una vez tenemos esto claro se nos facilita idear cual seria la interfaz más acertada y comoda para el publico ya mencionado.
+ 1.2 Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
+Debemos buscar fuentes confiables como: 
+Archivos CSV públicos (CSV =(Comma Separated Values) archivo con datos guardados en tabla (separados por comas).)
+APIs ((Application Programming Interface) Es una manera de conectarse en línea para pedir datos actualizados como resultados en vivo). En el contexto deportivo podriamos llegar a  ver  (p. ej. football-data.org, API-Football, o datasets en Kaggle/FBref)
+ 1.3 En este punto es fundamental el diseño de la estructura del programa que se divide en dos secciones:
+Primero planteampos la arquitectura modular:
+-Módulo io (Input/Output = Entrada/Salida)
+ Aquí va todo lo relacionado con cargar la información de la Premier League.
+Por ejemplo podriamos usar una funcion llamada: cargar_datos()
+Responsabilidad: leer la tabla (CSV, Excel o JSON) y devolverla como estructura (lista, diccionario o  en un conyexto mas avanzado un DataFrame).
+-Módulo processing (Procesamiento o cálculos)
+Aquí está la “lógica” del programas se encargara de hacer cálculos, operaciones o transformaciones con los datos que carguemos
+podiramos definir funciones como: calcular_estadisticas() que poria determinar el campeón, los puestos de Champions, Europa League y descensos o otro ejemplo ver_goleador():  podria calcular goleadores y asistidores.
   2. Analizar la Premier League 2024–25 (equipos, partidos, goles, asistencias y goleadores) y en consecuencia a esto nos fue fundamental la eleccion del público objetivo que en este caso son: analistas, entrenadores, periodistas y aficionados. 
 Una vez tenemos esto claro se nos facilita idear cual seria la interfaz más acertada y comoda para el publico ya mencionado. 
 Pensamos que la elección de usar una interfaz basada en consola es una forma eficaz de alcanzar a este público, ya que la mayor parte del trabajo será el análisis de datos y no tanto la parte visual. Esto tiene concuerda con nuestro planteamiento de brindar una interfaz cómoda para el público objetivo.
 
+-Módulo reports (Reportes/Exportación de resultados)
+Se encargara de generar informes o salidas organizadas con los resultados, poor ejemplo imprimir en la consola un resumen con las estadísticas finales.
+Si se quisiera guardar o exportar resultados a un archivo concreto podriamos usar funciones como:
   3. Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
-  Si bien en la versión actual los datos se ingresan manualmente (como parte de muestro planteamiento inicial), nos basamos en fuentes reales y confiables para entender qué tipo de datos estamos procesando, cómo se estructuran y cómo podrían integrarse en futuras versiones del proyecto mediante archivos CSV o APIs.
+si bien en la versión actual los datos se ingresan manualmente (como parte de muestro planteamiento inicial), nos basamos en fuentes reales y confiables para entender qué tipo de datos estamos procesando, cómo se estructuran y cómo podrían integrarse en futuras versiones del proyecto mediante archivos CSV o APIs.
 
 Algunas de las fuentes  principales de consulta y análisis de datos fueron:
  Premier League – Página oficial:
@@ -109,13 +127,21 @@ Este sitio web es especializado en estadísticas avanzadas tales como:(xG (goles
  OneFootball:
 Nos sirvio como fuente complementaria para validar datos de rendimiento, consultar alineaciones o seguir la evolución de jugadores destacados, lo cual es muy  útil en la interpretación e ingreso de los resultados en el programa.
  (Tambien empleamos el uso de librerías externas: pandas y openpyxl:)
+
 Para mejorar el manejo y análisis de datos en nuestro proyecto, utilizamos las librerías pandas y openpyxl, herramientas fundamentales para trabajar con grandes volúmenes de datos deportivos de manera eficiente.
  pandas:
 Esta biblioteca nos permitió cargar, manipular y analizar los datos de la Premier League de forma estructurada y sencilla. Con pandas pudimos leer archivos en formato CSV y Excel, organizar la información en tablas (DataFrames), realizar cálculos estadísticos como promedios y totales, y filtrar datos relevantes para nuestro análisis. Gracias a pandas, la gestión de la información fue mucho más rápida y menos propensa a errores en comparación con la manipulación manual mediante listas o diccionarios.
+A coontinuacion mencionamos y explicamos de forma rapida algunas librerias  que tuvimos en cuenta en el desarrollo y planeacion del codigo, aunque no se usen directamente, la informacion que encontramos en estas librerias es fundamental para la mejora a fututo de nuestro proyecto.
+ numpy:
+Manejo de arreglos numéricos y cálculos matemáticos rápidos.
+ matplotlib, contourpy, cycler, kiwisolver, fonttools, pillow, pyparsing:
+Se usan normalmente para crear gráficos y visualizaciones.
  openpyxl:
-Esta librería se utilizó para trabajar con archivos Excel (.xlsx), permitiéndonos leer y escribir datos en este formato. Fue especialmente útil para importar información estadística proveniente de archivos Excel y para exportar los resultados y reportes generados, facilitando la consulta y difusión de la información. Openpyxl complementa a pandas como motor para manipular archivos Excel dentro de nuestro flujo de trabajo, debido a que es utilizada por pandas para abrir y guardar archivos Excel.
+Permiten leer y escribir archivos Excel.
+ packaging, python-dateutil, pytz, tzdata, six:
+Son librerías de soporte y compatibilidad: manejo de versiones, fechas y zonas horarias.
 
-¿Como adaptamos estas librerias a nuestro proyecto?
+¿Y como adaptamos estas librerias a nuestro proyecto?
 Para poder utilizar las librerías pandas y openpyxl en nuestro proyecto de Python, nos fue necesario instalarlas previamente en nuestro entorno de desarrollo, que en esta ocasion es  Visual Studio Code, usamos comandos como pip install pandas y pip istall openpyxl en la terminal de VS Code, pip descarga las librerías desde internet y las instala en el Python
 Dentro de VS Code, abrimos la terminal integrada para poder ejecutar comandos directamente, consecuente a estos pasos verificamos que Python y pip estén instalados para correr adecuadamente el programa.
 
@@ -130,50 +156,137 @@ La parte del ingreso de datos es interactivo (a través de la consola) como prim
 
 -El bloque de ejecución del programa, donde se llama a la función y se imprime el mensaje de finalización.
 
-  5. Descripcion detallada de la estructura del programa
- A continuacion explicaremos un poco mas a detalle el funcionamiento principal evidenciado en estas dos divisiones del programa, es decir la estructura del código, incluyendo las funciones utilizadas, procesos desarrollados y su propósito, incluyendo fragmentos de código relevantes comentados
-- Función analizar_premier()
-Esta función es el núcleo del programa. Se encarga de todo el proceso de entrada, procesamiento y salida de los datos estadísticos. 
-Aqui empleamos la declaracion de listas, y las usamos para almacenar múltiples elementos relacionados.
+  5. Descripcion detallada de la estructura del programa, incluyendo fragmetos de codigo y su explicacion
+El programa está diseñado para analizar los goles anotados por varios equipos de la Premier League, ingresados manualmente por el usuario, como lo planteamos en  los obetivos principales
+La estructura se divide en tres partes principales:
+ 1. Importación de librerías
+(import pandas as pd)
+Se importa la librería pandas, aunque por ahora no lo usamos directamente.
+(pandas es una herramienta potente para manejar y analizar datos en forma de tablas (DataFrames). En una versión más avanzada del código, la aplicaremos para almacenar los equipos y sus goles de forma estructurada
+ 
+ 2. Definición de la función principal analizar_premier()
+Esta función contiene toda la lógica del programa. Dentro de ella se realizan las siguientes tareas:
+
+a) Inicialización de listas:
 equipos = []  # Lista para guardar los nombres de los equipos
 goles = []    # Lista para guardar los goles de cada equipo
 
--Entrada de datos (bucle while)
+Aqui se crean dos listas vacías:
+equipos almacenará los nombres de los equipos.
+goles almacenará los goles que anota cada equipo en el mismo orden.
+
+b) Ingreso de datos con un bucle while:
+
 while True:
     nombre = input("Ingrese el nombre del equipo (o 'fin' para terminar): ")
     if nombre.lower() == "fin":
-        break
+        break  # Termina el bucle si el usuario escribe 'fin'
+        
     goles_equipo = int(input(f"Ingrese los goles anotados por {nombre}: "))
     equipos.append(nombre)
     goles.append(goles_equipo)
 
-Se utiliza un bucle while infinito que solo se detiene cuando el usuario escribe "fin".
-Dentro del bucle:
-Se solicita al usuario el nombre del equipo y sus goles.
-Se hace conversión de tipo con int() para convertir la entrada del usuario (texto) en número.
-Se utiliza el método .append() para agregar dinámicamente los datos a las listas.
-Esto permite una entrada flexible de datos sin necesidad de definir la cantidad de equipos de antemano.
 
-- Validación de datos
+Aqui el programa solicita el nombre del equipo y los goles anotados.
+Si el usuario escribe 'fin', el ciclo termina.
+Cada dato ingresado se guarda en las listas equipos y goles.
+Se usa int() para asegurar que los goles sean números enteros.
 
+c) Verificación de que existan datos
 if len(equipos) == 0:
     print("No se ingresaron datos.")
-    return
+    return  # Sale de la función si no hay datos
 
-Se usa la función len() para verificar si se ingresaron equipos.
-Si no hay datos, se finaliza la función con return.
+Aqui se verifica si no se ingresó ningún equipo.
+Si las listas están vacías, el programa informa y finaliza la función.
 
-- Cálculo del promedio de goles
+d) Cálculos estadísticos
+promedio = sum(goles) / len(goles)
+Aqui se calcula el promedio de goles dividiendo la suma total entre el número de equipos.
 
-promedio=sum(goles)/len(goles)
+mayor_goles = max(goles)
+menor_goles = min(goles)
+mejor_equipo = equipos[goles.index(mayor_goles)]
+peor_equipo = equipos[goles.index(menor_goles)]
 
-Se utiliza la función sum() para sumar todos los goles.
+Este fragmento de codigo determina:
+El mayor número de goles.
+El menor número de goles.
+El equipo con más goles y el equipo con menos goles, usando los índices en las listas.
+
+e) Impresión de resultados
+print("\n=== Resultados del análisis ===")
+print(f"Equipos analizados: {len(equipos)}")
+print(f"Promedio de goles: {promedio:.2f}")
+print(f"Equipo con más goles: {mejor_equipo} ({mayor_goles} goles)")
+print(f"Equipo con menos goles: {peor_equipo} ({menor_goles} goles)")
+
+Aqui se muestra el resumen del análisis: número de equipos, promedio, mejor y peor equipo.
+
+f) Evaluación con estructuras condicionales
+
+if promedio >= 3:
+    print("¡Temporada muy ofensiva!")
+elif promedio >= 1.5:
+    print("Temporada equilibrada.")
+else:
+    print("Pocos goles esta temporada.")
 
 
+Según el promedio de goles, este fragmento clasifica el rendimiento general:
+
+≥ 3 goles: Temporada ofensiva.
+≥ 1.5 y < 3: Temporada equilibrada.
+< 1.5: Pocos goles.
+ 
+ g) Valor de retorno
+ return promedio
+Este return devuelve el promedio de goles calculado, por si se desea utilizar en otras partes del programa.
+
+3. Programa principal
+
+resultado = analizar_premier()
+print("\nAnálisis finalizado.")
+
+Aquí dividimos el programa en bloques o funciones que cumplen las tareas específicas del progrma y llama a la función analizar_premier() para ejecutar todo el análisis.
+Implementamos programacion modular, lo cual implica que el programa no corre de forma completamente lineal, sino que se divide respecto a las funciones definidas,
+Ventajas de esta implementacion en nuestro codigo:
+
+-El código se organiza mejor
+-Nos facilita el reutilizar las funciones en avances futuras y demas partes del programa
+-Es más fácil de mantener y modificar, lo cual es una caracteristica que nos es de mucha utilidad, pues este es un proyecto con una vision enfocada al desarrolllo y el cambio, buscando siempre una evolucion productiva.
+-Podemos hacer pruebas y mejoras sin tocar todo el programa o modificar todas las funciones
+
+Para concluir, el programa una vez que termina, muestra un mensaje indicando que el proceso ha finalizado.
+
+6.Descripción de las funciones principales
+El programa cuenta con una función principal definida por el usuario y una sección de ejecución principal.
+A continuación se explicamos como trabajan las funciones y sus propósitos:
+
+1. Función analizar_premier()
+Tipo: función definida por el usuario
+Propósito: realizar el análisis completo de los datos ingresados por el usuario sobre los equipos y sus goles.
+
+ Descripción detallada:
+Esta función concentra toda la lógica del programa debido a que see encarga de:
+
+1-Solicitar los datos al usuario (nombres de los equipos y goles).
+2-Guardar la información en listas (equipos y goles).
+3-Calcular estadísticas básicas, como:
+ -Promedio de goles.
+ -Equipo con más goles.
+ -Equipo con menos goles.
+4-Clasificar la temporada como ofensiva, equilibrada o con pocos goles según el promedio.
+5-Mostrar los resultados en pantalla con mensajes claros.
+
+2. Programa principal
+Propósito: ejecutar la función principal y mostrar el resultado final del análisis.
+Explicación:
+- Llama a la función analizar_premier(), lo que pone en marcha todo el proceso.
+- Al finalizar, imprime un mensaje indicando que el análisis concluyó.
+- La variable resultado guarda el valor devuelto por la función (el promedio de goles).
 
 
-
-* Descripción de las funciones principales
 
 8. Pruebas y Resultados
 
