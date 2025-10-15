@@ -165,7 +165,7 @@ Si no hay datos, se finaliza la función con return.
 
 - Cálculo del promedio de goles
 
-promedio = sum(goles) / len(goles)
+promedio=sum(goles)/len(goles)
 
 Se utiliza la función sum() para sumar todos los goles.
 
@@ -197,6 +197,9 @@ Se utiliza la función sum() para sumar todos los goles.
   * StatsBomb: https://statsbomb.com/
   * https://www.datacamp.com/es/blog/60-python-projects-for-all-levels-expertise
   * https://prezi.com/p/hftmx3o1n96q/analisis-de-datos-de-la-premier-league/
+  * https://espndeportes.espn.com/futbol/estadisticas/_/liga/ENG.1/vista/rendimiento/temporada/2024/english-premier-league
+  * https://www.espn.com.co/futbol/estadisticas/_/liga/ENG.1/temporada/2024/vista/anotaciones/goles-de-europa
+
 
 
 
