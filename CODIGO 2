@@ -37,3 +37,4 @@ def Solicitar_Jugadores(Jugadores):
         Estadisticas_Jugador = BASE_DATOS[BASE_DATOS["Nombre"].str.lower() == Solicitud_Jugador.lower()]
 
 Jugadores_Equipo()
+Solicitar_Jugadores(Jugadores_Equipo())
