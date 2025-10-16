@@ -12,19 +12,28 @@ for Orden_Equipo in sorted(Nombre_Equipos):
 
 #Solicitaremos al USUARIO el equipo que desea ver sus JUGADORES
 def Jugadores_Equipo():
-    while True:
-        Solicitud_Equipo = input("Ingrese el nombre del equipo que desea ver sus jugadores - (PARA SALIR INGRESE 'fin'): ")
-        if Solicitud_Equipo.lower() == "fin":
-            print("Gracias por usar nuestro programa! Hasta Luego :) ")
-            break
-        elif Solicitud_Equipo in Nombre_Equipos:
-            Jugadores = BASE_DATOS[BASE_DATOS["Equipo"].str.lower() == Solicitud_Equipo.lower()]
+    Solicitud_Equipo = input("Ingrese el nombre del equipo que desea ver sus jugadores: ")
+    if Solicitud_Equipo in Nombre_Equipos:
+
+        Jugadores = BASE_DATOS[BASE_DATOS["Equipo"].str.lower() == Solicitud_Equipo.lower()]
+
+        return Jugadores    
+    else:
+        print("El equipo ingresado no se encuentra en la base de datos, revisa la ortografia e intentalo de nuevo :)")
+
+
+def Solicitar_Jugadores(Jugadores):
+    if len(Jugadores) > 0:
+        print("-----------------------------------")
+        print("Los JUGADORES del equipo son: ")
+        print("- NOMBRE - - - - - POSICION - - - - - DORSAL -")
+        for _, Jugador in Jugadores.iterrows():
+            print("-", Jugador["Nombre"], "(", Jugador["Posicion"], ")", "#", Jugador["Dorsal"])     
+        else:
+            print("El equipo ingresado no se encuentra en la base de datos, revisa la ortografia e intentalo nuevamente :)")
             
-            if len(Jugadores) > 0:
-                print("-----------------------------------")
-                print("Los JUGADORES del equipo: ", Solicitud_Equipo, "son: ")
-                print("- NOMBRE - - - - - POSICION - - - - - DORSAL -")
-                for _, Jugador in Jugadores.iterrows():
-                     print("-", Jugador["Nombre"], "- -", "(", Jugador["Posicion"], ")", "- -", "#", Jugador["Dorsal"])
+    Solicitud_Jugador = input("Ingrese el nombre completo del jugador que desea ver sus estadisticas: ")
+    if Solicitud_Jugador in BASE_DATOS["Nombre"]:
+        Estadisticas_Jugador = BASE_DATOS[BASE_DATOS["Nombre"].str.lower() == Solicitud_Jugador.lower()]
 
 Jugadores_Equipo()
