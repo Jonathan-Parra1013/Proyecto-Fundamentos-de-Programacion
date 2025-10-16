@@ -109,6 +109,7 @@ Pensamos que la elección de usar una interfaz basada en consola es una forma ef
 -Módulo reports (Reportes/Exportación de resultados)
 Se encargara de generar informes o salidas organizadas con los resultados, poor ejemplo imprimir en la consola un resumen con las estadísticas finales.
 Si se quisiera guardar o exportar resultados a un archivo concreto podriamos usar funciones como:
+  
   3. Continuamos con nuestra materia prima, la informacion, para ser más concisos la selección y obtención de datos:
 si bien en la versión actual los datos se ingresan manualmente (como parte de muestro planteamiento inicial), nos basamos en fuentes reales y confiables para entender qué tipo de datos estamos procesando, cómo se estructuran y cómo podrían integrarse en futuras versiones del proyecto mediante archivos CSV o APIs.
 
@@ -128,9 +129,10 @@ Este sitio web es especializado en estadísticas avanzadas tales como:(xG (goles
 Nos sirvio como fuente complementaria para validar datos de rendimiento, consultar alineaciones o seguir la evolución de jugadores destacados, lo cual es muy  útil en la interpretación e ingreso de los resultados en el programa.
  (Tambien empleamos el uso de librerías externas: pandas y openpyxl:)
 
-Para mejorar el manejo y análisis de datos en nuestro proyecto, utilizamos las librerías pandas y openpyxl, herramientas fundamentales para trabajar con grandes volúmenes de datos deportivos de manera eficiente.
+Para mejorar el manejo y análisis de datos en nuestro proyecto, instalamos en el entorno las librerías pandas y openpyxl, herramientas fundamentales para trabajar con grandes volúmenes de datos deportivos de manera eficiente.
  pandas:
-Esta biblioteca nos permitió cargar, manipular y analizar los datos de la Premier League de forma estructurada y sencilla. Con pandas pudimos leer archivos en formato CSV y Excel, organizar la información en tablas (DataFrames), realizar cálculos estadísticos como promedios y totales, y filtrar datos relevantes para nuestro análisis. Gracias a pandas, la gestión de la información fue mucho más rápida y menos propensa a errores en comparación con la manipulación manual mediante listas o diccionarios.
+Esta biblioteca nos permite cargar, manipular y analizar los datos de la Premier League de forma estructurada y sencilla. Con pandas pudimos leer archivos en formato CSV y Excel, organizar la información en tablas (DataFrames), realizar cálculos estadísticos como promedios y totales, y filtrar datos relevantes para nuestro análisis. Gracias a pandas, la gestión de la información fue mucho más rápida y menos propensa a errores en comparación con la manipulación manual mediante listas o diccionarios.
+
 A coontinuacion mencionamos y explicamos de forma rapida algunas librerias  que tuvimos en cuenta en el desarrollo y planeacion del codigo, aunque no se usen directamente, la informacion que encontramos en estas librerias es fundamental para la mejora a fututo de nuestro proyecto.
  numpy:
 Manejo de arreglos numéricos y cálculos matemáticos rápidos.
@@ -141,7 +143,7 @@ Permiten leer y escribir archivos Excel.
  packaging, python-dateutil, pytz, tzdata, six:
 Son librerías de soporte y compatibilidad: manejo de versiones, fechas y zonas horarias.
 
-Para el desarrollo del proyecto de análisis de la Premier League en Python, se planea utilizar las siguientes librerías clave:
+(ACLARACION:) Para el desarrollo del proyecto de análisis de la Premier League en Python y los mapas de calor con respecto a los jugadores en el mismo, se planea utilizar las siguientes librerías clave:
 mplsoccer:
 Permite dibujar campos de fútbol personalizados.
 Facilita la creación de mapas de calor directamente sobre el campo (por ejemplo, con Pitch().heatmap()), lo cual es útil para analizar zonas de acción o posicionamiento de jugadores.
@@ -152,7 +154,7 @@ Librería basada en Matplotlib que permite generar visualizaciones estadísticas
 Ideal para crear mapas de calor de densidad con suavizado, lo que mejora la interpretación visual de los datos.
 Aporta un enfoque más analítico y estético a las visualizaciones.
 
-Estas nos son necesarias para realizar los mapas de calor que administran de igual manera informacion acerca de los jugadores.
+Estas seran necesarias para realizar los mapas de calor que administran de igual manera informacion acerca de los jugadores.
 CONCPTO CLAVE: mapas de calor
 Son representaciones visuales que muestran la intensidad o frecuencia de eventos en distintas áreas de un espacio, usando colores (generalmente del azul al rojo).
 En fútbol, se usan para visualizar:
@@ -166,15 +168,15 @@ En fútbol, se usan para visualizar:
 -Ayudan a entender el comportamiento táctico, el posicionamiento y la influencia de un jugador o equipo en el campo.
 Estas herramientas juntas permiten pasar de datos crudos (números, posiciones, eventos) a visualizaciones claras y analíticas, facilitando la toma de decisiones o el análisis táctico en el fútbol.
 Y analizando entre las distintas opciones que teniamos filtramos para encontrar las librerias que fueran mas aptas teniendo en cuenta las necesidades de nuestro proyecto
+
 ¿Y como adaptamos estas librerias a nuestro proyecto?
 Para poder utilizar las librerías pandas y openpyxl en nuestro proyecto de Python, nos fue necesario instalarlas previamente en nuestro entorno de desarrollo, que en esta ocasion es  Visual Studio Code, usamos comandos como pip install pandas y pip istall openpyxl en la terminal de VS Code, pip descarga las librerías desde internet y las instala en el Python
 Dentro de VS Code, abrimos la terminal integrada para poder ejecutar comandos directamente, consecuente a estos pasos verificamos que Python y pip estén instalados para correr adecuadamente el programa.
-
-Por ahora, en esta versión principal, desarrollamo un modelo de entrada manual de datos a través de consola, pero como una visualizacion a futuro proyectamos la integración de fuentes externas y avanzadas para automatizar la recopilación y análisis de información en las siguientes etapas del proyecto.
    
    4. Diseño general de la estructura del programa
+Por ahora, en esta versión principal, desarrollamos un modelo de entrada manual de datos a través de consola, pero como una visualizacion a futuro proyectamos la integración de fuentes externas y avanzadas para automatizar la recopilación y análisis de información en las siguientes etapas del proyecto.
 El proyecto se organiza mediante funciones que cumplen tareas específicas, como la recopilación de datos (analizar_premier()), el cálculo de estadísticas y la visualización de los resultados, nos basamos en los principios básicos de la programación estructurada y modular en python, con el objetivo de hacerlo claro, ordenado, fácil de entender,  mantener y asi mismo evolucionar.
-La parte del ingreso de datos es interactivo (a través de la consola) como primera fase esto encaja con la idea de que los usuarios puedan ingresar información y obtener resultados rápidos.
+La parte del ingreso de datos es interactivo (a través de la consola como ya lo mencionamos) como primera fase esto encaja con la idea de que los usuarios puedan ingresar información y obtener resultados rápidos.
  Como estructura general del programa podemos describir los dos componentes principales:
 
 -Una función principal llamada analizar_premier() que contiene toda la lógica de procesamiento de datos.
@@ -182,135 +184,142 @@ La parte del ingreso de datos es interactivo (a través de la consola) como prim
 -El bloque de ejecución del programa, donde se llama a la función y se imprime el mensaje de finalización.
 
   5. Descripcion detallada de la estructura del programa, incluyendo fragmetos de codigo y su explicacion
-El programa está diseñado para analizar los goles anotados por varios equipos de la Premier League, ingresados manualmente por el usuario, como lo planteamos en  los obetivos principales
-La estructura se divide en tres partes principales:
- 1. Importación de librerías
-(import pandas as pd)
-Se importa la librería pandas, aunque por ahora no lo usamos directamente.
-(pandas es una herramienta potente para manejar y analizar datos en forma de tablas (DataFrames). En una versión más avanzada del código, la aplicaremos para almacenar los equipos y sus goles de forma estructurada
- 
- 2. Definición de la función principal analizar_premier()
-Esta función contiene toda la lógica del programa. Dentro de ella se realizan las siguientes tareas:
+Este programa los diseñamos con el fin de analizar información de la Premier League (2024–2025), mostrando los equipos que participaron y permitiendo al usuario consultar los jugadores y estadísticas de un equipo específico, usando la librería Pandas de Python.
 
-a) Inicialización de listas:
-equipos = []  # Lista para guardar los nombres de los equipos
-goles = []    # Lista para guardar los goles de cada equipo
+Como estructura general del programa tenemos que el código se puede dividir en cinco partes principales:
 
-Aqui se crean dos listas vacías:
-equipos almacenará los nombres de los equipos.
-goles almacenará los goles que anota cada equipo en el mismo orden.
+ 1-Importación de librerías de datos desde un archivo Excel
 
-b) Ingreso de datos con un bucle while:
+ 2-Listado de equipos ordenados alfabéticamente
 
-while True:
-    nombre = input("Ingrese el nombre del equipo (o 'fin' para terminar): ")
-    if nombre.lower() == "fin":
-        break  # Termina el bucle si el usuario escribe 'fin'
-        
-    goles_equipo = int(input(f"Ingrese los goles anotados por {nombre}: "))
-    equipos.append(nombre)
-    goles.append(goles_equipo)
+ 3-Definición de funciones (para filtrar jugadores y mostrar información)
 
+ 4-Ejecución del programa principal
+  A continuacion explicaremos cada parte mas claramente...
 
-Aqui el programa solicita el nombre del equipo y los goles anotados.
-Si el usuario escribe 'fin', el ciclo termina.
-Cada dato ingresado se guarda en las listas equipos y goles.
-Se usa int() para asegurar que los goles sean números enteros.
+1. Importación de la librería
 
-c) Verificación de que existan datos
-if len(equipos) == 0:
-    print("No se ingresaron datos.")
-    return  # Sale de la función si no hay datos
+             # IMPORTAMOS LIBRERIA PANDAS
+             import pandas as pd
+Explicación: Se importa la librería pandas, que se usa para trabajar con datos en forma de tablas (como hojas de Excel o bases de datos).
+El alias pd se utiliza para abreviar el nombre y facilitar su uso más adelante, cuando sea necesario referenciarlo de nuevo.
 
-Aqui se verifica si no se ingresó ningún equipo.
-Si las listas están vacías, el programa informa y finaliza la función.
+2. Carga de la base de datos
 
-d) Cálculos estadísticos
-promedio = sum(goles) / len(goles)
-Aqui se calcula el promedio de goles dividiendo la suma total entre el número de equipos.
+             BASE_DATOS = pd.read_excel('data/TABLAPREMIER.xlsx', sheet_name='Hoja2')
 
-mayor_goles = max(goles)
-menor_goles = min(goles)
-mejor_equipo = equipos[goles.index(mayor_goles)]
-peor_equipo = equipos[goles.index(menor_goles)]
+Explicación:Aqui se lee un archivo de Excel llamado TABLAPREMIER.xlsx, en el cual esta la informacion acerca de los jugadores y lo ubicamos en la carpeta data, tomando los datos de la Hoja2.
+El resultado se guarda en un DataFrame llamado BASE_DATOS, que se comporta como una tabla con filas y columnas.
 
-Este fragmento de codigo determina:
-El mayor número de goles.
-El menor número de goles.
-El equipo con más goles y el equipo con menos goles, usando los índices en las listas.
-
-e) Impresión de resultados
-print("\n=== Resultados del análisis ===")
-print(f"Equipos analizados: {len(equipos)}")
-print(f"Promedio de goles: {promedio:.2f}")
-print(f"Equipo con más goles: {mejor_equipo} ({mayor_goles} goles)")
-print(f"Equipo con menos goles: {peor_equipo} ({menor_goles} goles)")
-
-Aqui se muestra el resumen del análisis: número de equipos, promedio, mejor y peor equipo.
-
-f) Evaluación con estructuras condicionales
-
-if promedio >= 3:
-    print("¡Temporada muy ofensiva!")
-elif promedio >= 1.5:
-    print("Temporada equilibrada.")
-else:
-    print("Pocos goles esta temporada.")
+3. Mostrar los equipos participantes
 
 
-Según el promedio de goles, este fragmento clasifica el rendimiento general:
+             Nombre_Equipos = BASE_DATOS["Equipo"].unique()
+            print("Los Equipos que jugaron en la PREMIER LEAGUE (2024-2025) ")
+            print("En orden alfabetico son: ")
+            print("-----------------------------------")
+            for Orden_Equipo in sorted(Nombre_Equipos):
+            print("-", Orden_Equipo)
 
-≥ 3 goles: Temporada ofensiva.
-≥ 1.5 y < 3: Temporada equilibrada.
-< 1.5: Pocos goles.
- 
- g) Valor de retorno
- return promedio
-Este return devuelve el promedio de goles calculado, por si se desea utilizar en otras partes del programa.
 
-3. Programa principal
+Explicación: Aqui se obtiene la lista de equipos únicos usando .unique().
+Luego se ordenan alfabéticamente con sorted().
+Finalmente, se muestran por pantalla uno a uno.
+ Como punto clave nos gustaria aclarar el uso de unique() y sorted(), ya que son funciones muy comunes en Python y en Pandas
 
-resultado = analizar_premier()
-print("\nAnálisis finalizado.")
+  unique() es una función de la librería Pandas.
+Se aplica a una serie o columna de un DataFrame para obtener los valores únicos (sin repetir).
 
-Aquí dividimos el programa en bloques o funciones que cumplen las tareas específicas del progrma y llama a la función analizar_premier() para ejecutar todo el análisis.
-Implementamos programacion modular, lo cual implica que el programa no corre de forma completamente lineal, sino que se divide respecto a las funciones definidas,
-Ventajas de esta implementacion en nuestro codigo:
+EN NUESTRO CODIGO SE APLICO DE ESTA MANERA:
 
--El código se organiza mejor
--Nos facilita el reutilizar las funciones en avances futuras y demas partes del programa
--Es más fácil de mantener y modificar, lo cual es una caracteristica que nos es de mucha utilidad, pues este es un proyecto con una vision enfocada al desarrolllo y el cambio, buscando siempre una evolucion productiva.
--Podemos hacer pruebas y mejoras sin tocar todo el programa o modificar todas las funciones
+Nombre_Equipos = BASE_DATOS["Equipo"].unique()
 
-Para concluir, el programa una vez que termina, muestra un mensaje indicando que el proceso ha finalizado.
+BASE_DATOS es el DataFrame cargado con los datos del Excel.
+
+BASE_DATOS["Equipo"] selecciona la columna llamada “Equipo”.
+
+.unique() devuelve un arreglo (tipo numpy array) con los nombres de los equipos sin duplicados.
+
+  sorted() es una función integrada de Python (NATIVA DE PYTHON)
+No pertenece a Pandas ni a ninguna librería externa.
+
+EN NUESTRO CODIGO SE APLICO DE ESTA MANERA:
+
+for Orden_Equipo in sorted(Nombre_Equipos):
+    print("-", Orden_Equipo)
+
+Nombre_Equipos es una lista o arreglo (que salió del .unique()).
+
+sorted() ordena los elementos alfabéticamente o numéricamente.
+
+Devuelve una nueva lista ordenada, sin modificar el original.
+
+4. Definición de funciones principales
+
+Nuestro programa define dos funciones que se encargan de interactuar con el usuario.
+
+ Función 1: Jugadores_Equipo() → Filtra jugadores por equipo
+ Función 2: Solicitar_Jugadores(Jugadores) → Muestra jugadores y estadísticas
+
+(Estas funciones las explicaremos un poco mas detalladas a continuacion pues cumplen un papel fundamental en nuestra estructura de codigo.)
+
+5. Ejecución del programa principal
+      Jugadores_Equipo()
+      Solicitar_Jugadores(Jugadores_Equipo())
+
+Explicación: Estas líneas hacen que el programa empiece a ejecutarse.
+Primero se llama a la función Jugadores_Equipo() para obtener el equipo elegido, y luego se pasa ese resultado a Solicitar_Jugadores() para mostrar los jugadores y sus estadísticas.
+
+En este programa implementamos programación modular, ya que se dividió el código en funciones independientes (Jugadores_Equipo() y Solicitar_Jugadores().)
+Aunque por ahora el programa es pequeño a futuro será muy útil, ya que permitirá ampliar el programa, agregar nuevas funciones (como estadísticas, gráficos o filtros) y mantener el código más ordenado y fácil de modificar.
 
 6.Descripción de las funciones principales
-El programa cuenta con una función principal definida por el usuario y una sección de ejecución principal.
-A continuación se explicamos como trabajan las funciones y sus propósitos:
+Nuestro programa implementa dos funciones principales que organizan y controlan la interacción con el usuario: Como un pequeño apunte las recordamos= Jugadores_Equipo() y Solicitar_Jugadores(). Aunque previamente las mencionamos
+Ambas funciones fueron diseñadas para aplicar el enfoque de programación modular, facilitando la lectura y mantenimiento del código.
 
-1. Función analizar_premier()
-Tipo: función definida por el usuario
-Propósito: realizar el análisis completo de los datos ingresados por el usuario sobre los equipos y sus goles.
+   1. Función Jugadores_Equipo()
 
- Descripción detallada:
-Esta función concentra toda la lógica del programa debido a que see encarga de:
+def Jugadores_Equipo():
+    Solicitud_Equipo = input("Ingrese el nombre del equipo que desea ver sus jugadores: ")
+    if Solicitud_Equipo in Nombre_Equipos:
+        Jugadores = BASE_DATOS[BASE_DATOS["Equipo"].str.lower() == Solicitud_Equipo.lower()]
+        return Jugadores    
+    else:
+        print("El equipo ingresado no se encuentra en la base de datos, revisa la ortografia e intentalo de nuevo :)")
 
-1-Solicitar los datos al usuario (nombres de los equipos y goles).
-2-Guardar la información en listas (equipos y goles).
-3-Calcular estadísticas básicas, como:
- -Promedio de goles.
- -Equipo con más goles.
- -Equipo con menos goles.
-4-Clasificar la temporada como ofensiva, equilibrada o con pocos goles según el promedio.
-5-Mostrar los resultados en pantalla con mensajes claros.
 
-2. Programa principal
-Propósito: ejecutar la función principal y mostrar el resultado final del análisis.
-Explicación:
-- Llama a la función analizar_premier(), lo que pone en marcha todo el proceso.
-- Al finalizar, imprime un mensaje indicando que el análisis concluyó.
-- La variable resultado guarda el valor devuelto por la función (el promedio de goles).
+Esta función tiene como objetivo solicitar al usuario el nombre del equipo cuyos jugadores desea consultar.
+Primero, utiliza input() para recibir el dato ingresado por el usuario y verifica si el equipo existe dentro del conjunto Nombre_Equipos.
+En caso de encontrarlo, filtra la base de datos con ayuda de Pandas, seleccionando únicamente las filas donde el valor de la columna "Equipo" coincide con el nombre proporcionado.
+Si el equipo no se encuentra, muestra un mensaje de advertencia invitando al usuario a revisar la ortografía.
 
+De esta forma, la función cumple el papel de filtrar información dentro del DataFrame y controlar la validación de entrada del usuario, siendo un punto clave en la interacción con los datos.
+
+
+2. Función Solicitar_Jugadores(Jugadores)
+
+def Solicitar_Jugadores(Jugadores):
+    if len(Jugadores) > 0:
+        print("-----------------------------------")
+        print("Los JUGADORES del equipo son: ")
+        print("- NOMBRE - - - - - POSICION - - - - - DORSAL -")
+        for _, Jugador in Jugadores.iterrows():
+            print("-", Jugador["Nombre"], "(", Jugador["Posicion"], ")", "#", Jugador["Dorsal"])     
+        else:
+            print("El equipo ingresado no se encuentra en la base de datos, revisa la ortografia e intentalo nuevamente :)")
+            
+    Solicitud_Jugador = input("Ingrese el nombre completo del jugador que desea ver sus estadisticas: ")
+    if Solicitud_Jugador in BASE_DATOS["Nombre"]:
+        Estadisticas_Jugador = BASE_DATOS[BASE_DATOS["Nombre"].str.lower() == Solicitud_Jugador.lower()]
+
+
+Esta función se encarga de mostrar los jugadores del equipo seleccionado y permitir que el usuario elija uno para consultar sus estadísticas:
+
+-Primero, verifica que el conjunto Jugadores contenga datos válidos (es decir, que el equipo exista). Luego, recorre cada fila del DataFrame utilizando iterrows() para imprimir el nombre, posición y dorsal de cada jugador de manera organizada.
+-Posteriormente, solicita al usuario el nombre completo de un jugador y lo compara con los registros de la columna "Nombre" en la base de datos. Si el jugador existe, se extraen sus datos individuales, preparando el camino para mostrar sus estadísticas personales.
+-Esta función cumple un papel esencial en la presentación y exploración de los datos, siendo la parte del programa que interactúa directamente con el usuario y muestra la información de manera clara.
+
+Y para concluir recordamos que estas dos funciones complementarias empiezan a trabajar cuando se hace el llamado por medio del programa principal.
 
 
 8. Pruebas y Resultados
