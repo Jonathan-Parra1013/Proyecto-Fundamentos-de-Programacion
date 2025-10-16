@@ -67,19 +67,37 @@ Nombre del Proyecto
 6. Diseño del Proyecto
 
 -Arquitectura o estructura del programa:
-   * El proyecto se divide en funciones que cumplen tareas específicas tales como:
-      -cargar_datos(): Almacena equipos y resultados.
-      -calcular_estadisticas(): Obtiene partidos ganados, empatados, perdidos, goles y puntos.
-      -mostrar_resultados(): Imprime en pantalla las estadísticas.
-      -ver_goleador(): Muestra el máximo goleador con sus goles.
--Diagrama de flujo:
-   * Inicio ---> Cargar datos ---> Procesar estadísticas ---> Mostrar resultados y estádisticas ---> Fin.
--Interfaz: Se maneja por consola, El usuario puede elegir opciones como:
-   1. Inicio.
-   2. Cargar datos.
-   3. Ver tabla de equipos.
-   4. Ver estádisticas.
-   5. Salir.
+   El proyecto implementa una estructura modular, dividiendo las tareas principales en funciones específicas, y lo planteamos de la siguiente manera:
+
+-Carga de datos:
+
+-Listado de equipos: Lo que buscamos esque en esta parte del programa obtengamos todos los equipos únicos de la base de datos y mostrarlos en orden alfabético utilizando las funciones unique() y sorted().
+
+-Implementariamos  una funcion denominada= Función Jugadores_Equipo(): Donde solicitaremos al usuario el nombre de un equipo y filtra en la base de datos los jugadores pertenecientes a ese equipo.
+
+-Tendriamos que declarar otra funcion denominada= Función Solicitar_Jugadores(): Busca mostrar los jugadores del equipo seleccionado y permite consultar las estadísticas individuales de un jugador.
+
+Esta estructura modular facilitara la lectura, reutilización y ampliación futura del código, ya que cada función cumple un propósito independiente.
+
+Diagrama de flujo:
+INICIO
+   ↓
+Cargar base de datos (Excel)
+   ↓
+Mostrar equipos en orden alfabético
+   ↓
+Solicitar nombre de equipo al usuario
+   ↓
+¿El equipo existe?
+   → NO → Mostrar mensaje de error → Volver a solicitar
+   → SÍ → Mostrar jugadores del equipo
+   ↓
+Solicitar jugador específico
+   ↓
+Mostrar estadísticas del jugador
+   ↓
+FIN
+
 
 7. Desarrollo
 
