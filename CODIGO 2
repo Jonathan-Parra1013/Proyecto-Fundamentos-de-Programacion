@@ -1,12 +1,14 @@
 import pandas as pd 
 # Leer la hoja 2 que contiene los jugadores
-df = pd.read_excel('data/TABLAPREMIERE.xlsx', sheet_name='Hoja2')
+df = pd.read_excel('data/TABLAPREMIER.xlsx', sheet_name='Hoja2')
 
-Nombre_Equipos = df['Team'].unique()
+Nombre_Equipos = df['Equipo'].unique()
 print("Los Equipos que jugaron en la PREMIER LEAGUE (2024-2025) ")
 print("En orden alfabetico son: ")
-for Equipo in sorted(Nombre_Equipos):
-    print("-",Equipo)
+for Orden_Equipo in sorted(Nombre_Equipos):
+    print("-",Orden_Equipo)
+
+#DATOS
 
 
 
