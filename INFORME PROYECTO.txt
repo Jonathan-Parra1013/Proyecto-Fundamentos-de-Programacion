@@ -141,6 +141,31 @@ Permiten leer y escribir archivos Excel.
  packaging, python-dateutil, pytz, tzdata, six:
 Son librerías de soporte y compatibilidad: manejo de versiones, fechas y zonas horarias.
 
+Para el desarrollo del proyecto de análisis de la Premier League en Python, se planea utilizar las siguientes librerías clave:
+mplsoccer:
+Permite dibujar campos de fútbol personalizados.
+Facilita la creación de mapas de calor directamente sobre el campo (por ejemplo, con Pitch().heatmap()), lo cual es útil para analizar zonas de acción o posicionamiento de jugadores.
+Es una herramienta especializada en visualización de datos futbolísticos.
+
+seaborn:
+Librería basada en Matplotlib que permite generar visualizaciones estadísticas más limpias y estilizadas.
+Ideal para crear mapas de calor de densidad con suavizado, lo que mejora la interpretación visual de los datos.
+Aporta un enfoque más analítico y estético a las visualizaciones.
+
+Estas nos son necesarias para realizar los mapas de calor que administran de igual manera informacion acerca de los jugadores.
+CONCPTO CLAVE: mapas de calor
+Son representaciones visuales que muestran la intensidad o frecuencia de eventos en distintas áreas de un espacio, usando colores (generalmente del azul al rojo).
+En fútbol, se usan para visualizar:
+
+-Las zonas donde un jugador pasa más tiempo.
+
+-Dónde se recupera el balón.
+
+-Dónde se generan más ataques o disparos.
+
+-Ayudan a entender el comportamiento táctico, el posicionamiento y la influencia de un jugador o equipo en el campo.
+Estas herramientas juntas permiten pasar de datos crudos (números, posiciones, eventos) a visualizaciones claras y analíticas, facilitando la toma de decisiones o el análisis táctico en el fútbol.
+Y analizando entre las distintas opciones que teniamos filtramos para encontrar las librerias que fueran mas aptas teniendo en cuenta las necesidades de nuestro proyecto
 ¿Y como adaptamos estas librerias a nuestro proyecto?
 Para poder utilizar las librerías pandas y openpyxl en nuestro proyecto de Python, nos fue necesario instalarlas previamente en nuestro entorno de desarrollo, que en esta ocasion es  Visual Studio Code, usamos comandos como pip install pandas y pip istall openpyxl en la terminal de VS Code, pip descarga las librerías desde internet y las instala en el Python
 Dentro de VS Code, abrimos la terminal integrada para poder ejecutar comandos directamente, consecuente a estos pasos verificamos que Python y pip estén instalados para correr adecuadamente el programa.
