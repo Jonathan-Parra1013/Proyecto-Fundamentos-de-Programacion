@@ -1,12 +1,12 @@
 import pandas as pd 
-df = pd.read_excel('data/TABLAPREMIERE.xlsx', sheet_name='Hoja1')
-print("Los equipos que jugaron en la PREMIER LEAGUE (2024-2025) son: ")
-print(df['Equipo'])
+# Leer la hoja 2 que contiene los jugadores
+df = pd.read_excel('data/TABLAPREMIERE.xlsx', sheet_name='Hoja2')
+
+Nombre_Equipos = df['Team'].unique()
+print("Los Equipos que jugaron en la PREMIER LEAGUE (2024-2025) son: ")
+for Equipo in sorted(Nombre_Equipos):
+    print({Equipo})
 
 
-def Datos():
-    while True:
-        Equipo = input("Ingrese nombre del equipo que desea conocer su informacion - (INGRESE 'FIN' PARA SALIR): ")
-        if Equipo.lower() == "fin":
-            break
-Datos()
+
+
