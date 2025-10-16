@@ -21,7 +21,7 @@ def Jugadores_Equipo():
             
             if len(Jugadores) > 0:
                 print("Los JUGADORES del equipo: ", Solicitud_Equipo, "son: ")
-                for Jugador in Jugadores.iterrows():
-                     print("-", Jugador["Nombre"], Jugador["Posicion"],"#", Jugador["Dorsal"])
+                for _, Jugador in Jugadores.iterrows():
+                     print("-", Jugador["Nombre"], "(", Jugador["Posicion"], ")", "#", Jugador["Dorsal"])
 
 Jugadores_Equipo()
