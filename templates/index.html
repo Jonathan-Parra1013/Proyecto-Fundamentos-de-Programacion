@@ -2,20 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Premier League</title>
+    <title>Premier League 2024-2025</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Consulta de jugadores por equipo</h2>
-    <form method="POST" action="/run">
-        <input type="text" name="dato" placeholder="Ingrese el nombre del equipo">
-        <button type="submit">Buscar</button>
+<div class="container">
+    <h1>Premier League 2024-2025</h1>
+    <form method="POST" action="/">
+        <select name="equipo" required>
+            <option value="">Selecciona un equipo</option>
+            {% for equipo in equipos %}
+                <option value="{{ equipo }}">{{ equipo }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Ver Jugadores</button>
     </form>
 
     {% if resultado %}
-        <h3>Resultado:</h3>
-        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 8px;">
-            {{ resultado|safe }}
+        <div class="resultado">
+            {{ resultado | safe }}
         </div>
     {% endif %}
+</div>
 </body>
 </html>
+

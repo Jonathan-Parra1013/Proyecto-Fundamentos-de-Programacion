@@ -1,23 +1,45 @@
-def mi_funcion(dato):
-    # aquí va tu código principal
-    # IMPORTAMOS LIBRERIA PANDAS
-    import pandas as pd
+# main.py
+import pandas as pd
+
+# Ruta del archivo Excel
+ARCHIVO_EXCEL = 'data/TABLAPREMIER.xlsx'
+SHEET_NAME = 'Hoja2'
+
+def cargar_datos():
+    """
+    Carga la base de datos desde Excel.
+    Retorna un DataFrame de pandas.
+    """
+    try:
+        df = pd.read_excel(ARCHIVO_EXCEL, sheet_name=SHEET_NAME)
+        return df
+    except Exception as e:
+        print("Error al leer el archivo Excel:", e)
+        return pd.DataFrame()  # Devuelve un DataFrame vacío en caso de error
 
 def obtener_equipos():
-    df = pd.read_excel('data/TABLAPREMIER.xlsx', sheet_name='Hoja2')
-    return sorted(df['Equipo'].unique())
+    """
+    Retorna una lista de todos los equipos únicos en orden alfabético.
+    """
+    df = cargar_datos()
+    if not df.empty:
+        return sorted(df['Equipo'].unique())
+    return []
 
-def obtener_jugadores(jugador_equipo):
-    df = pd.read_excel('data/TABLAPREMIER.xlsx', sheet_name='Hoja2')
-    jugadores = df[df["Equipo"].str.lower() == jugador_equipo.lower()]
+def obtener_jugadores(equipo):
+    """
+    Retorna los jugadores de un equipo específico como HTML para mostrar en la web.
+    Si no hay jugadores, retorna un mensaje de error.
+    """
+    df = cargar_datos()
+    if df.empty:
+        return "La base de datos no se pudo cargar."
+
+    # Filtrar jugadores del equipo seleccionado
+    jugadores = df[df['Equipo'].str.lower() == equipo.lower()]
+    
     if len(jugadores) > 0:
+        # Devuelve HTML listo para mostrar en la web
         return jugadores.to_html(classes='tabla', index=False)
     else:
         return "No se encontraron jugadores para este equipo."
-
-    # devolvemos una cadena para mostrar en la web
-    return f"Se procesó el equipo '{dato}' correctamente."
-
-# Esto evita que se ejecute automáticamente al importar
-if __name__ == '__main__':
-    print(mi_funcion("Arsenal"))
