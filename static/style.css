@@ -1,13 +1,31 @@
-/* Título principal dentro de un rectángulo */
+/* Fondo con imagen y overlay */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg') no-repeat center top;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* oscurece la imagen de fondo */
+    z-index: -1;
+}
+
+/* Título principal */
 .titulo-principal {
     text-align: center;
-    background-color: #007bff; /* Azul bonito */
+    background-color: rgba(0, 123, 255, 0.85);
     color: white;
     padding: 30px 20px;
-    margin: 20px auto;
+    margin: 30px auto;
     width: 80%;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     font-family: 'Arial Black', sans-serif;
 }
 
@@ -19,7 +37,11 @@
 /* Integrantes */
 .integrantes {
     text-align: center;
-    margin-bottom: 40px;
+    margin: 20px auto;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .integrantes ul {
@@ -30,28 +52,32 @@
 
 .integrantes li {
     margin: 5px 0;
-    color: #007bff;
+    color: #ffd700;
     font-weight: bold;
 }
 
 /* Contenedor principal */
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 30px auto;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 15px;
 }
 
+/* Select y botón */
 select, button {
-    padding: 10px;
+    padding: 10px 15px;
     font-size: 16px;
     margin: 10px;
     border-radius: 5px;
+    border: none;
 }
 
 button {
     background-color: #28a745;
     color: white;
-    border: none;
     cursor: pointer;
 }
 
@@ -59,11 +85,23 @@ button:hover {
     background-color: #218838;
 }
 
+/* Resultados */
 .resultado {
     margin-top: 20px;
     text-align: left;
-    font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #000;
     padding: 20px;
     border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
