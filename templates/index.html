@@ -2,40 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Premier League 2024-2025</title>
+    <title>CODE-LEAGUE COMPARADOR</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-     <div class="header">
-    <h1>CODE-LEAGUE COMPARADOR</h1>
-</div>
-<div class="integrantes">
-    <h2>Integrantes:</h2>
-    <ul>
-        {% for nombre in integrantes %}
-            <li>{{ nombre }}</li>
-        {% endfor %}
-    </ul>
-</div>
+    <!-- Contenedor del título -->
+    <div class="titulo-principal">
+        <h1>CODE-LEAGUE COMPARADOR</h1>
+    </div>
 
-<div class="container">
-    <h1>Premier League 2024-2025</h1>
-    <form method="POST" action="/">
-        <select name="equipo" required>
-            <option value="">Selecciona un equipo</option>
-            {% for equipo in equipos %}
-                <option value="{{ equipo }}">{{ equipo }}</option>
+    <!-- Integrantes -->
+    <div class="integrantes">
+        <h2>Integrantes:</h2>
+        <ul>
+            {% for nombre in integrantes %}
+                <li>{{ nombre }}</li>
             {% endfor %}
-        </select>
-        <button type="submit">Ver Jugadores</button>
-    </form>
+        </ul>
+    </div>
 
-    {% if resultado %}
-        <div class="resultado">
-            {{ resultado | safe }}
-        </div>
-    {% endif %}
-</div>
+    <!-- Selección de equipos -->
+    <div class="container">
+        <h1>Premier League 2024-2025</h1>
+        <form method="POST" action="/">
+            <select name="equipo" required>
+                <option value="">Selecciona un equipo</option>
+                {% for equipo in equipos %}
+                    <option value="{{ equipo }}">{{ equipo }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ver Jugadores</button>
+        </form>
+
+        {% if resultado %}
+            <div class="resultado">
+                {{ resultado | safe }}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
 
