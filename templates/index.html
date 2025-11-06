@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Analizador Premier League</title>
+    <meta charset="UTF-8">
+    <title>Premier League</title>
 </head>
 <body>
-  <h1>Consulta jugadores por equipo</h1>
-  <form action="/run" method="post">
-    <input type="text" name="dato" placeholder="Ingresa un equipo (ej: Arsenal)" required>
-    <button type="submit">Buscar</button>
-  </form>
+    <h2>Consulta de jugadores por equipo</h2>
+    <form method="POST" action="/run">
+        <input type="text" name="dato" placeholder="Ingrese el nombre del equipo">
+        <button type="submit">Buscar</button>
+    </form>
 
-  {% if resultado %}
-    <div>
-      {{ resultado|safe }}
-    </div>
-  {% endif %}
+    {% if resultado %}
+        <h3>Resultado:</h3>
+        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 8px;">
+            {{ resultado|safe }}
+        </div>
+    {% endif %}
 </body>
 </html>
