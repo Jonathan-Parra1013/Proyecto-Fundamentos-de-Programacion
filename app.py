@@ -18,4 +18,14 @@ if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+# INTEGRANTES 
+integrantes = ["Galeano Vargas Juan Enriquen", "Granja Espinosa David Santiago", "Muñoz Cubides Carol Daniela", "Parra Landinez Jonathan"]
+
+@app.route("/")
+def index():
+    return render_template("index.html", integrantes=integrantes)
 

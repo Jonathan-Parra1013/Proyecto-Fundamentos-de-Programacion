@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+     <div class="header">
+    <h1>CODE-LEAGUE COMPARADOR</h1>
+</div>
+<div class="integrantes">
+    <h2>Integrantes:</h2>
+    <ul>
+        {% for nombre in integrantes %}
+            <li>{{ nombre }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
 <div class="container">
     <h1>Premier League 2024-2025</h1>
     <form method="POST" action="/">
