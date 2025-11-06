@@ -11,8 +11,8 @@ integrantes = [
     "Parra Landinez Jonathan"
 ]
 
-# Lista de equipos
-equipos = obtener_equipos()  # Lista de equipos para el select
+
+equipos = obtener_equipos()  
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

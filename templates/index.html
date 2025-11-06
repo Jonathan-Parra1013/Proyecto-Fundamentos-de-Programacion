@@ -6,15 +6,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Fondo con imagen -->
+  
     <div class="background-overlay"></div>
 
-    <!-- Título principal dentro de un rectángulo -->
+  
     <div class="titulo-principal">
         <h1>CODE-LEAGUE COMPARADOR</h1>
     </div>
 
-    <!-- Integrantes -->
+    
     <div class="integrantes">
         <h2>Integrantes:</h2>
         <ul>
@@ -24,11 +24,11 @@
         </ul>
     </div>
 
-    <!-- Contenedor principal -->
+   
     <div class="container">
         <h2>Premier League 2024-2025</h2>
 
-        <!-- Selección de equipos -->
+        
         <form method="POST" action="/">
             <select name="equipo" required>
                 <option value="">Selecciona un equipo</option>
@@ -39,7 +39,7 @@
             <button type="submit">Ver Jugadores</button>
         </form>
 
-        <!-- Resultados -->
+       
         {% if resultado %}
             <div class="resultado">
                 {{ resultado | safe }}
@@ -47,7 +47,7 @@
         {% endif %}
     </div>
 
-    <!-- Footer -->
+   
     <footer>
         <p
             
