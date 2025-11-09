@@ -6,42 +6,44 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
+<div class="container">
+
+    <!-- Título -->
+    <div class="titulo">
         <h1>CODE-LEAGUE COMPARADOR</h1>
-        <p class="integrantes">
-            Integrantes: 
+    </div>
+
+    <!-- Integrantes -->
+    <div class="integrantes">
+        <h3>Integrantes:</h3>
+        <ul>
             {% for integrante in integrantes %}
-                {{ integrante }}{% if not loop.last %}, {% endif %}
+                <li>{{ integrante }}</li>
             {% endfor %}
-        </p>
+        </ul>
+    </div>
 
-        <h2>Premier League 2024-2025</h2>
+    <h2>Premier League 2024-2025</h2>
 
-        <h3>Selecciona un equipo:</h3>
-        <div class="logos-equipos">
+    <!-- Logos como botones -->
+    <form method="POST" action="/">
+        <div class="logos">
             {% for nombre, logo in equipos %}
-                <a href="/?equipo={{ nombre }}">
-                    <img src="{{ url_for('static', filename='imagenes/' + logo) }}" alt="{{ nombre }}" class="logo-equipo">
-                </a>
+                <button type="submit" name="equipo" value="{{ nombre }}" class="logo-button">
+                    <img src="{{ url_for('static', filename='logos/' + logo) }}" alt="{{ nombre }}">
+                </button>
             {% endfor %}
         </div>
+    </form>
 
-        {% if resultado %}
-            <div class="equipo-seleccionado">
-                <h3>{{ equipo_seleccionado }}</h3>
-                <img src="{{ url_for('static', filename='imagenes/' + equipos_dict[equipo_seleccionado]) }}" alt="{{ equipo_seleccionado }}" class="logo-grande">
-            </div>
+    <!-- Resultado jugadores -->
+    {% if resultado %}
+        <h3>Jugadores de {{ equipo_seleccionado }}</h3>
+        <div class="resultado">
+            {{ resultado | safe }}
+        </div>
+    {% endif %}
 
-            <div class="jugadores">
-                {% for jugador in resultado %}
-                    <div class="jugador">
-                        <img src="{{ url_for('static', filename='imagenes/' + jugador['Imagen']) }}" width="80" alt="{{ jugador['Nombre'] }}">
-                        <p>{{ jugador['Nombre'] }}</p>
-                        <p>{{ jugador['Posicion'] }} | #{{ jugador['Dorsal'] }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </div>
+</div>
 </body>
 </html>

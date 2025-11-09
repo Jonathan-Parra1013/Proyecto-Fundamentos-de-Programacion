@@ -1,31 +1,36 @@
 from flask import Flask, render_template, request
-from main import obtener_equipos, obtener_jugadores
+from main import obtener_equipos, obtener_jugadores_por_equipo
 
 app = Flask(__name__)
 
-# Lista de tuplas: (nombre del equipo, nombre del archivo del logo)
-equipos = obtener_equipos()  
-equipos_dict = {nombre: logo for nombre, logo in equipos}  # Para mostrar el logo grande del equipo seleccionado
+equipos = obtener_equipos()  # Lista de tuplas (nombre, logo)
 
 # Integrantes
 integrantes = [
-    "Galeano Vargas Juan Enriquen", 
-    "Granja Espinosa David Santiago", 
-    "Muñoz Cubides Carol Daniela", 
+    "Galeano Vargas Juan Enriquen",
+    "Granja Espinosa David Santiago",
+    "Muñoz Cubides Carol Daniela",
     "Parra Landinez Jonathan"
 ]
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    equipo_seleccionado = request.args.get('equipo')
     resultado = None
-    if equipo_seleccionado:
-        resultado = obtener_jugadores(equipo_seleccionado)
+    equipo_seleccionado = None
+    if request.method == 'POST':
+        equipo_seleccionado = request.form.get('equipo')
+        if equipo_seleccionado:
+            jugadores = obtener_jugadores_por_equipo(equipo_seleccionado)
+            # Crear lista en HTML
+            resultado = "<ul>"
+            for j in jugadores:
+                resultado += f"<li>{j}</li>"
+            resultado += "</ul>"
+
     return render_template(
-        'index.html', 
-        equipos=equipos, 
-        equipos_dict=equipos_dict, 
-        resultado=resultado, 
+        'index.html',
+        equipos=equipos,
+        resultado=resultado,
         equipo_seleccionado=equipo_seleccionado,
         integrantes=integrantes
     )
