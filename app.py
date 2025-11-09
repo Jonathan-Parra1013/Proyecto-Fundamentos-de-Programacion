@@ -1,15 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from functions import (
     obtener_equipos,
     obtener_jugadores_por_equipo,
-    obtener_datos_jugadores,
-    generar_grafica_comparacion,
-    generar_mapa_calor
+    obtener_logo_equipo,
+    comparar_jugadores
 )
+import os
 
 app = Flask(__name__)
 
-
+# 🔹 Integrantes del proyecto
 INTEGRANTES = [
     "Galeano Vargas Juan Enrique",
     "Granja Espinosa David Santiago",
@@ -17,38 +17,27 @@ INTEGRANTES = [
     "Parra Landinez Jonathan"
 ]
 
-
-@app.route("/", methods=["GET", "POST"])
+# 🔹 Página principal
+@app.route("/")
 def index():
     equipos = obtener_equipos()
-    jugadores = []
-    seleccionados = []
-    grafica = None
-    mapa = None
+    return render_template("index.html", equipos=equipos, integrantes=INTEGRANTES)
 
-    if request.method == "POST":
-        equipo = request.form.get("equipo")
-        nombres = request.form.getlist("jugadores")
+# 🔹 Obtener jugadores por equipo (AJAX)
+@app.route("/jugadores/<equipo>")
+def jugadores_por_equipo(equipo):
+    jugadores = obtener_jugadores_por_equipo(equipo)
+    logo = obtener_logo_equipo(equipo)
+    return jsonify({"jugadores": jugadores, "logo": logo})
 
-        if nombres:
-            # Obtener los datos de los jugadores seleccionados
-            df_jugadores = obtener_datos_jugadores(nombres)
-            grafica = generar_grafica_comparacion(df_jugadores)
-            mapa = generar_mapa_calor(df_jugadores)
-            seleccionados = nombres
-        elif equipo:
-            # Mostrar jugadores del equipo seleccionado
-            jugadores = obtener_jugadores_por_equipo(equipo)
+# 🔹 Comparar jugadores seleccionados
+@app.route("/comparar", methods=["POST"])
+def comparar():
+    jugadores = request.json.get("jugadores", [])
+    resultados = comparar_jugadores(jugadores)
+    return jsonify(resultados)
 
-    return render_template(
-        "index.html",
-        equipos=equipos,
-        jugadores=jugadores,
-        seleccionados=seleccionados,
-        grafica=grafica,
-        mapa=mapa,
-        integrantes=INTEGRANTES  
-    )
-
+# 🔹 Configuración para Render (port binding)
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render asigna el puerto automáticamente
+    app.run(host="0.0.0.0", port=port, debug=False)
