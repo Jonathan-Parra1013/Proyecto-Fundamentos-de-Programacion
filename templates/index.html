@@ -6,44 +6,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="container">
+    <div class="container">
+        <div class="titulo">
+            <h1>CODE-LEAGUE COMPARADOR</h1>
+        </div>
 
-    <!-- Título -->
-    <div class="titulo">
-        <h1>CODE-LEAGUE COMPARADOR</h1>
-    </div>
+        <div class="integrantes">
+            <h2>Integrantes</h2>
+            <ul>
+                {% for nombre in integrantes %}
+                    <li>{{ nombre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
 
-    <!-- Integrantes -->
-    <div class="integrantes">
-        <h3>Integrantes:</h3>
-        <ul>
-            {% for integrante in integrantes %}
-                <li>{{ integrante }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <h2>Premier League 2024-2025</h2>
-
-    <!-- Logos como botones -->
-    <form method="POST" action="/">
-        <div class="logos">
-            {% for nombre, logo in equipos %}
-                <button type="submit" name="equipo" value="{{ nombre }}" class="logo-button">
-                    <img src="{{ url_for('static', filename='logos/' + logo) }}" alt="{{ nombre }}">
-                </button>
+        <h2>Selecciona un equipo</h2>
+        <div class="equipos-grid">
+            {% for equipo in equipos %}
+                <form method="POST" action="/" class="equipo-card">
+                    <input type="hidden" name="equipo" value="{{ equipo }}">
+                    <button type="submit" class="equipo-boton">
+                        <img src="{{ url_for('static', filename='logos/' + equipo.lower().replace(' ', '').replace('&', '').replace('.', '') + '.png') }}" alt="{{ equipo }}">
+                        <p>{{ equipo }}</p>
+                    </button>
+                </form>
             {% endfor %}
         </div>
-    </form>
 
-    <!-- Resultado jugadores -->
-    {% if resultado %}
-        <h3>Jugadores de {{ equipo_seleccionado }}</h3>
-        <div class="resultado">
-            {{ resultado | safe }}
-        </div>
-    {% endif %}
-
-</div>
+        {% if equipo_seleccionado %}
+            <div class="resultado">
+                <h2>{{ equipo_seleccionado }}</h2>
+                {% if logo_equipo %}
+                    <img src="{{ logo_equipo }}" alt="Logo {{ equipo_seleccionado }}" class="logo-equipo">
+                {% endif %}
+                {{ resultado | safe }}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

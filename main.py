@@ -1,18 +1,31 @@
 import pandas as pd
+import os
 
-# Leer logos de la hoja1
-df_logos = pd.read_excel("datos.xlsx", sheet_name="hoja1")
-# Crear lista de tuplas (nombre_equipo, logo)
-equipos = [(row["Equipo"], row["Logo"]) for _, row in df_logos.iterrows()]
+# Ruta correcta al archivo Excel
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+excel_path = os.path.join(BASE_DIR, "data", "TABLAPREMIER.xlsx")
 
-# Leer jugadores de la hoja2
-df_jugadores = pd.read_excel("datos.xlsx", sheet_name="hoja2")
+# Leer las hojas
+df_logos = pd.read_excel(excel_path, sheet_name="hoja1")
+df_jugadores = pd.read_excel(excel_path, sheet_name="hoja2")
 
+# Obtener lista de equipos y sus logos
 def obtener_equipos():
-    """Devuelve lista de tuplas (nombre_equipo, logo)"""
+    equipos = df_logos["EQUIPO"].tolist()
     return equipos
 
-def obtener_jugadores_por_equipo(nombre_equipo):
-    """Devuelve lista de jugadores de un equipo"""
-    jugadores = df_jugadores[df_jugadores["Equipo"] == nombre_equipo]
-    return [row["Nombre"] for _, row in jugadores.iterrows()]
+# Obtener jugadores por equipo
+def obtener_jugadores_por_equipo(equipo):
+    jugadores = df_jugadores[df_jugadores["EQUIPO"] == equipo]
+    if jugadores.empty:
+        return "<p>No hay jugadores para este equipo.</p>"
+    
+    tabla_html = jugadores.to_html(index=False, classes="jugadores-tabla")
+    return tabla_html
+
+# Obtener logo del equipo
+def obtener_logo_equipo(equipo):
+    fila = df_logos[df_logos["EQUIPO"] == equipo]
+    if not fila.empty:
+        return f"/static/logos/{fila['LOGO'].values[0]}"
+    return None
