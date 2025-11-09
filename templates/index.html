@@ -2,52 +2,75 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Premier League ⚽</title>
+    <title>CODE-LEAGUE COMPARADOR — Premier League</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Proyecto Fundamentos de Programación</h1>
-        <h2>Integrantes del equipo</h2>
-        <ul>
-            {% for integrante in integrantes %}
-                <li>{{ integrante }}</li>
-            {% endfor %}
-        </ul>
+    <header class="topbox">
+        <h1>CODE-LEAGUE COMPARADOR</h1>
+        <h2>Premier League 2024-2025</h2>
     </header>
 
-    <section class="equipos">
-        <h2>Selecciona tu equipo</h2>
-        <div class="grid-equipos">
-            {% for e in equipos_info %}
-                <a href="/?equipo={{ e.nombre }}">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='imagenes/' + e.logo) }}" alt="{{ e.nombre }}">
-                        <h3>{{ e.nombre }}</h3>
-                    </div>
-                </a>
+    <section class="integrantes">
+        <h3>Integrantes:</h3>
+        <ul>
+            {% for i in integrantes %}
+                <li>{{ i }}</li>
             {% endfor %}
-        </div>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Selecciona un equipo (haz clic en su logo)</h2>
+
+        <form method="POST" class="equipos-grid" aria-label="Seleccionar equipo por logo">
+            {% for e in equipos %}
+                <button type="submit" name="equipo" value="{{ e.nombre }}" class="equipo-btn" title="Ver jugadores de {{ e.nombre }}">
+                    {% if e.logo %}
+                        <img src="{{ url_for('static', filename='imagenes/' + e.logo) }}" alt="Logo {{ e.nombre }}">
+                    {% else %}
+                        <div class="placeholder">No image</div>
+                    {% endif %}
+                    <div class="nombre-equipo">{{ e.nombre }}</div>
+                </button>
+            {% endfor %}
+        </form>
     </section>
 
     {% if equipo_seleccionado %}
-    <section class="jugadores">
+    <section class="resultado">
         <h2>Jugadores de {{ equipo_seleccionado }}</h2>
-        <table>
-            <tr>
-                {% for col in jugadores[0].keys() %}
-                    <th>{{ col }}</th>
-                {% endfor %}
-            </tr>
-            {% for jugador in jugadores %}
-                <tr>
-                    {% for val in jugador.values() %}
-                        <td>{{ val }}</td>
+        {% if logo_equipo %}
+            <img src="{{ url_for('static', filename='imagenes/' + logo_equipo) }}" alt="Logo {{ equipo_seleccionado }}" class="logo-grande">
+        {% endif %}
+
+        {% if jugadores and jugadores|length > 0 %}
+            <table class="tabla-jugadores" role="table">
+                <thead>
+                    <tr>
+                        {% for col in jugadores[0].keys() %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for j in jugadores %}
+                        <tr>
+                            {% for val in j.values() %}
+                                <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
                     {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay jugadores registrados para este equipo.</p>
+        {% endif %}
     </section>
     {% endif %}
+
+    <footer>
+        <p>Proyecto — CODE-LEAGUE COMPARADOR</p>
+    </footer>
 </body>
 </html>
