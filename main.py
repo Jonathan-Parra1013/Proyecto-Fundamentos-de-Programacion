@@ -1,36 +1,37 @@
-import pandas as pd
-import os
+from flask import Flask, render_template, request
+from main import obtener_equipos, obtener_jugadores_por_equipo, obtener_logo_equipo
 
-# ===============================
-# PROYECTO: Análisis de la Premier League
-# INTEGRANTES:
-# - Jonathan Parra Landinez
-# - Cristian David Suarez
-# - Mateo Hernández
-# - Juan David Vargas
-# - Luisa Fernanda Rodríguez
-# ===============================
+app = Flask(__name__)
 
-# Ruta del archivo Excel
-excel_path = os.path.join("data", "TABLAPREMIER.xlsx")
+# Información de los integrantes
+INTEGRANTES = [
+    "Galeano Vargas Juan Enriquen",
+    "Granja Espinosa David Santiago",
+    "Muñoz Cubides Carol Daniela",
+    "Parra Landinez Jonathan"
+]
 
-# Cargar las hojas correctamente (respetando las mayúsculas del Excel)
-df_logos = pd.read_excel(excel_path, sheet_name="Hoja1")
-df_jugadores = pd.read_excel(excel_path, sheet_name="Hoja2")
+@app.route("/", methods=["GET"])
+def index():
+    equipos = obtener_equipos()
+    equipos_info = []
 
-# Función para obtener lista de equipos
-def obtener_equipos():
-    equipos = df_logos["Equipo"].dropna().unique().tolist()
-    return equipos
+    for equipo in equipos:
+        logo = obtener_logo_equipo(equipo)
+        equipos_info.append({"nombre": equipo, "logo": logo})
 
-# Función para obtener jugadores por equipo
-def obtener_jugadores_por_equipo(equipo):
-    jugadores = df_jugadores[df_jugadores["EQUIPO"] == equipo]
-    return jugadores.to_dict(orient="records")
+    equipo_seleccionado = request.args.get("equipo")
+    jugadores = None
+    if equipo_seleccionado:
+        jugadores = obtener_jugadores_por_equipo(equipo_seleccionado)
 
-# Función para obtener logo del equipo
-def obtener_logo_equipo(equipo):
-    fila = df_logos[df_logos["Equipo"] == equipo]
-    if not fila.empty:
-        return fila.iloc[0]["LOGO"]
-    return None
+    return render_template(
+        "index.html",
+        equipos_info=equipos_info,
+        jugadores=jugadores,
+        equipo_seleccionado=equipo_seleccionado,
+        integrantes=INTEGRANTES
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)

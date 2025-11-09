@@ -2,48 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Premier League - Análisis</title>
+    <title>Premier League ⚽</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>⚽ Análisis de la Premier League</h1>
-
-    <form method="POST">
-        <label for="equipo">Selecciona un equipo:</label>
-        <select name="equipo" id="equipo">
-            {% for eq in equipos %}
-            <option value="{{ eq }}" {% if eq == equipo_seleccionado %}selected{% endif %}>{{ eq }}</option>
+    <header>
+        <h1>Proyecto Fundamentos de Programación</h1>
+        <h2>Integrantes del equipo</h2>
+        <ul>
+            {% for integrante in integrantes %}
+                <li>{{ integrante }}</li>
             {% endfor %}
-        </select>
-        <button type="submit">Mostrar jugadores</button>
-    </form>
+        </ul>
+    </header>
+
+    <section class="equipos">
+        <h2>Selecciona tu equipo</h2>
+        <div class="grid-equipos">
+            {% for e in equipos_info %}
+                <a href="/?equipo={{ e.nombre }}">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='imagenes/' + e.logo) }}" alt="{{ e.nombre }}">
+                        <h3>{{ e.nombre }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
 
     {% if equipo_seleccionado %}
-    <h2>Equipo: {{ equipo_seleccionado }}</h2>
-
-    {% if logo_equipo %}
-        <img src="{{ logo_equipo }}" alt="Logo {{ equipo_seleccionado }}" style="width:150px;height:150px;">
-    {% endif %}
-
-    <h3>Jugadores:</h3>
-    <table>
-        <tr>
-            {% for key in jugadores[0].keys() %}
-                <th>{{ key }}</th>
-            {% endfor %}
-        </tr>
-        {% for jugador in jugadores %}
+    <section class="jugadores">
+        <h2>Jugadores de {{ equipo_seleccionado }}</h2>
+        <table>
             <tr>
-                {% for valor in jugador.values() %}
-                    <td>{{ valor }}</td>
+                {% for col in jugadores[0].keys() %}
+                    <th>{{ col }}</th>
                 {% endfor %}
             </tr>
-        {% endfor %}
-    </table>
+            {% for jugador in jugadores %}
+                <tr>
+                    {% for val in jugador.values() %}
+                        <td>{{ val }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
     {% endif %}
-
-    <footer>
-        <p>Proyecto desarrollado por: <strong>Jonathan Parra Landinez, Cristian David Suarez, Mateo Hernández, Juan David Vargas y Luisa Fernanda Rodríguez</strong></p>
-    </footer>
 </body>
 </html>
