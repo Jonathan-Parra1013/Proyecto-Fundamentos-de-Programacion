@@ -44,7 +44,7 @@ h1, h2 {
 #jugadores {
     display: none;
     background-color: #2c2c44;
-    max-width: 400px;
+    max-width: 500px;
     margin: 20px auto;
     border-radius: 10px;
     padding: 20px;
@@ -72,6 +72,20 @@ h1, h2 {
 
 .cerrar-btn:hover {
     background-color: #ff1a1a;
+}
+
+.enviar-btn {
+    background-color: #00cc66;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.enviar-btn:hover {
+    background-color: #00aa55;
 }
 
 .integrantes {

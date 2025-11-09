@@ -2,17 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Proyecto Futbol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Futbol Interactivo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Precargar la imagen por defecto -->
+    <link rel="preload" href="{{ url_for('static', filename='imagenes/default.png') }}" as="image">
 </head>
 <body>
     <h1>Equipos de Futbol</h1>
 
     <div class="equipos-container">
         {% for equipo in equipos %}
-            <div class="equipo" data-equipo="{{ equipo.Equipo }}">
-                <img src="{{ url_for('static', filename='logos/' + equipo.LOGO) }}" alt="{{ equipo.Equipo }}">
-                <p>{{ equipo.Equipo }}</p>
+            {% set logo_url = url_for('static', filename='imagenes/' + equipo.LOGO) %}
+            {% set default_url = url_for('static', filename='imagenes/default.png') %}
+            <div class="equipo" data-equipo="{{ equipo.Equipo|e }}">
+                <div class="imagen-container">
+                    <img src="{{ url_for('static', filename='imagenes/' + equipo.LOGO) }}" 
+                         alt="Logo de {{ equipo.Equipo|e }}"
+                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='imagenes/default.png') }}'"
+                         loading="lazy"
+                         width="80"
+                         height="80">
+                </div>
+                <p>{{ equipo.Equipo|e }}</p>
             </div>
         {% endfor %}
     </div>
@@ -20,7 +32,10 @@
     <div id="jugadores">
         <button class="cerrar-btn" onclick="cerrarJugadores()">Cerrar</button>
         <h2 id="nombre-equipo"></h2>
-        <ul id="lista-jugadores"></ul>
+        <form id="form-jugadores" method="POST">
+            <ul id="lista-jugadores"></ul>
+            <button type="submit" class="enviar-btn">Comparar seleccionados</button>
+        </form>
     </div>
 
     {% if comparacion_img %}
@@ -44,11 +59,18 @@
 
     <!-- Datos de jugadores inyectados como JSON -->
     <script id="jugadores-data" type="application/json">
-        {{ jugadores_por_equipo|tojson }}
+        {{ jugadores_por_equipo|tojson|safe }}
     </script>
 
-    <script>
-        const jugadoresPorEquipo = JSON.parse(document.getElementById('jugadores-data').textContent);
+    <script type="text/javascript">
+        // Parsear los datos de manera segura
+        let jugadoresPorEquipo = {};
+        try {
+            const jsonData = document.getElementById('jugadores-data').textContent.trim();
+            jugadoresPorEquipo = JSON.parse(jsonData);
+        } catch (error) {
+            console.error('Error al parsear los datos:', error);
+            jugadoresPorEquipo = {};
 
         document.querySelectorAll('.equipo').forEach(div => {
             div.addEventListener('click', () => {
@@ -65,15 +87,35 @@
             lista.innerHTML = '';
             nombreEquipo.textContent = equipo;
 
-            if (jugadoresPorEquipo[equipo] && jugadoresPorEquipo[equipo].length > 0) {
-                jugadoresPorEquipo[equipo].forEach(jugador => {
+            try {
+                const jugadores = jugadoresPorEquipo[equipo] || [];
+                if (jugadores.length > 0) {
+                    jugadores.forEach(jugador => {
+                        if (typeof jugador !== 'string') return;
+                        const li = document.createElement('li');
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.name = 'jugadores';
+                        checkbox.value = jugador;
+                        checkbox.id = `jugador-${jugador.replace(/[^a-z0-9]/gi, '-')}`;
+                        
+                        const label = document.createElement('label');
+                        label.htmlFor = checkbox.id;
+                        label.textContent = ' ' + jugador;
+                        
+                        li.appendChild(checkbox);
+                        li.appendChild(label);
+                        lista.appendChild(li);
+                    });
+                } else {
                     const li = document.createElement('li');
-                    li.textContent = jugador;
+                    li.textContent = 'No hay jugadores registrados para este equipo';
                     lista.appendChild(li);
-                });
-            } else {
+                }
+            } catch (error) {
+                console.error('Error al mostrar jugadores:', error);
                 const li = document.createElement('li');
-                li.textContent = 'No hay jugadores registrados';
+                li.textContent = 'Error al cargar los jugadores';
                 lista.appendChild(li);
             }
 
