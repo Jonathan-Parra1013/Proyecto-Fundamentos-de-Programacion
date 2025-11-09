@@ -2,75 +2,88 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CODE-LEAGUE COMPARADOR — Premier League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Jugadores ⚽</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header class="topbox">
-        <h1>CODE-LEAGUE COMPARADOR</h1>
-        <h2>Premier League 2024-2025</h2>
+    <header>
+        <h1>⚽ Comparador de Jugadores - Premier League ⚽</h1>
+        <p>Proyecto - Fundamentos de Programación</p>
+        <p><strong>Integrantes:</strong>
+            {% for integrante in integrantes %}
+                {{ integrante }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
     </header>
 
-    <section class="integrantes">
-        <h3>Integrantes:</h3>
-        <ul>
-            {% for i in integrantes %}
-                <li>{{ i }}</li>
-            {% endfor %}
-        </ul>
-    </section>
+    <main>
+        <section class="equipos">
+            <h2>Selecciona un equipo</h2>
+            <div class="equipo-grid">
+                {% for equipo, logo in equipos.items() %}
+                <form method="POST" class="equipo-form">
+                    <input type="hidden" name="equipo" value="{{ equipo }}">
+                    <button type="submit" class="equipo-card">
+                        <img src="{{ logo }}" alt="{{ equipo }}">
+                        <p>{{ equipo }}</p>
+                    </button>
+                </form>
+                {% endfor %}
+            </div>
+        </section>
 
-    <section>
-        <h2>Selecciona un equipo (haz clic en su logo)</h2>
-
-        <form method="POST" class="equipos-grid" aria-label="Seleccionar equipo por logo">
-            {% for e in equipos %}
-                <button type="submit" name="equipo" value="{{ e.nombre }}" class="equipo-btn" title="Ver jugadores de {{ e.nombre }}">
-                    {% if e.logo %}
-                        <img src="{{ url_for('static', filename='imagenes/' + e.logo) }}" alt="Logo {{ e.nombre }}">
-                    {% else %}
-                        <div class="placeholder">No image</div>
-                    {% endif %}
-                    <div class="nombre-equipo">{{ e.nombre }}</div>
-                </button>
-            {% endfor %}
-        </form>
-    </section>
-
-    {% if equipo_seleccionado %}
-    <section class="resultado">
-        <h2>Jugadores de {{ equipo_seleccionado }}</h2>
-        {% if logo_equipo %}
-            <img src="{{ url_for('static', filename='imagenes/' + logo_equipo) }}" alt="Logo {{ equipo_seleccionado }}" class="logo-grande">
-        {% endif %}
-
-        {% if jugadores and jugadores|length > 0 %}
-            <table class="tabla-jugadores" role="table">
-                <thead>
-                    <tr>
-                        {% for col in jugadores[0].keys() %}
-                            <th>{{ col }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for j in jugadores %}
-                        <tr>
-                            {% for val in j.values() %}
-                                <td>{{ val }}</td>
-                            {% endfor %}
-                        </tr>
+        {% if jugadores %}
+        <section class="jugadores">
+            <h2>Selecciona hasta 4 jugadores del {{ jugadores[0]['EQUIPO'] }}</h2>
+            <form method="POST">
+                <div class="jugador-grid">
+                    {% for jugador in jugadores %}
+                    <div class="jugador-card" onclick="toggleSeleccion(this)">
+                        <input type="checkbox" name="jugadores" value="{{ jugador['Nombre'] }}">
+                        <p><strong>{{ jugador['Nombre'] }}</strong></p>
+                        <p>{{ jugador['Posicion'] }}</p>
+                        <p>Dorsal: {{ jugador['Dorsal'] }}</p>
+                    </div>
                     {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No hay jugadores registrados para este equipo.</p>
+                </div>
+                <button type="submit" class="comparar-btn">Comparar</button>
+            </form>
+        </section>
         {% endif %}
-    </section>
-    {% endif %}
+
+        {% if grafica or mapa %}
+        <section class="resultados">
+            <h2>Resultados de la Comparación</h2>
+            {% if grafica %}
+            <div class="grafica">
+                <img src="data:image/png;base64,{{ grafica }}" alt="Gráfica de comparación">
+            </div>
+            {% endif %}
+            {% if mapa %}
+            <div class="mapa">
+                <img src="data:image/png;base64,{{ mapa }}" alt="Mapa de calor">
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+    </main>
 
     <footer>
-        <p>Proyecto — CODE-LEAGUE COMPARADOR</p>
+        <p>Desarrollado por:
+            {% for integrante in integrantes %}
+                {{ integrante }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p>© 2025 Proyecto Fundamentos de Programación - Flask</p>
     </footer>
+
+    <script>
+        function toggleSeleccion(card) {
+            const checkbox = card.querySelector("input[type='checkbox']");
+            checkbox.checked = !checkbox.checked;
+            card.classList.toggle("seleccionado");
+        }
+    </script>
 </body>
 </html>
