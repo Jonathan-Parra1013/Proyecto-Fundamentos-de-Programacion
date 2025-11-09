@@ -33,8 +33,11 @@
         <button class="cerrar-btn" onclick="cerrarJugadores()">Cerrar</button>
         <h2 id="nombre-equipo"></h2>
         <form id="form-jugadores" method="POST">
+            <p>Selecciona máximo 4 jugadores para comparar</p>
             <ul id="lista-jugadores"></ul>
-            <button type="submit" class="enviar-btn">Comparar seleccionados</button>
+            <div class="error-message" id="error-message">No puedes seleccionar más de 4 jugadores</div>
+            <button type="submit" class="enviar-btn" disabled>Comparar seleccionados</button>
+            <p id="jugadores-seleccionados">Jugadores seleccionados: 0/4</p>
         </form>
     </div>
 
@@ -62,6 +65,74 @@
         {{ jugadores_por_equipo|tojson|safe }}
     </script>
 
+    <style>
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+        .enviar-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #lista-jugadores {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            list-style: none;
+        }
+
+        .jugador-card {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .jugador-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .jugador-card.selected {
+            background: #e3f2fd;
+            border-color: #2196F3;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+        }
+
+        .jugador-card input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .jugador-card label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .jugador-numero {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #2196F3;
+            color: white;
+            border-radius: 50%;
+            line-height: 24px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+    </style>
+
     <script type="text/javascript">
         // Parsear los datos de manera segura
         let jugadoresPorEquipo = {};
@@ -71,6 +142,7 @@
         } catch (error) {
             console.error('Error al parsear los datos:', error);
             jugadoresPorEquipo = {};
+        }
 
         document.querySelectorAll('.equipo').forEach(div => {
             div.addEventListener('click', () => {
@@ -78,6 +150,22 @@
                 mostrarJugadores(equipo);
             });
         });
+
+        function actualizarContadorJugadores() {
+            const jugadoresSeleccionados = document.querySelectorAll('input[name="jugadores"]:checked').length;
+            const contadorElement = document.getElementById('jugadores-seleccionados');
+            const submitButton = document.querySelector('.enviar-btn');
+            const errorMessage = document.getElementById('error-message');
+            
+            contadorElement.textContent = `Jugadores seleccionados: ${jugadoresSeleccionados}/4`;
+            submitButton.disabled = jugadoresSeleccionados === 0;
+            errorMessage.style.display = 'none';
+
+            if (jugadoresSeleccionados > 4) {
+                submitButton.disabled = true;
+                errorMessage.style.display = 'block';
+            }
+        }
 
         function mostrarJugadores(equipo) {
             const contenedor = document.getElementById('jugadores');
@@ -93,6 +181,8 @@
                     jugadores.forEach(jugador => {
                         if (typeof jugador !== 'string') return;
                         const li = document.createElement('li');
+                        li.className = 'jugador-card';
+                        
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
                         checkbox.name = 'jugadores';
@@ -101,11 +191,38 @@
                         
                         const label = document.createElement('label');
                         label.htmlFor = checkbox.id;
-                        label.textContent = ' ' + jugador;
                         
+                        // Número aleatorio para el dorsal (solo visual)
+                        const numeroSpan = document.createElement('div');
+                        numeroSpan.className = 'jugador-numero';
+                        numeroSpan.textContent = Math.floor(Math.random() * 99) + 1;
+                        
+                        const nombreSpan = document.createElement('div');
+                        nombreSpan.textContent = jugador;
+                        
+                        label.appendChild(numeroSpan);
+                        label.appendChild(nombreSpan);
                         li.appendChild(checkbox);
                         li.appendChild(label);
                         lista.appendChild(li);
+
+                        // Agregar efecto de selección
+                        li.addEventListener('click', function(e) {
+                            if (e.target.tagName !== 'INPUT') {
+                                checkbox.click();
+                            }
+                        });
+
+                        // Agregar evento change al checkbox
+                        checkbox.addEventListener('change', function() {
+                            const totalSeleccionados = document.querySelectorAll('input[name="jugadores"]:checked').length;
+                            if (totalSeleccionados > 4 && this.checked) {
+                                this.checked = false;
+                            }
+                            // Actualizar clase selected
+                            li.classList.toggle('selected', this.checked);
+                            actualizarContadorJugadores();
+                        });
                     });
                 } else {
                     const li = document.createElement('li');
