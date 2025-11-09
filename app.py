@@ -1,17 +1,8 @@
 from flask import Flask, render_template, request
-from main import obtener_equipos, obtener_jugadores_por_equipo, obtener_logo_equipo
+from functions import obtener_equipos, obtener_jugadores_por_equipo, obtener_logo_equipo
 
 app = Flask(__name__)
 
-# ===============================
-# PROYECTO: Análisis de la Premier League
-# INTEGRANTES:
-# - Jonathan Parra Landinez
-# - Cristian David Suarez
-# - Mateo Hernández
-# - Juan David Vargas
-# - Luisa Fernanda Rodríguez
-# ===============================
 
 @app.route("/", methods=["GET", "POST"])
 def index():

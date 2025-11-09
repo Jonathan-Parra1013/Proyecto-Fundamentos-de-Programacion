@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from main import obtener_equipos, obtener_jugadores_por_equipo, obtener_logo_equipo
+from functions import obtener_equipos, obtener_jugadores_por_equipo, obtener_logo_equipo
 
 app = Flask(__name__)
 
