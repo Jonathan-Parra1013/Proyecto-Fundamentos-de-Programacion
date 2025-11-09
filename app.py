@@ -11,14 +11,10 @@ integrantes = [
     "Parra Landinez Jonathan"
 ]
 
-# Hacemos que la función esté disponible en todas las plantillas
-@app.context_processor
-def utility_processor():
-    return dict(obtener_jugadores_por_equipo=obtener_jugadores_por_equipo)
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     equipos = obtener_equipos()
+    seleccionados = []
     comparacion_img = None
     mapa_img = None
 
@@ -32,6 +28,7 @@ def index():
     return render_template(
         "index.html",
         equipos=equipos,
+        obtener_jugadores_por_equipo=obtener_jugadores_por_equipo,
         integrantes=integrantes,
         comparacion_img=comparacion_img,
         mapa_img=mapa_img
@@ -39,3 +36,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
