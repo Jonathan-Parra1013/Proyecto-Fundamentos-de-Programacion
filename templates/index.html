@@ -2,88 +2,54 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparador de Jugadores ⚽</title>
+    <title>Comparador de Jugadores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>⚽ Comparador de Jugadores - Premier League ⚽</h1>
-        <p>Proyecto - Fundamentos de Programación</p>
-        <p><strong>Integrantes:</strong>
-            {% for integrante in integrantes %}
-                {{ integrante }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-    </header>
-
-    <main>
-        <section class="equipos">
-            <h2>Selecciona un equipo</h2>
-            <div class="equipo-grid">
-                {% for equipo, logo in equipos.items() %}
-                <form method="POST" class="equipo-form">
-                    <input type="hidden" name="equipo" value="{{ equipo }}">
-                    <button type="submit" class="equipo-card">
-                        <img src="{{ logo }}" alt="{{ equipo }}">
-                        <p>{{ equipo }}</p>
-                    </button>
-                </form>
-                {% endfor %}
-            </div>
-        </section>
-
-        {% if jugadores %}
-        <section class="jugadores">
-            <h2>Selecciona hasta 4 jugadores del {{ jugadores[0]['EQUIPO'] }}</h2>
-            <form method="POST">
-                <div class="jugador-grid">
-                    {% for jugador in jugadores %}
-                    <div class="jugador-card" onclick="toggleSeleccion(this)">
-                        <input type="checkbox" name="jugadores" value="{{ jugador['Nombre'] }}">
-                        <p><strong>{{ jugador['Nombre'] }}</strong></p>
-                        <p>{{ jugador['Posicion'] }}</p>
-                        <p>Dorsal: {{ jugador['Dorsal'] }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-                <button type="submit" class="comparar-btn">Comparar</button>
-            </form>
-        </section>
-        {% endif %}
-
-        {% if grafica or mapa %}
-        <section class="resultados">
-            <h2>Resultados de la Comparación</h2>
-            {% if grafica %}
-            <div class="grafica">
-                <img src="data:image/png;base64,{{ grafica }}" alt="Gráfica de comparación">
-            </div>
-            {% endif %}
-            {% if mapa %}
-            <div class="mapa">
-                <img src="data:image/png;base64,{{ mapa }}" alt="Mapa de calor">
-            </div>
-            {% endif %}
-        </section>
-        {% endif %}
-    </main>
-
-    <footer>
-        <p>Desarrollado por:
-            {% for integrante in integrantes %}
-                {{ integrante }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        <p>© 2025 Proyecto Fundamentos de Programación - Flask</p>
-    </footer>
-
     <script>
-        function toggleSeleccion(card) {
-            const checkbox = card.querySelector("input[type='checkbox']");
-            checkbox.checked = !checkbox.checked;
-            card.classList.toggle("seleccionado");
+        function seleccionarEquipo(equipo) {
+            document.getElementById('equipo').value = equipo;
+            document.getElementById('formEquipo').submit();
+        }
+
+        function toggleJugador(checkbox) {
+            checkbox.classList.toggle('selected');
+            checkbox.querySelector('input[type=checkbox]').checked = !checkbox.querySelector('input[type=checkbox]').checked;
         }
     </script>
+</head>
+<body>
+    <h1>Comparador de Jugadores</h1>
+
+    <h2>Integrantes del proyecto</h2>
+    <ul>
+        {% for integrante in integrantes %}
+            <li>{{ integrante }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST">
+        <h2>Selecciona jugadores</h2>
+        <div class="jugadores">
+            {% for equipo in equipos %}
+                <h3>{{ equipo }}</h3>
+                {% for jugador in obtener_jugadores_por_equipo(equipo) %}
+                    <div class="jugador" onclick="toggleJugador(this)">
+                        <input type="checkbox" name="jugadores" value="{{ jugador }}">
+                        <span>{{ jugador }}</span>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <button type="submit">Comparar</button>
+    </form>
+
+    {% if comparacion_img %}
+        <h2>Comparación</h2>
+        <img src="{{ url_for('static', filename='comparacion.png') }}" alt="Comparación">
+    {% endif %}
+
+    {% if mapa_img %}
+        <h2>Mapa de calor</h2>
+        <img src="{{ url_for('static', filename='mapa_calor.png') }}" alt="Mapa de calor">
+    {% endif %}
 </body>
 </html>

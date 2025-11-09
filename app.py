@@ -1,43 +1,37 @@
-from flask import Flask, render_template, request, jsonify
-from functions import (
-    obtener_equipos,
-    obtener_jugadores_por_equipo,
-    obtener_logo_equipo,
-    comparar_jugadores
-)
-import os
+from flask import Flask, render_template, request
+from functions import obtener_equipos, obtener_jugadores_por_equipo, comparar_jugadores, graficar_comparacion, mapa_calor
 
 app = Flask(__name__)
 
-# 🔹 Integrantes del proyecto
-INTEGRANTES = [
-    "Galeano Vargas Juan Enrique",
+# Integrantes del proyecto
+integrantes = [
+    "Galeano Vargas Juan Enriquen",
     "Granja Espinosa David Santiago",
     "Muñoz Cubides Carol Daniela",
     "Parra Landinez Jonathan"
 ]
 
-# 🔹 Página principal
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     equipos = obtener_equipos()
-    return render_template("index.html", equipos=equipos, integrantes=INTEGRANTES)
+    seleccionados = []
+    comparacion_img = None
+    mapa_img = None
 
-# 🔹 Obtener jugadores por equipo (AJAX)
-@app.route("/jugadores/<equipo>")
-def jugadores_por_equipo(equipo):
-    jugadores = obtener_jugadores_por_equipo(equipo)
-    logo = obtener_logo_equipo(equipo)
-    return jsonify({"jugadores": jugadores, "logo": logo})
+    if request.method == "POST":
+        jugadores_seleccionados = request.form.getlist("jugadores")
+        if jugadores_seleccionados:
+            comp_df = comparar_jugadores(jugadores_seleccionados)
+            comparacion_img = graficar_comparacion(comp_df)
+            mapa_img = mapa_calor(comp_df)
 
-# 🔹 Comparar jugadores seleccionados
-@app.route("/comparar", methods=["POST"])
-def comparar():
-    jugadores = request.json.get("jugadores", [])
-    resultados = comparar_jugadores(jugadores)
-    return jsonify(resultados)
+    return render_template(
+        "index.html",
+        equipos=equipos,
+        integrantes=integrantes,
+        comparacion_img=comparacion_img,
+        mapa_img=mapa_img
+    )
 
-# 🔹 Configuración para Render (port binding)
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render asigna el puerto automáticamente
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=10000)

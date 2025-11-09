@@ -1,106 +1,42 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f2f2f2;
 }
 
-header {
-    background: linear-gradient(90deg, #1e3a8a, #0f172a);
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+h1, h2 {
+    color: #333;
 }
 
-header h1 {
-    color: #ffffff;
-    margin: 0;
-}
-
-header p {
-    color: #cbd5e1;
-    margin: 5px 0;
-}
-
-.equipo-grid, .jugador-grid {
+.jugadores {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px auto;
-    max-width: 1000px;
+    gap: 10px;
 }
 
-.equipo-card, .jugador-card {
-    background-color: #1e293b;
-    border-radius: 15px;
-    padding: 15px;
-    width: 160px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+.jugador {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
     cursor: pointer;
-    color: white;
+    border-radius: 5px;
 }
 
-.equipo-card:hover, .jugador-card:hover {
-    border-color: #38bdf8;
-    transform: scale(1.05);
+.jugador.selected {
+    background-color: #4CAF50;
+    color: #fff;
 }
 
-.equipo-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px;
-}
-
-.jugador-card input[type="checkbox"] {
-    display: none;
-}
-
-.jugador-card.seleccionado {
-    border-color: #22c55e;
-    background-color: #064e3b;
-    transform: scale(1.05);
-}
-
-.comparar-btn {
-    background-color: #2563eb;
-    color: white;
-    padding: 12px 25px;
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    background-color: #2196F3;
+    color: white;
     cursor: pointer;
-    margin-top: 20px;
-    transition: 0.3s;
+    border-radius: 5px;
 }
 
-.comparar-btn:hover {
-    background-color: #1d4ed8;
-}
-
-.resultados {
-    margin-top: 30px;
-    background-color: #0f172a;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.resultados img {
-    width: 80%;
-    max-width: 700px;
-    margin: 15px auto;
-    display: block;
-    border-radius: 10px;
-}
-
-footer {
-    background-color: #1e293b;
-    padding: 15px;
-    font-size: 0.9rem;
-    color: #94a3b8;
+button:hover {
+    background-color: #0b7dda;
 }
