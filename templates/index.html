@@ -7,40 +7,70 @@
 </head>
 <body>
     <div class="container">
-        <div class="titulo">
+        <header class="titulo">
             <h1>CODE-LEAGUE COMPARADOR</h1>
-        </div>
+        </header>
 
-        <div class="integrantes">
+        <section class="integrantes">
             <h2>Integrantes</h2>
-            <ul>
+            <p>
                 {% for nombre in integrantes %}
-                    <li>{{ nombre }}</li>
+                    {{ nombre }}{% if not loop.last %}, {% endif %}
                 {% endfor %}
-            </ul>
-        </div>
+            </p>
+        </section>
 
-        <h2>Selecciona un equipo</h2>
-        <div class="equipos-grid">
-            {% for equipo in equipos %}
-                <form method="POST" action="/" class="equipo-card">
-                    <input type="hidden" name="equipo" value="{{ equipo }}">
-                    <button type="submit" class="equipo-boton">
-                        <img src="{{ url_for('static', filename='logos/' + equipo.lower().replace(' ', '').replace('&', '').replace('.', '') + '.png') }}" alt="{{ equipo }}">
-                        <p>{{ equipo }}</p>
-                    </button>
-                </form>
-            {% endfor %}
-        </div>
+        <section class="seleccion">
+            <h2>Selecciona un equipo</h2>
+            <div class="equipos-grid">
+                {% for nombre, logo in equipos %}
+                    <form method="POST" class="equipo-card">
+                        <input type="hidden" name="equipo" value="{{ nombre }}">
+                        <button type="submit" class="equipo-boton">
+                            {% if logo %}
+                                <img src="{{ url_for('static', filename='logos/' + logo) }}" alt="{{ nombre }}" class="logo-img">
+                            {% else %}
+                                <div class="logo-placeholder">{{ nombre[:2] }}</div>
+                            {% endif %}
+                            <div class="nombre-equipo">{{ nombre }}</div>
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
+        </section>
 
         {% if equipo_seleccionado %}
-            <div class="resultado">
+            <section class="resultado">
                 <h2>{{ equipo_seleccionado }}</h2>
-                {% if logo_equipo %}
-                    <img src="{{ logo_equipo }}" alt="Logo {{ equipo_seleccionado }}" class="logo-equipo">
+                {% if logo_filename %}
+                    <img src="{{ url_for('static', filename='logos/' + logo_filename) }}" alt="Logo {{ equipo_seleccionado }}" class="logo-grande">
                 {% endif %}
-                {{ resultado | safe }}
-            </div>
+
+                {% if jugadores is not none %}
+                    {% if jugadores.empty %}
+                        <p>No se encontraron jugadores para este equipo.</p>
+                    {% else %}
+                        <table class="jugadores-tabla">
+                            <thead>
+                                <tr>
+                                    {% for col in jugadores.columns %}
+                                        <th>{{ col }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for _, fila in jugadores.iterrows() %}
+                                    <tr>
+                                        {% for val in fila %}
+                                            <td>{{ val }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endif %}
+            </section>
         {% endif %}
     </div>
 </body>

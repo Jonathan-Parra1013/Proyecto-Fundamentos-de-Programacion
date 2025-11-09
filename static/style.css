@@ -1,79 +1,120 @@
-body { 
-    font-family: Arial, sans-serif; 
-    background-color: #e5e5e5; 
-    margin: 0; 
-    padding: 0; 
+* { box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: linear-gradient(180deg, #0f1724 0%, #1e293b 100%);
+    color: #f8fafc;
+    padding: 20px;
 }
-.container { 
-    max-width: 1100px; 
-    margin: 20px auto; 
-    padding: 20px; 
-    background: #fff; 
-    border-radius: 15px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(2,6,23,0.6);
 }
-h1 { 
-    text-align: center; 
-    background-color: #1E3A8A; 
-    color: white; 
-    padding: 20px; 
-    border-radius: 10px; 
-}
-.integrantes { 
-    text-align: center; 
-    font-weight: bold; 
-    margin-bottom: 20px; 
-}
-h2, h3 {
-    text-align: center;
-    margin-top: 20px;
-}
-.logos-equipos { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
-    margin-top: 20px; 
-}
-.logo-equipo { 
-    width: 100px; 
-    cursor: pointer; 
-    transition: transform 0.3s; 
-    border: 2px solid transparent;
+
+/* Title */
+.titulo {
+    background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+    padding: 20px;
     border-radius: 10px;
+    margin-bottom: 16px;
+    text-align: center;
 }
-.logo-equipo:hover { 
-    transform: scale(1.1); 
-    border-color: #1E3A8A;
+.titulo h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 1px;
 }
-.equipo-seleccionado { 
-    text-align: center; 
-    margin-top: 30px; 
+
+/* Integrantes */
+.integrantes {
+    text-align: center;
+    margin: 14px 0;
 }
-.logo-grande { 
-    width: 150px; 
-    margin-top: 10px; 
+.integrantes p { margin: 6px 0; color: #fef3c7; }
+
+/* Equipos grid */
+.equipos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin-top: 12px;
 }
-.jugadores { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 15px; 
-    justify-content: center; 
-    margin-top: 20px; 
+.equipo-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
 }
-.jugador { 
-    border: 1px solid #ddd; 
-    padding: 10px; 
-    border-radius: 10px; 
-    text-align: center; 
-    width: 140px; 
-    background-color: #f9f9f9; 
-    transition: transform 0.2s, box-shadow 0.2s;
+.equipo-boton {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
-.jugador:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.logo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.08);
+    transition: transform .15s ease, box-shadow .15s ease;
 }
-.jugador img { 
-    border-radius: 50%; 
+.equipo-boton:hover .logo-img {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(14,165,233,0.12);
+}
+.nombre-equipo {
+    font-size: 14px;
+    color: #e6eef6;
+}
+
+/* Resultado */
+.resultado {
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.25);
+}
+.logo-grande {
+    width: 120px;
+    display: block;
+    margin: 8px auto 14px;
+}
+
+/* Tabla jugadores */
+.jugadores-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.jugadores-tabla th, .jugadores-tabla td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.jugadores-tabla th {
+    background: #0ea5e9;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .logo-img { width: 64px; height: 64px; }
+    .logo-grande { width: 90px; }
 }
