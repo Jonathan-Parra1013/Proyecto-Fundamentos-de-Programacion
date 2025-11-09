@@ -5,11 +5,6 @@
     <title>Comparador de Jugadores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script>
-        function seleccionarEquipo(equipo) {
-            document.getElementById('equipo').value = equipo;
-            document.getElementById('formEquipo').submit();
-        }
-
         function toggleJugador(checkbox) {
             checkbox.classList.toggle('selected');
             checkbox.querySelector('input[type=checkbox]').checked = !checkbox.querySelector('input[type=checkbox]').checked;

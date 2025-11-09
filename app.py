@@ -11,10 +11,14 @@ integrantes = [
     "Parra Landinez Jonathan"
 ]
 
+# Hacemos que la función esté disponible en todas las plantillas
+@app.context_processor
+def utility_processor():
+    return dict(obtener_jugadores_por_equipo=obtener_jugadores_por_equipo)
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     equipos = obtener_equipos()
-    seleccionados = []
     comparacion_img = None
     mapa_img = None
 

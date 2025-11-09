@@ -1,42 +1,63 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #f2f2f2;
+    background-color: #f4f4f4;
 }
 
 h1, h2 {
-    color: #333;
+    text-align: center;
+}
+
+.equipos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.equipo {
+    text-align: center;
+    cursor: pointer;
+}
+
+.equipo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.equipo img:hover {
+    transform: scale(1.1);
 }
 
 .jugadores {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .jugador {
-    padding: 5px 10px;
+    padding: 10px 15px;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .jugador.selected {
     background-color: #4CAF50;
-    color: #fff;
-}
-
-button {
-    margin-top: 10px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #2196F3;
     color: white;
-    cursor: pointer;
-    border-radius: 5px;
+    border-color: #388E3C;
 }
 
-button:hover {
-    background-color: #0b7dda;
+input[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
