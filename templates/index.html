@@ -1,101 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Proyecto Futbol</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<style>
-body { background-color: #1e1e2f; color: #f0f0f0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-h1 { text-align: center; padding: 20px; color: #ffcc00; }
-h2 { color: #ffcc00; text-align: center; }
-.equipos-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-.equipo { background-color: #2c2c44; border-radius: 10px; padding: 10px; width: 120px; text-align: center; cursor: pointer; transition: 0.3s; }
-.equipo:hover { transform: scale(1.05); background-color: #3d3d5a; }
-.equipo img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
-#jugadores { display: none; background-color: #2c2c44; max-width: 400px; margin: 20px auto; border-radius: 10px; padding: 20px; }
-#jugadores ul { list-style: none; padding: 0; }
-#jugadores li { padding: 5px 0; border-bottom: 1px solid #444466; }
-.cerrar-btn { background-color: #ff4c4c; border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; float: right; }
-.cerrar-btn:hover { background-color: #ff1a1a; }
-#mapa-container, #comparacion-container { text-align: center; margin: 30px 0; }
-#mapa-container img, #comparacion-container img { max-width: 90%; border-radius: 10px; box-shadow: 0 0 10px #000; }
-</style>
+    <meta charset="UTF-8">
+    <title>Proyecto Futbol</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <h1>Equipos de Futbol</h1>
 
-<h1>Equipos de Futbol</h1>
+    <div class="equipos-container">
+        {% for equipo in equipos %}
+            <div class="equipo" data-equipo="{{ equipo.Equipo }}">
+                <img src="{{ url_for('static', filename='logos/' + equipo.LOGO) }}" alt="{{ equipo.Equipo }}">
+                <p>{{ equipo.Equipo }}</p>
+            </div>
+        {% endfor %}
+    </div>
 
-<div class="equipos-container">
-    {% for equipo in equipos %}
-        <div class="equipo" data-equipo="{{ equipo['Equipo'] }}">
-            <img src="{{ url_for('static', filename='logos/' + equipo['LOGO']) }}" alt="{{ equipo['Equipo'] }}">
-            <p>{{ equipo['Equipo'] }}</p>
-        </div>
-    {% endfor %}
-</div>
+    <div id="jugadores">
+        <button class="cerrar-btn" onclick="cerrarJugadores()">Cerrar</button>
+        <h2 id="nombre-equipo"></h2>
+        <ul id="lista-jugadores"></ul>
+    </div>
 
-<div id="jugadores">
-    <button class="cerrar-btn" onclick="cerrarJugadores()">Cerrar</button>
-    <h2 id="nombre-equipo"></h2>
-    <ul id="lista-jugadores"></ul>
-</div>
+    {% if comparacion_img %}
+        <h2>Comparación de Jugadores</h2>
+        <img src="{{ comparacion_img }}" alt="Comparación" class="grafico">
+    {% endif %}
 
-<!-- Contenedores de gráficos -->
-{% if comparacion_img %}
-<div id="comparacion-container">
-    <h2>Comparación de Jugadores Seleccionados</h2>
-    <img src="data:image/png;base64,{{ comparacion_img }}" alt="Comparación">
-</div>
-{% endif %}
+    {% if mapa_img %}
+        <h2>Mapa de Calor</h2>
+        <img src="{{ mapa_img }}" alt="Mapa de calor" class="grafico">
+    {% endif %}
 
-{% if mapa_img %}
-<div id="mapa-container">
-    <h2>Mapa de Calor</h2>
-    <img src="data:image/png;base64,{{ mapa_img }}" alt="Mapa de calor">
-</div>
-{% endif %}
+    <div class="integrantes">
+        <h2>Integrantes del Grupo</h2>
+        <ul>
+            {% for integrante in integrantes %}
+                <li>{{ integrante }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<!-- Inyectar jugadores como JSON -->
-<script id="jugadores-data" type="application/json">{{ jugadores_por_equipo|tojson|safe }}</script>
+    <!-- Datos de jugadores inyectados como JSON -->
+    <script id="jugadores-data" type="application/json">
+        {{ jugadores_por_equipo|tojson }}
+    </script>
 
-<script>
-const jugadoresPorEquipo = JSON.parse(document.getElementById('jugadores-data').textContent || '{}');
+    <script>
+        const jugadoresPorEquipo = JSON.parse(document.getElementById('jugadores-data').textContent);
 
-document.querySelectorAll('.equipo').forEach(div => {
-    div.addEventListener('click', () => {
-        const equipo = div.getAttribute('data-equipo');
-        mostrarJugadores(equipo);
-    });
-});
-
-function mostrarJugadores(equipo) {
-    const contenedor = document.getElementById('jugadores');
-    const lista = document.getElementById('lista-jugadores');
-    const nombreEquipo = document.getElementById('nombre-equipo');
-
-    lista.innerHTML = '';
-    nombreEquipo.textContent = equipo;
-
-    if (jugadoresPorEquipo[equipo]) {
-        jugadoresPorEquipo[equipo].forEach(jugador => {
-            const li = document.createElement('li');
-            li.textContent = jugador;
-            lista.appendChild(li);
+        document.querySelectorAll('.equipo').forEach(div => {
+            div.addEventListener('click', () => {
+                const equipo = div.getAttribute('data-equipo');
+                mostrarJugadores(equipo);
+            });
         });
-    } else {
-        const li = document.createElement('li');
-        li.textContent = 'No hay jugadores registrados';
-        lista.appendChild(li);
-    }
 
-    contenedor.style.display = 'block';
-    contenedor.scrollIntoView({ behavior: 'smooth' });
-}
+        function mostrarJugadores(equipo) {
+            const contenedor = document.getElementById('jugadores');
+            const lista = document.getElementById('lista-jugadores');
+            const nombreEquipo = document.getElementById('nombre-equipo');
 
-function cerrarJugadores() {
-    document.getElementById('jugadores').style.display = 'none';
-}
-</script>
+            lista.innerHTML = '';
+            nombreEquipo.textContent = equipo;
 
+            if (jugadoresPorEquipo[equipo] && jugadoresPorEquipo[equipo].length > 0) {
+                jugadoresPorEquipo[equipo].forEach(jugador => {
+                    const li = document.createElement('li');
+                    li.textContent = jugador;
+                    lista.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = 'No hay jugadores registrados';
+                lista.appendChild(li);
+            }
+
+            contenedor.style.display = 'block';
+            contenedor.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cerrarJugadores() {
+            document.getElementById('jugadores').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

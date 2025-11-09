@@ -3,7 +3,7 @@ from functions import obtener_equipos_con_logos, obtener_jugadores_por_equipo, c
 
 app = Flask(__name__)
 
-# Integrantes
+# Integrantes del grupo
 integrantes = [
     "Galeano Vargas Juan Enriquen",
     "Granja Espinosa David Santiago",
@@ -14,7 +14,6 @@ integrantes = [
 @app.route("/", methods=["GET", "POST"])
 def index():
     equipos = obtener_equipos_con_logos()
-    seleccionados = []
     comparacion_img = None
     mapa_img = None
     jugadores_por_equipo = {}
