@@ -3,7 +3,7 @@ from functions import obtener_equipos, obtener_jugadores_por_equipo, obtener_log
 
 app = Flask(__name__)
 
-# Integrantes tal como pediste
+
 INTEGRANTES = [
     "Galeano Vargas Juan Enriquen",
     "Granja Espinosa David Santiago",
@@ -13,12 +13,12 @@ INTEGRANTES = [
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    equipos = obtener_equipos()  # lista de dicts {"nombre","logo"}
+    equipos = obtener_equipos()  
     equipo_seleccionado = None
     jugadores = []
     logo_equipo = None
 
-    # usamos POST cuando el usuario hace clic en un logo (botón)
+   
     if request.method == "POST":
         equipo_seleccionado = request.form.get("equipo")
         if equipo_seleccionado:
@@ -35,7 +35,7 @@ def index():
     )
 
 if __name__ == "__main__":
-    # Render usa PORT env; local usa 5000
     import os
     port = int(os.environ.get("PORT", 5000))
+    
     app.run(host="0.0.0.0", port=port, debug=True)
