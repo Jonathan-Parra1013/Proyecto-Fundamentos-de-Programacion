@@ -2,76 +2,96 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CODE-LEAGUE COMPARADOR</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tabla Premier League</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            margin-bottom: 0;
+        }
+        form {
+            margin: 30px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        img {
+            margin-top: 20px;
+            width: 150px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+        }
+        footer {
+            margin-top: 40px;
+            background-color: #222;
+            color: white;
+            padding: 15px;
+        }
+        footer ul {
+            padding: 0;
+        }
+        footer li {
+            list-style: none;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header class="titulo">
-            <h1>CODE-LEAGUE COMPARADOR</h1>
-        </header>
+    <h1>Tabla Premier League</h1>
 
-        <section class="integrantes">
-            <h2>Integrantes</h2>
-            <p>
-                {% for nombre in integrantes %}
-                    {{ nombre }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        </section>
+    <form method="POST">
+        <label for="equipo">Selecciona un equipo:</label>
+        <select name="equipo" id="equipo">
+            {% for eq in equipos %}
+                <option value="{{ eq }}" {% if eq == equipo %}selected{% endif %}>{{ eq }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Ver jugadores</button>
+    </form>
 
-        <section class="seleccion">
-            <h2>Selecciona un equipo</h2>
-            <div class="equipos-grid">
-                {% for nombre, logo in equipos %}
-                    <form method="POST" class="equipo-card">
-                        <input type="hidden" name="equipo" value="{{ nombre }}">
-                        <button type="submit" class="equipo-boton">
-                            {% if logo %}
-                                <img src="{{ url_for('static', filename='logos/' + logo) }}" alt="{{ nombre }}" class="logo-img">
-                            {% else %}
-                                <div class="logo-placeholder">{{ nombre[:2] }}</div>
-                            {% endif %}
-                            <div class="nombre-equipo">{{ nombre }}</div>
-                        </button>
-                    </form>
-                {% endfor %}
-            </div>
-        </section>
+    {% if logo %}
+        <img src="{{ logo }}" alt="Logo del equipo">
+    {% endif %}
 
-        {% if equipo_seleccionado %}
-            <section class="resultado">
-                <h2>{{ equipo_seleccionado }}</h2>
-                {% if logo_filename %}
-                    <img src="{{ url_for('static', filename='logos/' + logo_filename) }}" alt="Logo {{ equipo_seleccionado }}" class="logo-grande">
-                {% endif %}
+    {% if jugadores %}
+        <h2>Jugadores de {{ equipo }}</h2>
+        <ul>
+            {% for j in jugadores %}
+                <li>{{ j }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-                {% if jugadores is not none %}
-                    {% if jugadores.empty %}
-                        <p>No se encontraron jugadores para este equipo.</p>
-                    {% else %}
-                        <table class="jugadores-tabla">
-                            <thead>
-                                <tr>
-                                    {% for col in jugadores.columns %}
-                                        <th>{{ col }}</th>
-                                    {% endfor %}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for _, fila in jugadores.iterrows() %}
-                                    <tr>
-                                        {% for val in fila %}
-                                            <td>{{ val }}</td>
-                                        {% endfor %}
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endif %}
-            </section>
-        {% endif %}
-    </div>
+    <footer>
+        <h3>Integrantes del grupo</h3>
+        <ul>
+            {% for i in integrantes %}
+                <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+    </footer>
 </body>
 </html>
