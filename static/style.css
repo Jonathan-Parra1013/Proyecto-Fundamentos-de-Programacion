@@ -1,107 +1,79 @@
-/* Fondo con imagen y overlay */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg') no-repeat center top;
-    background-size: cover;
-    position: relative;
-    color: #fff;
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #e5e5e5; 
+    margin: 0; 
+    padding: 0; 
 }
-
-.background-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.6); /* oscurece la imagen de fondo */
-    z-index: -1;
+.container { 
+    max-width: 1100px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    background: #fff; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
-/* Título principal */
-.titulo-principal {
+h1 { 
+    text-align: center; 
+    background-color: #1E3A8A; 
+    color: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+}
+.integrantes { 
+    text-align: center; 
+    font-weight: bold; 
+    margin-bottom: 20px; 
+}
+h2, h3 {
     text-align: center;
-    background-color: rgba(0, 123, 255, 0.85);
-    color: white;
-    padding: 30px 20px;
-    margin: 30px auto;
-    width: 80%;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    font-family: 'Arial Black', sans-serif;
-}
-
-.titulo-principal h1 {
-    margin: 0;
-    font-size: 48px;
-}
-
-/* Integrantes */
-.integrantes {
-    text-align: center;
-    margin: 20px auto;
-    width: 80%;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 15px;
-}
-
-.integrantes ul {
-    list-style: none;
-    padding: 0;
-    font-size: 20px;
-}
-
-.integrantes li {
-    margin: 5px 0;
-    color: #ffd700;
-    font-weight: bold;
-}
-
-/* Contenedor principal */
-.container {
-    width: 80%;
-    margin: 30px auto;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-/* Select y botón */
-select, button {
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 5px;
-    border: none;
-}
-
-button {
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Resultados */
-.resultado {
     margin-top: 20px;
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.85);
-    color: #000;
-    padding: 20px;
+}
+.logos-equipos { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    margin-top: 20px; 
+}
+.logo-equipo { 
+    width: 100px; 
+    cursor: pointer; 
+    transition: transform 0.3s; 
+    border: 2px solid transparent;
     border-radius: 10px;
 }
-
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+.logo-equipo:hover { 
+    transform: scale(1.1); 
+    border-color: #1E3A8A;
+}
+.equipo-seleccionado { 
+    text-align: center; 
+    margin-top: 30px; 
+}
+.logo-grande { 
+    width: 150px; 
+    margin-top: 10px; 
+}
+.jugadores { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    justify-content: center; 
+    margin-top: 20px; 
+}
+.jugador { 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    border-radius: 10px; 
+    text-align: center; 
+    width: 140px; 
+    background-color: #f9f9f9; 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.jugador:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.jugador img { 
+    border-radius: 50%; 
 }
