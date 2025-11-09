@@ -4,10 +4,94 @@
     <meta charset="UTF-8">
     <title>Comparador de Jugadores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+        }
+        h1, h2 {
+            color: #fff;
+        }
+        .integrantes {
+            margin-bottom: 20px;
+        }
+        .equipos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .equipo {
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s, border 0.2s;
+        }
+        .equipo img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+        .equipo:hover {
+            transform: scale(1.1);
+            border: 2px solid #4CAF50;
+        }
+        .jugadores {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .jugador {
+            padding: 8px 12px;
+            background-color: #1f1f1f;
+            border: 1px solid #444;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .jugador.selected {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0b7dda;
+        }
+        .comparacion img {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
     <script>
-        function toggleJugador(checkbox) {
-            checkbox.classList.toggle('selected');
-            checkbox.querySelector('input[type=checkbox]').checked = !checkbox.querySelector('input[type=checkbox]').checked;
+        function toggleJugadores(equipo) {
+            const contenedores = document.querySelectorAll('.jugadores');
+            contenedores.forEach(c => {
+                if (c.dataset.equipo === equipo) {
+                    c.style.display = c.style.display === 'flex' ? 'none' : 'flex';
+                } else {
+                    c.style.display = 'none';
+                }
+            });
+        }
+
+        function seleccionarJugador(div) {
+            div.classList.toggle('selected');
+            const checkbox = div.querySelector('input[type=checkbox]');
+            checkbox.checked = !checkbox.checked;
         }
     </script>
 </head>
@@ -15,36 +99,48 @@
     <h1>Comparador de Jugadores</h1>
 
     <h2>Integrantes del proyecto</h2>
-    <ul>
+    <ul class="integrantes">
         {% for integrante in integrantes %}
             <li>{{ integrante }}</li>
         {% endfor %}
     </ul>
 
+    <h2>Selecciona un equipo</h2>
+    <div class="equipos">
+        {% for equipo in equipos %}
+            <div class="equipo" onclick="toggleJugadores('{{ equipo|escapejs }}')">
+                <img src="{{ url_for('static', filename=logos[equipo]) }}" alt="{{ equipo }}">
+            </div>
+        {% endfor %}
+    </div>
+
     <form method="POST">
-        <h2>Selecciona jugadores</h2>
-        <div class="jugadores">
-            {% for equipo in equipos %}
+        {% for equipo in equipos %}
+            <div class="jugadores" data-equipo="{{ equipo }}" style="display:none;">
                 <h3>{{ equipo }}</h3>
                 {% for jugador in obtener_jugadores_por_equipo(equipo) %}
-                    <div class="jugador" onclick="toggleJugador(this)">
-                        <input type="checkbox" name="jugadores" value="{{ jugador }}">
-                        <span>{{ jugador }}</span>
+                    <div class="jugador" onclick="seleccionarJugador(this)">
+                        <input type="checkbox" name="jugadores" value="{{ jugador }}" style="display:none;">
+                        {{ jugador }}
                     </div>
                 {% endfor %}
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
         <button type="submit">Comparar</button>
     </form>
 
     {% if comparacion_img %}
-        <h2>Comparación</h2>
-        <img src="{{ url_for('static', filename='comparacion.png') }}" alt="Comparación">
+        <div class="comparacion">
+            <h2>Comparación</h2>
+            <img src="{{ url_for('static', filename='comparacion.png') }}" alt="Comparación">
+        </div>
     {% endif %}
 
     {% if mapa_img %}
-        <h2>Mapa de calor</h2>
-        <img src="{{ url_for('static', filename='mapa_calor.png') }}" alt="Mapa de calor">
+        <div class="comparacion">
+            <h2>Mapa de calor</h2>
+            <img src="{{ url_for('static', filename='mapa_calor.png') }}" alt="Mapa de calor">
+        </div>
     {% endif %}
 </body>
 </html>
