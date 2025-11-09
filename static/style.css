@@ -1,34 +1,12 @@
 body {
+    background-color: #0b0c10;
+    color: #f8f8f8;
     font-family: Arial, sans-serif;
-    background-color: #f3f5f7;
-    color: #222;
-    margin: 0;
-    padding: 0;
     text-align: center;
 }
 
-header {
-    background-color: #3d195b;
-    color: white;
-    padding: 20px;
-}
-
-.logo {
-    width: 120px;
-}
-
-h1, h2, h3 {
-    margin: 10px 0;
-}
-
-form {
-    margin: 20px;
-}
-
-select, button {
-    padding: 10px;
-    font-size: 16px;
-    margin: 5px;
+h1 {
+    color: #66fcf1;
 }
 
 table {
@@ -38,17 +16,22 @@ table {
 }
 
 th, td {
-    border: 1px solid #aaa;
-    padding: 8px;
-    text-align: center;
+    border: 1px solid #45a29e;
+    padding: 10px;
 }
 
 th {
-    background-color: #3d195b;
-    color: white;
+    background-color: #1f2833;
 }
 
-.logo-equipo img {
-    width: 150px;
-    margin: 15px;
+select, button {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #c5c6c7;
 }

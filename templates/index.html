@@ -2,73 +2,48 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Premier League - Análisis de Datos</title>
+    <title>Premier League - Análisis</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <h1>⚽ Análisis de la Premier League</h1>
 
-    <header>
-        <img src="{{ url_for('static', filename='imagenes/premier.png') }}" alt="Premier League" class="logo">
-        <h1>Proyecto: Análisis de la Premier League</h1>
-        <h3>Integrantes:</h3>
-        <ul>
-            {% for integrante in integrantes %}
-                <li>{{ integrante }}</li>
+    <form method="POST">
+        <label for="equipo">Selecciona un equipo:</label>
+        <select name="equipo" id="equipo">
+            {% for eq in equipos %}
+            <option value="{{ eq }}" {% if eq == equipo_seleccionado %}selected{% endif %}>{{ eq }}</option>
             {% endfor %}
-        </ul>
-    </header>
+        </select>
+        <button type="submit">Mostrar jugadores</button>
+    </form>
 
-    <main>
-        <form method="POST">
-            <label for="equipo">Selecciona un equipo:</label>
-            <select name="equipo" id="equipo" required>
-                <option value="">-- Elige un equipo --</option>
-                {% for eq in equipos %}
-                    <option value="{{ eq }}" {% if eq == equipo_seleccionado %}selected{% endif %}>{{ eq }}</option>
+    {% if equipo_seleccionado %}
+    <h2>Equipo: {{ equipo_seleccionado }}</h2>
+
+    {% if logo_equipo %}
+        <img src="{{ logo_equipo }}" alt="Logo {{ equipo_seleccionado }}" style="width:150px;height:150px;">
+    {% endif %}
+
+    <h3>Jugadores:</h3>
+    <table>
+        <tr>
+            {% for key in jugadores[0].keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+        {% for jugador in jugadores %}
+            <tr>
+                {% for valor in jugador.values() %}
+                    <td>{{ valor }}</td>
                 {% endfor %}
-            </select>
-            <button type="submit">Ver jugadores</button>
-        </form>
-
-        {% if logo_equipo %}
-        <div class="logo-equipo">
-            <h2>{{ equipo_seleccionado }}</h2>
-            <img src="{{ logo_equipo }}" alt="Logo del equipo">
-        </div>
-        {% endif %}
-
-        {% if jugadores is not none %}
-        <section class="tabla-jugadores">
-            <h2>Jugadores de {{ equipo_seleccionado }}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jugador</th>
-                        <th>Posición</th>
-                        <th>Goles</th>
-                        <th>Asistencias</th>
-                        <th>Edad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for _, jugador in jugadores.iterrows() %}
-                    <tr>
-                        <td>{{ jugador["Jugador"] }}</td>
-                        <td>{{ jugador["Posición"] }}</td>
-                        <td>{{ jugador["Goles"] }}</td>
-                        <td>{{ jugador["Asistencias"] }}</td>
-                        <td>{{ jugador["Edad"] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-        {% endif %}
-    </main>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 
     <footer>
-        <p>Proyecto académico - Universidad / Curso de Análisis de Datos</p>
+        <p>Proyecto desarrollado por: <strong>Jonathan Parra Landinez, Cristian David Suarez, Mateo Hernández, Juan David Vargas y Luisa Fernanda Rodríguez</strong></p>
     </footer>
-
 </body>
 </html>
