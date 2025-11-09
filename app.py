@@ -28,9 +28,17 @@ def index():
     if request.method == "POST":
         jugadores_seleccionados = request.form.getlist("jugadores")
         if jugadores_seleccionados:
-            comp_df = comparar_jugadores(jugadores_seleccionados)
-            comparacion_img = graficar_comparacion(comp_df)
-            mapa_img = mapa_calor(comp_df)
+            try:
+                print("Jugadores seleccionados:", jugadores_seleccionados)
+                comp_df = comparar_jugadores(jugadores_seleccionados)
+                print("DataFrame creado:", comp_df.shape)
+                comparacion_img = graficar_comparacion(comp_df)
+                print("Gráfico de comparación creado")
+                mapa_img = mapa_calor(comp_df)
+                print("Mapa de calor creado")
+            except Exception as e:
+                print("Error al procesar jugadores:", str(e))
+                return f"Error: {str(e)}", 500
 
     return render_template(
         "index.html",
