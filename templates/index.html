@@ -2,96 +2,73 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Tabla Premier League</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            background-color: #0077cc;
-            color: white;
-            padding: 20px;
-            margin-bottom: 0;
-        }
-        form {
-            margin: 30px;
-        }
-        select {
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #005fa3;
-        }
-        img {
-            margin-top: 20px;
-            width: 150px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            font-size: 18px;
-        }
-        footer {
-            margin-top: 40px;
-            background-color: #222;
-            color: white;
-            padding: 15px;
-        }
-        footer ul {
-            padding: 0;
-        }
-        footer li {
-            list-style: none;
-            margin: 5px 0;
-        }
-    </style>
+    <title>Premier League - Análisis de Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Tabla Premier League</h1>
 
-    <form method="POST">
-        <label for="equipo">Selecciona un equipo:</label>
-        <select name="equipo" id="equipo">
-            {% for eq in equipos %}
-                <option value="{{ eq }}" {% if eq == equipo %}selected{% endif %}>{{ eq }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Ver jugadores</button>
-    </form>
-
-    {% if logo %}
-        <img src="{{ logo }}" alt="Logo del equipo">
-    {% endif %}
-
-    {% if jugadores %}
-        <h2>Jugadores de {{ equipo }}</h2>
+    <header>
+        <img src="{{ url_for('static', filename='imagenes/premier.png') }}" alt="Premier League" class="logo">
+        <h1>Proyecto: Análisis de la Premier League</h1>
+        <h3>Integrantes:</h3>
         <ul>
-            {% for j in jugadores %}
-                <li>{{ j }}</li>
+            {% for integrante in integrantes %}
+                <li>{{ integrante }}</li>
             {% endfor %}
         </ul>
-    {% endif %}
+    </header>
+
+    <main>
+        <form method="POST">
+            <label for="equipo">Selecciona un equipo:</label>
+            <select name="equipo" id="equipo" required>
+                <option value="">-- Elige un equipo --</option>
+                {% for eq in equipos %}
+                    <option value="{{ eq }}" {% if eq == equipo_seleccionado %}selected{% endif %}>{{ eq }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ver jugadores</button>
+        </form>
+
+        {% if logo_equipo %}
+        <div class="logo-equipo">
+            <h2>{{ equipo_seleccionado }}</h2>
+            <img src="{{ logo_equipo }}" alt="Logo del equipo">
+        </div>
+        {% endif %}
+
+        {% if jugadores is not none %}
+        <section class="tabla-jugadores">
+            <h2>Jugadores de {{ equipo_seleccionado }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Posición</th>
+                        <th>Goles</th>
+                        <th>Asistencias</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for _, jugador in jugadores.iterrows() %}
+                    <tr>
+                        <td>{{ jugador["Jugador"] }}</td>
+                        <td>{{ jugador["Posición"] }}</td>
+                        <td>{{ jugador["Goles"] }}</td>
+                        <td>{{ jugador["Asistencias"] }}</td>
+                        <td>{{ jugador["Edad"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        {% endif %}
+    </main>
 
     <footer>
-        <h3>Integrantes del grupo</h3>
-        <ul>
-            {% for i in integrantes %}
-                <li>{{ i }}</li>
-            {% endfor %}
-        </ul>
+        <p>Proyecto académico - Universidad / Curso de Análisis de Datos</p>
     </footer>
+
 </body>
 </html>

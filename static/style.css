@@ -1,120 +1,54 @@
-* { box-sizing: border-box; }
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f3f5f7;
+    color: #222;
     margin: 0;
-    background: linear-gradient(180deg, #0f1724 0%, #1e293b 100%);
-    color: #f8fafc;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #3d195b;
+    color: white;
     padding: 20px;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.03);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(2,6,23,0.6);
-}
-
-/* Title */
-.titulo {
-    background: linear-gradient(90deg, #0ea5e9, #7c3aed);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    text-align: center;
-}
-.titulo h1 {
-    margin: 0;
-    color: #fff;
-    font-size: 28px;
-    letter-spacing: 1px;
-}
-
-/* Integrantes */
-.integrantes {
-    text-align: center;
-    margin: 14px 0;
-}
-.integrantes p { margin: 6px 0; color: #fef3c7; }
-
-/* Equipos grid */
-.equipos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 14px;
-    margin-top: 12px;
-}
-.equipo-card {
-    background: rgba(255,255,255,0.03);
-    border-radius: 10px;
-    padding: 8px;
-    display: flex;
-}
-.equipo-boton {
-    width: 100%;
-    border: none;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-    text-align: center;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-.logo-img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.08);
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-.equipo-boton:hover .logo-img {
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(14,165,233,0.12);
-}
-.nombre-equipo {
-    font-size: 14px;
-    color: #e6eef6;
-}
-
-/* Resultado */
-.resultado {
-    margin-top: 24px;
-    padding: 16px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.25);
-}
-.logo-grande {
+.logo {
     width: 120px;
-    display: block;
-    margin: 8px auto 14px;
 }
 
-/* Tabla jugadores */
-.jugadores-tabla {
-    width: 100%;
+h1, h2, h3 {
+    margin: 10px 0;
+}
+
+form {
+    margin: 20px;
+}
+
+select, button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+}
+
+table {
+    margin: 20px auto;
     border-collapse: collapse;
-    background: #fff;
-    color: #000;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.jugadores-tabla th, .jugadores-tabla td {
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-.jugadores-tabla th {
-    background: #0ea5e9;
-    color: #fff;
+    width: 80%;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .logo-img { width: 64px; height: 64px; }
-    .logo-grande { width: 90px; }
+th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #3d195b;
+    color: white;
+}
+
+.logo-equipo img {
+    width: 150px;
+    margin: 15px;
 }
