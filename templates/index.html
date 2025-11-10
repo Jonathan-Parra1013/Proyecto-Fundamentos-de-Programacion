@@ -36,6 +36,8 @@
         <form id="form-jugadores" method="POST">
             <p>Selecciona máximo 4 jugadores para comparar</p>
             <ul id="lista-jugadores"></ul>
+            <!-- Hidden inputs to submit selected players across team views -->
+            <div id="hidden-selected"></div>
             <div class="error-message" id="error-message">No puedes seleccionar más de 4 jugadores</div>
             <button type="submit" class="enviar-btn" disabled>Comparar seleccionados</button>
             <p id="jugadores-seleccionados">Jugadores seleccionados: 0/4</p>
@@ -164,20 +166,36 @@
             });
         });
 
+        // Mantener un conjunto global de jugadores seleccionados (permite selección cross-team)
+        const selectedPlayers = new Set();
+
+        function updateHiddenInputs() {
+            const container = document.getElementById('hidden-selected');
+            container.innerHTML = '';
+            selectedPlayers.forEach(j => {
+                const inp = document.createElement('input');
+                inp.type = 'hidden';
+                inp.name = 'jugadores';
+                inp.value = j;
+                container.appendChild(inp);
+            });
+        }
+
         function actualizarContadorJugadores() {
-            const jugadoresSeleccionados = document.querySelectorAll('input[name="jugadores"]:checked').length;
+            const jugadoresSeleccionados = selectedPlayers.size;
             const contadorElement = document.getElementById('jugadores-seleccionados');
             const submitButton = document.querySelector('.enviar-btn');
             const errorMessage = document.getElementById('error-message');
             
             contadorElement.textContent = `Jugadores seleccionados: ${jugadoresSeleccionados}/4`;
-            submitButton.disabled = jugadoresSeleccionados === 0;
+            submitButton.disabled = jugadoresSeleccionados === 0 || jugadoresSeleccionados > 4;
             errorMessage.style.display = 'none';
 
             if (jugadoresSeleccionados > 4) {
                 submitButton.disabled = true;
                 errorMessage.style.display = 'block';
             }
+            updateHiddenInputs();
         }
 
         function mostrarJugadores(equipo) {
@@ -213,29 +231,34 @@
                         const nombreSpan = document.createElement('div');
                         nombreSpan.textContent = jugador;
                         
-                        label.appendChild(numeroSpan);
-                        label.appendChild(nombreSpan);
-                        li.appendChild(checkbox);
-                        li.appendChild(label);
-                        lista.appendChild(li);
+                                label.appendChild(numeroSpan);
+                                label.appendChild(nombreSpan);
+                                li.appendChild(checkbox);
+                                li.appendChild(label);
+                                lista.appendChild(li);
 
-                        // Agregar efecto de selección
-                        li.addEventListener('click', function(e) {
-                            if (e.target.tagName !== 'INPUT') {
-                                checkbox.click();
-                            }
-                        });
+                                // Si el jugador ya estaba seleccionado (de otra vista), marcarlo
+                                if (selectedPlayers.has(jugador)) {
+                                    checkbox.checked = true;
+                                    li.classList.add('selected');
+                                }
 
-                        // Agregar evento change al checkbox
-                        checkbox.addEventListener('change', function() {
-                            const totalSeleccionados = document.querySelectorAll('input[name="jugadores"]:checked').length;
-                            if (totalSeleccionados > 4 && this.checked) {
-                                this.checked = false;
-                            }
-                            // Actualizar clase selected
-                            li.classList.toggle('selected', this.checked);
-                            actualizarContadorJugadores();
-                        });
+                                // Manejar cambio del checkbox (solo aquí)
+                                checkbox.addEventListener('change', function() {
+                                    if (this.checked) {
+                                        if (selectedPlayers.size >= 4) {
+                                            // no permitir más de 4
+                                            this.checked = false;
+                                            return;
+                                        }
+                                        selectedPlayers.add(jugador);
+                                        li.classList.add('selected');
+                                    } else {
+                                        selectedPlayers.delete(jugador);
+                                        li.classList.remove('selected');
+                                    }
+                                    actualizarContadorJugadores();
+                                });
                     });
                 } else {
                     const li = document.createElement('li');
