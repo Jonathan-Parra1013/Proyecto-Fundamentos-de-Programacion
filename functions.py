@@ -72,7 +72,23 @@ def comparar_jugadores(jugadores_seleccionados):
         if col in comp_df.columns:
             comp_df[col] = pd.to_numeric(comp_df[col], errors='coerce')
     
-    return comp_df
+    # Procesar el DataFrame para las gráficas
+    for col in columnas_numericas:
+        if col in comp_df.columns:
+            comp_df[col] = pd.to_numeric(comp_df[col], errors='coerce')
+
+    # Generar todas las visualizaciones
+    imagenes = {}
+    try:
+        # Gráfico de comparación
+        imagenes['comparacion'] = graficar_comparacion(comp_df.copy())
+        
+        # Mapa de calor
+        imagenes['mapa_calor'] = mapa_calor(comp_df.copy())
+        
+        return imagenes
+    except Exception as e:
+        raise ValueError(f"Error al generar las visualizaciones: {str(e)}")
 
 # Graficar comparación
 def graficar_comparacion(comp_df, columnas=None):
@@ -85,7 +101,7 @@ def graficar_comparacion(comp_df, columnas=None):
         raise ValueError("No hay columnas válidas para graficar")
     
     try:
-        comp_df.set_index(col_nombre_jugador, inplace=True)
+        comp_df.set_index('Nombre', inplace=True)
         ax = comp_df[columnas_disponibles].plot(kind="bar", figsize=(12,6), colormap="viridis")
         plt.title("Comparación de Jugadores")
         plt.xlabel("Jugadores")
@@ -115,7 +131,7 @@ def mapa_calor(comp_df, columnas=None):
         raise ValueError("No hay columnas válidas para el mapa de calor")
     
     try:
-        comp_df.set_index(col_nombre_jugador, inplace=True)
+        comp_df.set_index('Nombre', inplace=True)
         plt.figure(figsize=(12,6))
         sns.heatmap(comp_df[columnas_disponibles], annot=True, cmap="YlGnBu", cbar=True, fmt='.1f')
         plt.title("Mapa de Calor - Comparación de Jugadores")
