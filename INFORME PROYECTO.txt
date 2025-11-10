@@ -4,10 +4,10 @@ Fundamentos de Programación
 Nombre del Proyecto
 
 1. Información General
-   * Nombre estudiantes: Jonathan Parra, Carol Daniela Muñoz, David Santiago Granja Espinosa y Juan Enrique Galeano Vargas.
+   * Nombre estudiantes: Jonathan Parra Landinez, Carol Daniela Muñoz Cubides, David Santiago Granja Espinosa y Juan Enrique Galeano Vargas.
    * Curso/Grupo: A
-   * Fecha de entrega: 17/11/2025
-   * Profesor: Pablo Enrique Carreño
+   * Fecha de entrega: 13/11/2025
+   * Profesor: Pablo Enrique Carreño Herman
 
 2. Título del Proyecto
 
@@ -15,36 +15,42 @@ Nombre del Proyecto
 
 3. Descripción del Proyecto
 
-   * Este proyecto tiene como propósito analizar las estadisticas de la liga inglesa o la premier league, con el fin de extraer información clave sobre el rendimiento de los equipos, partidos y estadisticas de los jugadores de la premier league. La idea es facilitar el acceso a datos relevantes de forma automatizada, utilizando herramientas de programación en phyton.
+   * Este proyecto tiene como propósito analizar las estadísticas de la liga inglesa o Premier League, con el fin de extraer información clave sobre el rendimiento de los equipos, partidos y estadísticas de los jugadores. La idea es facilitar el acceso a datos relevantes de forma automatizada, utilizando herramientas de programación en Python.
 -Propósito del proyecto:
-   * Este proyecto les permite a los usuarios obtener información clave de manera automatizada y eficiente, resolviendo el problema de la inaccesibilidad de interpretar grandes cantidades de datos estadísticos sin las herramientas adecuadas. Además de esto, automatizar la recopilación y el análisis de estadísticas, les permite a los usuarioscentrarse en el análisis en lugar de la extensa recolección manual de datos.
+   * Este proyecto les permite a los usuarios obtener información clave de manera automatizada y eficiente, resolviendo el problema de la inaccesibilidad de interpretar grandes cantidades de datos estadísticos sin las herramientas adecuadas. Además, automatizar la recopilación y el análisis de estadísticas les permite a los usuarios centrarse en el análisis en lugar de la extensa recolección manual de datos. Permitiéndoles disfrutar de sus actividades  o hobbies como este sin incomodidad alguna.
 -Público objetivo:
-   * Este proyecto está dirigido principalmente a fanáticos del fútbol,analistas deportivos, entrenadores y periodistas, quienes podrán usar el programa con el fin de analizar los resultados obtenidos para tomar decisiones informadas, seguir las estadisticas de los equipos y jugadores, y generar reportes de manera más eficiente.
+   * Este proyecto está dirigido principalmente a fanáticos del fútbol, analistas deportivos, entrenadores y periodistas, quienes podrán usar el programa con el fin de analizar los resultados obtenidos, seguir las estadísticas de los equipos y jugadores, y generar reportes de manera más sencilla.
+
 -Resultado esperado:
-   * Se espera que este proyecto genere las estadisticas permitiendole visualizarlas ayudando a identificar patrones, tendencias y precciones sobre las estadisticas de los jugadores y equipos de la premiere league. Al final, el objetivo es mejorar la comprensión de las estadísticas y proporcionar a los usuarios una herramienta potente para hacer análisis deportivos profundos de manera rápida y precisa.
+   * Esperamos que este proyecto genere estadísticas las cuales puedan ser visualizadas  y  de esta manera contribuyan al proceso de  identificar patrones, tendencias y predicciones sobre las estadísticas de los jugadores y equipos de la Premier League. Al final, el objetivo es mejorar la comprensión de las estadísticas y proporcionar a los usuarios una herramienta potente que aunque abarque bastante información permita hacer análisis deportivos profundos de manera rápida y precisa.
 
 4. Objetivos
 
 -General:
-   * Desarrollar una herramienta que permita analizar las estadisticas deportivas de la Premier League temporada 2024-25 de forma automatizada, que permita obtener, procesar y visualizar datos relevantes sobre los equipos que compiten en esta misma (incluyendo partidos, goles y asistencias). Facilitando a los fanaticos, analistas deportivos, entrenadores y periodistas a tener esta informacion de manera clara, sencilla y actualizada. 
+   * Desarrollar una herramienta que permita analizar las estadísticas deportivas de la Premier League temporada 2024-25 de forma automatizada, que permita obtener, procesar y visualizar datos relevantes sobre los equipos que compiten en esta misma (incluyendo partidos, goles y asistencias). Facilitando a los fanáticos, analistas deportivos, entrenadores y periodistas a tener esta información de manera clara, sencilla y actualizada.
+
 -Específicos:
-   * Mostrar las listas, tuplas, diccionarios, para almancenar y manipular grandes cantidades de datos.
-   * Implementar funciones para tareas especificas como para cargar los datos y procesamiento de estadisticas, calcular estadisticas simpples como goles, partidos jugados, ganados, emaptados, perdidos, total de goles por equipo, puntos en la temporada y demas, usando tambien la modularizacion permitiendonos organizar el codigo en diferentes modulos.
+   * Mostrar las listas, tuplas, diccionarios, para almacenar y manipular grandes cantidades de datos.
+   * Implementar funciones para tareas específicas como para cargar los datos y procesamiento de estadísticas, calcular estadísticas simples como goles, partidos jugados, ganados, empatados, perdidos, total de goles por equipo, puntos en la temporada y demás, usando también la popularización permitiéndonos organizar el código en diferentes módulos.
+  * Aplicar los temas vistos en clase como condicionales, ciclos y manejo de entradas del usuario.
+  * Fortalecer la lógica de programación mediante la creación de un programa que responda a consultas dinámicas del usuario.
+  *  Familiarizarse con el uso de Python en entornos reales, conectando conceptos teóricos con un proyecto práctico.
 
 5. Requisitos
 
-   1. BUCLE FOR: Permite iterar sobre secuencias como listas, cadenas o rangos numericos. Su uso fue clave para recorrer listas de jugadores, equipos o partidos, facilitando el procesamiento individual de cada elemento.
-   2. BUCLE WHILE: Ejecuta un bloque de instrucciones mientras se cumpla una condición lógica. Este tipo de bucle resulto útil en procesos donde se requeria esperar hasta que cierta condición se cumpliera, por ejemplo: para validar entradas de usuario o realizar cálculos acumulativos.
-   3. ESTRUCTURAS CONDICIONALES IF-ELIF-ELSE: Estas sentencias fueron utilizadas para tomar decisiones dentro del programa, permitiendo ejecutar distintas acciones según las condiciones del flujo de datos, como comparar estadisticas o filtrar información relevante.
-   4. FUNCION RANGE(): Se utilizó para generar secuencias de números enteros especialmente útil en bucles for, permitiendo iteraciones controladas, como al recorrer listas con indices o establecer limites numéricos en analisis estadisticos.
-   5. FUNCION INPUT: Permitió la interacción con el usuario mediante la recolección de datos desde la consola, fundamental para aplicaciones dinámicas donde se requiere personalizar las consultas según el interés del usuario.
-   6. FUNCION LEN(): Se utilizó para conocer la cantidad de elementos presentes en listas o cadenas, siendo útil al contar registros, validar datos o controlar ciclos.
-   7. FUNCIONES DE CONVERSION DE TIPO (INT(), FLOAT(), STR()): Estas funciones facilitaron la transformación de datos entre tipos numéricos y cadenas, algo indispensable al trabajar con datos provenientes de fuentes externas o entradas del usuario.
-   8. DEFINICION DE FUNCIONES MEDIANTE DEF: Se crearon funciones personalizadas para modularizar el código, facilitando su mantenimiento, reutilización y claridad. Cada función resolvía una tarea específica, como analizar un partido, calcular promedios o generar reportes.
-   9. INSTRUCCIÓN RETURN: Utilizada dentro de funciones para devolver resultado al programa principal, haciendo posible encadenar cádenas o reutilizar valores procesados.
-   10. MÉTODO APPEND() DE LISTAS: Permitió agregar elementos dinámicamente a una lista, como al construir una colección de partidos o estadísticas filtradas por algún criterio específico.
-   11. USO DE DICCIONARIOS: Los diccionarios fueron una estructura clave para organizar datos relacionados por claves y valores, por ejemplo, para representar los atributos de un jugador o los resultados de un partido
-   12: INSTRUCCIONES BRAK Y CONTINUE: El break fue utilizado para interrumpir bucles cuando se cumplía cierta condición, mientras que continue permitió omitir una iteración específica y continuar con el resto del ciclo. Ambas instrucciones ofrecieron mayor control sobre la lógica del programa.
+  •	Lenguaje de programación: Python 3.10 o superior
+•	Editor recomendado: Visual Studio Code (o cualquier IDE compatible con Python)
+•	Librerías utilizadas:
+o	pandas: para manejar y analizar los datos de la Premier League.
+o	openpyxl: para permitir que pandas lea archivos Excel (.xlsx).
+•	Archivo de datos:
+o	TABLAPREMIER.xlsx (ubicado en la carpeta data/, con una hoja llamada “Hoja2”).
+o	Contiene columnas como Equipo, Nombre, Posición, Dorsal, y estadísticas.
+•	Modo de ejecución:
+o	Por consola, usando input() para que el usuario ingrese nombres de equipos o jugadores.
+•	Requisitos del sistema:
+o	Sistema operativo Windows, macOS o Linux.
+o	Python instalado con las librerías mencionadas (pueden instalarse con pip install pandas openpyxl).
 
  -REQUISITOS DE PROGRAMACIÓN:
     1. LISTAS Y DICCIONARIOS: Para guardar y organizar la información de equipos, jugadores y partidos.
@@ -151,7 +157,7 @@ Para mejorar el manejo y análisis de datos en nuestro proyecto, instalamos en e
  pandas:
 Esta biblioteca nos permite cargar, manipular y analizar los datos de la Premier League de forma estructurada y sencilla. Con pandas pudimos leer archivos en formato CSV y Excel, organizar la información en tablas (DataFrames), realizar cálculos estadísticos como promedios y totales, y filtrar datos relevantes para nuestro análisis. Gracias a pandas, la gestión de la información fue mucho más rápida y menos propensa a errores en comparación con la manipulación manual mediante listas o diccionarios.
 
-A coontinuacion mencionamos y explicamos de forma rapida algunas librerias  que tuvimos en cuenta en el desarrollo y planeacion del codigo, aunque no se usen directamente, la informacion que encontramos en estas librerias es fundamental para la mejora a fututo de nuestro proyecto.
+A continuacion mencionamos y explicamos de forma rapida algunas librerias  que tuvimos en cuenta en el desarrollo y planeacion del codigo, aunque no se usen directamente, la informacion que encontramos en estas librerias es fundamental para la mejora a fututo de nuestro proyecto.
  numpy:
 Manejo de arreglos numéricos y cálculos matemáticos rápidos.
  matplotlib, contourpy, cycler, kiwisolver, fonttools, pillow, pyparsing:
@@ -344,7 +350,7 @@ Y para concluir recordamos que estas dos funciones complementarias empiezan a tr
 
 * Capturas de pantalla o ejemplos de ejecución
 * Los resultados que obtuvimos al finalizar el proyecto son que en la pagina web se muestran los 20 equipos que participaron en la temporada 2024-25 de la Premier League, y al seleccionar uno de ellos se despliega la informacion de todos los jugadores que pertenecen a ese club. Cada jguador cuenta con una ficha donde aparecen sus principales estadisticas, como la cantidad de goles, asistencias, tarjetas amarillas, tarjetas rojas y otros datos relevantes.
-* Manual de usuario
+* •	Primero accedemos a nuestro link, seguido de esto elegimos el equipo que deseamos ver y nos aparece que debemos seleccionar una cantidad minima y máxima de 4 jugadores, al seleccionar los 4 jugadores en la parte inferior izquierda hay un botón verde el cual sirve para comparar los jugadores seleccionados. Bajamos hasta el final de la pagina y nos aparecen la comparación de los jugadores seleccionados, los mapas de calor y el análisis de rendimiento de cada uno. Para volver a seleccionar otro equipo, le damos en cerrar y hacemos el mismo proceso con el equipo de la selección del usuario
 
 9. Conclusiones
 * Las lecciones aprendidas durante el desarrollo del proyecto fueron que al programar una pagina web no solo se requiere escribir el codigo, sino tambien planear bien como se va a organizar la informacion y como se va a mostrar al usuario. Entendimos la importancia de trabajar en orden, organizar el codigo y dividir las tareas para avanzar de manera mas eficiente. Tambien aprendimos a manejar mejor la logica de programacion y las estructuras de datos, ademas de esto, comprendimos que probar constantemente el proyecto es clave para detectar errores a tiempo y mejorar el resultado final.
@@ -364,6 +370,7 @@ Y para concluir recordamos que estas dos funciones complementarias empiezan a tr
   * https://prezi.com/p/hftmx3o1n96q/analisis-de-datos-de-la-premier-league/
   * https://espndeportes.espn.com/futbol/estadisticas/_/liga/ENG.1/vista/rendimiento/temporada/2024/english-premier-league
   * https://www.espn.com.co/futbol/estadisticas/_/liga/ENG.1/temporada/2024/vista/anotaciones/goles-de-europa
+
 
 
 
