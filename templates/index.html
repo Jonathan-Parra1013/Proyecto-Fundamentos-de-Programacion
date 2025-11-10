@@ -10,7 +10,21 @@
     <link rel="preload" href="{{ url_for('static', filename='imagenes/default.png') }}" as="image">
 </head>
 <body>
-    <h1>Equipos de Futbol</h1>
+    <!-- Header: Project title, subtitle and integrantes -->
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="project-title">Code-League Comparador</h1>
+            <p class="subtitle">Comparador interactivo de jugadores — selecciona hasta 4 jugadores y compara estadísticas</p>
+            <div class="integrantes header-integrantes">
+                <h2>Integrantes del Grupo</h2>
+                <ul>
+                    {% for integrante in integrantes %}
+                        <li>{{ integrante }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </header>
 
     <div class="equipos-container">
         {% for equipo in equipos %}
@@ -68,15 +82,6 @@
             <pre>{{ analisis }}</pre>
         </div>
     {% endif %}
-
-    <div class="integrantes">
-        <h2>Integrantes del Grupo</h2>
-        <ul>
-            {% for integrante in integrantes %}
-                <li>{{ integrante }}</li>
-            {% endfor %}
-        </ul>
-    </div>
 
     <!-- Datos de jugadores inyectados como JSON -->
     <script id="jugadores-data" type="application/json">

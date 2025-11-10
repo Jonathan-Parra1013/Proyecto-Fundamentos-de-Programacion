@@ -215,7 +215,7 @@ def analizar_mejor_jugador(df):
         for i, (jugador, score) in enumerate(ranked.items(), start=1):
             
             if jugador in num_df.index:
-                mejores = num_df.loc[jugador].nlargest(3)
+                mejores = num_df.loc[jugador].nlargest(n=3)  # Explicitly specify n=3 for nlargest
                 destacados = ", ".join([f"{stat}: {val:.1f}" for stat, val in mejores.items()])
             else:
                 destacados = ""
