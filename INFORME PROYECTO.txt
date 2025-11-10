@@ -90,19 +90,13 @@ INICIO
    ↓
 Cargar base de datos (Excel)
    ↓
-Mostrar equipos en orden alfabético
+Mostrar todos los equipos
    ↓
-Solicitar nombre de equipo al usuario
-   ↓
-¿El equipo existe?
+¿Selecciona mas de 4 jugadores?
    → NO → Mostrar mensaje de error → Volver a solicitar
-   → SÍ → Mostrar jugadores del equipo
+   → SÍ → Mostrar comparacion de jugadores del equipo (Mapas de calor y analisis de rendimiento)
    ↓
-Solicitar jugador específico
-   ↓
-Mostrar estadísticas del jugador
-   ↓
-FIN
+  FIN
 
 
 7. Desarrollo
@@ -370,6 +364,7 @@ Y para concluir recordamos que estas dos funciones complementarias empiezan a tr
   * https://prezi.com/p/hftmx3o1n96q/analisis-de-datos-de-la-premier-league/
   * https://espndeportes.espn.com/futbol/estadisticas/_/liga/ENG.1/vista/rendimiento/temporada/2024/english-premier-league
   * https://www.espn.com.co/futbol/estadisticas/_/liga/ENG.1/temporada/2024/vista/anotaciones/goles-de-europa
+
 
 
 
