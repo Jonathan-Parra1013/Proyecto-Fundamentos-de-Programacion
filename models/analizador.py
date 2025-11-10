@@ -7,7 +7,7 @@ class AnalizadorEstadisticas:
         self.df_jugadores = df_jugadores
     
     def calcular_percentiles(self, jugadores, columnas):
-        """Calcula los percentiles de los jugadores en diferentes estadísticas"""
+       
         datos = pd.DataFrame([j.obtener_estadisticas() for j in jugadores])
         percentiles = {}
         
@@ -26,7 +26,7 @@ class AnalizadorEstadisticas:
         datos = pd.DataFrame([j.obtener_estadisticas() for j in jugadores])
         radar_data = {}
         
-        # Normalizar las métricas de 0 a 1
+       
         for metrica in metricas:
             if metrica in datos.columns:
                 min_val = datos[metrica].min()
@@ -36,7 +36,7 @@ class AnalizadorEstadisticas:
                 else:
                     datos[f"{metrica}_norm"] = 1
                 
-        # Crear datos del radar para cada jugador
+        
         for _, row in datos.iterrows():
             radar_data[row['Nombre']] = {
                 metrica: row[f"{metrica}_norm"] 
@@ -47,10 +47,10 @@ class AnalizadorEstadisticas:
         return radar_data
     
     def calcular_ranking(self, jugadores):
-        """Calcula un ranking general de los jugadores basado en sus estadísticas"""
+       
         datos = pd.DataFrame([j.obtener_estadisticas() for j in jugadores])
         
-        # Definir pesos para diferentes estadísticas
+        
         pesos = {
             'Goles': 0.3,
             'Asistencias': 0.2,
@@ -61,11 +61,11 @@ class AnalizadorEstadisticas:
             'Atajadas': 0.05
         }
         
-        # Normalizar cada columna y aplicar pesos
+       
         puntuacion = pd.Series(0, index=datos.index)
         for col, peso in pesos.items():
             if col in datos.columns:
-                # Normalizar la columna
+                
                 min_val = datos[col].min()
                 max_val = datos[col].max()
                 if max_val > min_val:
@@ -73,13 +73,13 @@ class AnalizadorEstadisticas:
                 else:
                     norm = 1
                 
-                # Para tarjetas, invertir la normalización
+                
                 if col in ['Tarjetas Rojas', 'Tarjetas Amarillas']:
                     norm = 1 - norm
                 
                 puntuacion += norm * peso
         
-        # Crear ranking
+        
         ranking = []
         for i, idx in enumerate(puntuacion.sort_values(ascending=False).index):
             jugador = datos.iloc[idx]

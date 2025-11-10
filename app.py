@@ -2,11 +2,11 @@ from flask import Flask, render_template, request
 import os
 from functions import obtener_equipos_con_logos, obtener_jugadores_por_equipo, comparar_jugadores, graficar_comparacion, mapa_calor
 
-# Asegurarse de que Flask encuentra la carpeta static
+
 app = Flask(__name__, static_folder=os.path.abspath('static'))
 print(f"Carpeta static configurada en: {app.static_folder}")
 
-# Integrantes del grupo
+
 integrantes = [
     "Galeano Vargas Juan Enriquen",
     "Granja Espinosa David Santiago",
@@ -21,7 +21,7 @@ def index():
     mapa_img = None
     jugadores_por_equipo = {}
 
-    # Guardar jugadores de cada equipo para JS
+   
     for equipo in equipos:
         jugadores_por_equipo[equipo["Equipo"]] = obtener_jugadores_por_equipo(equipo["Equipo"])
 

@@ -13,19 +13,19 @@ class Jugador:
         self.atajadas = datos.get('Atajadas', 0)
     
     def calcular_efectividad_tiros(self):
-        """Calcula el porcentaje de efectividad en tiros a puerta"""
+        
         if self.total_tiros == 0:
             return 0
         return (self.tiros_puerta / self.total_tiros) * 100
     
     def calcular_efectividad_goles(self):
-        """Calcula el porcentaje de efectividad en goles"""
+        
         if self.tiros_puerta == 0:
             return 0
         return (self.goles / self.tiros_puerta) * 100
     
     def obtener_estadisticas(self):
-        """Retorna un diccionario con todas las estadísticas calculadas"""
+        
         return {
             'Nombre': self.nombre,
             'Equipo': self.equipo,
