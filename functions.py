@@ -1,7 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 import os
+from models.jugador import Jugador
+from models.analizador import AnalizadorEstadisticas
 
 # Archivos Excel
 EXCEL_FILE = "TABLAPREMIER.xlsx"
@@ -9,6 +12,9 @@ EXCEL_FILE = "TABLAPREMIER.xlsx"
 # Cargar hojas
 df_equipos = pd.read_excel(EXCEL_FILE, sheet_name="Hoja1")
 df_jugadores = pd.read_excel(EXCEL_FILE, sheet_name="Hoja2")
+
+# Crear instancia del analizador
+analizador = AnalizadorEstadisticas(df_jugadores)
 
 # Detectar columnas
 col_equipo_jugadores = None
@@ -37,7 +43,11 @@ def obtener_datos_jugador(nombre):
     if fila.empty:
         print(f"No se encontraron datos para el jugador: {nombre}")
         return None
-    return fila.iloc[0].to_dict()
+    
+    datos = fila.iloc[0].to_dict()
+    # Asegurarse de que el nombre del jugador esté en los datos
+    datos['Nombre'] = nombre
+    return datos
 
 # Comparar jugadores seleccionados
 def comparar_jugadores(jugadores_seleccionados):
@@ -53,6 +63,7 @@ def comparar_jugadores(jugadores_seleccionados):
         raise ValueError("No se pudieron obtener datos para ningún jugador")
     
     comp_df = pd.DataFrame(datos)
+    
     # Asegurarse de que las columnas numéricas sean de tipo float
     columnas_numericas = ["Edad", "TA", "TR", "Asistencias", "Tiros a puerta", 
                          "Total de tiros", "Total de goles", "Goles", "Atajadas"]

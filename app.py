@@ -30,12 +30,19 @@ def index():
         if jugadores_seleccionados:
             try:
                 print("Jugadores seleccionados:", jugadores_seleccionados)
-                comp_df = comparar_jugadores(jugadores_seleccionados)
-                print("DataFrame creado:", comp_df.shape)
-                comparacion_img = graficar_comparacion(comp_df)
-                print("Gráfico de comparación creado")
-                mapa_img = mapa_calor(comp_df)
-                print("Mapa de calor creado")
+                imagenes = comparar_jugadores(jugadores_seleccionados)
+                print("Visualizaciones generadas exitosamente")
+                return render_template(
+                    "index.html",
+                    equipos=equipos,
+                    integrantes=integrantes,
+                    jugadores_por_equipo=jugadores_por_equipo,
+                    comparacion_img=imagenes['comparacion'],
+                    mapa_img=imagenes['mapa_calor'],
+                    radar_img=imagenes['radar'],
+                    ranking_img=imagenes['ranking'],
+                    percentiles_img=imagenes['percentiles']
+                )
             except Exception as e:
                 print("Error al procesar jugadores:", str(e))
                 return f"Error: {str(e)}", 500
