@@ -38,7 +38,8 @@ def index():
                     integrantes=integrantes,
                     jugadores_por_equipo=jugadores_por_equipo,
                     comparacion_img=imagenes['comparacion'],
-                    mapa_img=imagenes['mapa_calor']
+                    mapa_img=imagenes['mapa_calor'],
+                    analisis=imagenes.get('analisis')
                 )
             except Exception as e:
                 print("Error al procesar jugadores:", str(e))
@@ -50,7 +51,8 @@ def index():
         integrantes=integrantes,
         jugadores_por_equipo=jugadores_por_equipo,
         comparacion_img=comparacion_img,
-        mapa_img=mapa_img
+        mapa_img=mapa_img,
+        analisis=None
     )
 
 if __name__ == "__main__":

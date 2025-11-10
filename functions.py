@@ -85,7 +85,14 @@ def comparar_jugadores(jugadores_seleccionados):
         
       
         imagenes['mapa_calor'] = mapa_calor(comp_df.copy())
-        
+
+        # Generar análisis textual simple sobre quién rinde mejor
+        try:
+            analisis_text = analizar_mejor_jugador(comp_df.copy())
+        except Exception as e:
+            analisis_text = f"No se pudo generar análisis: {str(e)}"
+        imagenes['analisis'] = analisis_text
+
         return imagenes
     except Exception as e:
         raise ValueError(f"Error al generar las visualizaciones: {str(e)}")
@@ -102,22 +109,20 @@ def graficar_comparacion(comp_df, columnas=None):
     try:
         comp_df.set_index('Nombre', inplace=True)
         ax = comp_df[columnas_disponibles].plot(kind="bar", figsize=(12,6), colormap="viridis")
-            plt.title("Comparación de Estadísticas de Jugadores")
+        plt.title("Comparación de Estadísticas de Jugadores")
         plt.xlabel("Jugadores")
         plt.ylabel("Valores")
         plt.xticks(rotation=45)
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-        
-           
-            plt.figtext(0.05, -0.1, 
-                "Este gráfico muestra una comparación directa de las estadísticas clave entre los jugadores seleccionados.\n" +
-                "Las barras representan los valores numéricos para cada estadística, permitiendo una comparación visual rápida.\n" +
-                "Mayor altura de la barra indica mejor rendimiento en esa categoría.",
-                wrap=True, horizontalalignment='left', fontsize=8)
-        
+
+        # Agregar explicación breve debajo del gráfico
+        plt.figtext(0.05, -0.05,
+                    "Este gráfico muestra una comparación directa de las estadísticas clave entre los jugadores seleccionados. "
+                    "Las barras representan los valores numéricos para cada estadística; una barra más alta indica mejor rendimiento en esa categoría.",
+                    wrap=True, horizontalalignment='left', fontsize=8)
+
         plt.tight_layout()
-        
-        
+
         os.makedirs("static", exist_ok=True)
         img_path = "static/comparacion.png"
         plt.savefig(img_path, bbox_inches='tight', dpi=300)
@@ -156,3 +161,51 @@ def mapa_calor(comp_df, columnas=None):
     except Exception as e:
         plt.close()  
         raise ValueError(f"Error al crear el mapa de calor: {str(e)}")
+
+
+def analizar_mejor_jugador(df):
+    """Realiza un análisis sencillo para determinar qué jugador rinde mejor.
+
+    El método normaliza las columnas numéricas (0-1), calcula una puntuación media
+    por jugador y devuelve un texto con el ranking y una conclusión.
+    """
+    try:
+        
+        if 'Nombre' in df.columns:
+            df = df.set_index('Nombre')
+
+        
+        num_df = df.select_dtypes(include=[np.number]).copy()
+        if num_df.empty:
+            return "No hay métricas numéricas disponibles para realizar el análisis."
+
+        
+        denom = (num_df.max() - num_df.min())
+        denom_replaced = denom.replace(0, np.nan)
+        df_norm = (num_df - num_df.min()) / denom_replaced
+        df_norm = df_norm.fillna(1)  
+
+        
+        puntuaciones = df_norm.mean(axis=1)
+
+        
+        ranked = puntuaciones.sort_values(ascending=False)
+        lines = []
+        lines.append("Análisis de Rendimiento de Jugadores:")
+        lines.append("----------------------------------------")
+        for i, (jugador, score) in enumerate(ranked.items(), start=1):
+            
+            if jugador in num_df.index:
+                mejores = num_df.loc[jugador].nlargest(3)
+                destacados = ", ".join([f"{stat}: {val:.1f}" for stat, val in mejores.items()])
+            else:
+                destacados = ""
+            lines.append(f"{i}. {jugador} — Puntuación: {score:.2f}. Destaca en: {destacados}")
+
+        mejor = ranked.index[0]
+        lines.append("")
+        lines.append(f"Conclusión: Según las métricas normalizadas, {mejor} obtiene la puntuación más alta y puede considerarse el mejor rendimiento general entre los seleccionados.")
+
+        return "\n".join(lines)
+    except Exception as e:
+        return f"No se pudo realizar el análisis: {str(e)}"

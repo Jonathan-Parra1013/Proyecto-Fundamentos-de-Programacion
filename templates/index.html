@@ -45,11 +45,26 @@
     {% if comparacion_img %}
         <h2>Comparación de Jugadores</h2>
         <img src="{{ comparacion_img }}" alt="Comparación" class="grafico">
+        <div class="explanation">
+            <p>Este gráfico muestra una comparación directa de las estadísticas entre los jugadores seleccionados.</p>
+            <p>Las barras más altas indican mejor rendimiento en cada categoría específica.</p>
+        </div>
     {% endif %}
 
     {% if mapa_img %}
         <h2>Mapa de Calor</h2>
         <img src="{{ mapa_img }}" alt="Mapa de calor" class="grafico">
+        <div class="explanation">
+            <p>El mapa de calor muestra la intensidad de cada estadística por jugador usando colores.</p>
+            <p>Los colores más intensos indican valores más altos en esa estadística; los números son los valores exactos.</p>
+        </div>
+    {% endif %}
+
+    {% if analisis %}
+        <div class="analisis">
+            <h2>Análisis de Rendimiento</h2>
+            <pre>{{ analisis }}</pre>
+        </div>
     {% endif %}
 
     <div class="integrantes">
@@ -96,10 +111,7 @@
             position: relative;
         }
 
-        .jugador-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+        /* Hover effect removed: card will only highlight on click (selected class) */
 
         .jugador-card.selected {
             background: #e3f2fd;

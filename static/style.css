@@ -112,3 +112,34 @@ h1, h2 {
     border: 2px solid #444466;
     border-radius: 10px;
 }
+
+.explanation {
+    background-color: #2c2c44;
+    margin: 10px auto;
+    max-width: 90%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #e6e6e6;
+}
+
+.explanation p {
+    margin: 6px 0;
+}
+
+.analisis {
+    background-color: #2c2c44;
+    margin: 20px auto;
+    max-width: 90%;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.analisis pre {
+    white-space: pre-wrap;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    padding: 8px;
+    color: #e6e6e6;
+}
