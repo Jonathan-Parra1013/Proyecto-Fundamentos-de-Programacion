@@ -8,15 +8,15 @@ def crear_grafico_radar(jugadores, metricas, titulo="Comparación de Jugadores")
     num_vars = len(metricas)
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
     
-    # Cerrar el gráfico conectando el último punto con el primero
+   
     angles += angles[:1]
     
-    # Crear la figura
+    
     fig, ax = plt.subplots(figsize=(10, 10), subplot_kw=dict(projection='polar'))
     
     for jugador in jugadores:
         valores = [jugador.obtener_estadisticas()[m] for m in metricas]
-        valores += valores[:1]  # Cerrar el polígono
+        valores += valores[:1]  
         ax.plot(angles, valores, linewidth=1, label=jugador.nombre)
         ax.fill(angles, valores, alpha=0.25)
     
@@ -42,7 +42,7 @@ def crear_grafico_barras_ranking(ranking, titulo="Ranking de Jugadores"):
     plt.title(titulo)
     plt.ylabel('Puntuación')
     
-    # Agregar etiquetas con la posición
+   
     for i, bar in enumerate(bars):
         plt.text(bar.get_x() + bar.get_width()/2, bar.get_height(),
                 f'#{ranking[i]["posicion"]}',

@@ -25,6 +25,13 @@ for col in df_jugadores.columns:
     if col.strip().upper() == "NOMBRE":
         col_nombre_jugador = col
 
+# Detect possible dorsal column (ej: 'Dorsal', 'DORSAL', 'Número', etc.)
+col_dorsal_jugador = None
+for col in df_jugadores.columns:
+    if 'DORSAL' in col.strip().upper() or 'DORSAL' == col.strip().upper() or 'NÚMERO' in col.strip().upper() or 'NUMERO' in col.strip().upper():
+        col_dorsal_jugador = col
+        break
+
 if col_equipo_jugadores is None or col_nombre_jugador is None:
     raise ValueError("No se encontró la columna 'EQUIPO' o 'NOMBRE' en Hoja2")
 
@@ -34,7 +41,26 @@ def obtener_equipos_con_logos():
 
 
 def obtener_jugadores_por_equipo(equipo):
-    jugadores = df_jugadores[df_jugadores[col_equipo_jugadores] == equipo][col_nombre_jugador].dropna().tolist()
+    # Return a list of player objects with name and dorsal (if dorsal column exists)
+    filas = df_jugadores[df_jugadores[col_equipo_jugadores] == equipo]
+    jugadores = []
+    for _, row in filas.iterrows():
+        nombre = row.get(col_nombre_jugador)
+        if pd.isna(nombre):
+            continue
+        jugador_obj = {
+            'Nombre': str(nombre)
+        }
+        if col_dorsal_jugador and col_dorsal_jugador in row:
+            dorsal_val = row.get(col_dorsal_jugador)
+            # Keep dorsal as int when possible, otherwise string
+            try:
+                jugador_obj['Dorsal'] = int(dorsal_val) if not pd.isna(dorsal_val) else ''
+            except Exception:
+                jugador_obj['Dorsal'] = str(dorsal_val) if not pd.isna(dorsal_val) else ''
+
+        jugadores.append(jugador_obj)
+
     return jugadores
 
 
@@ -107,12 +133,26 @@ def graficar_comparacion(comp_df, columnas=None):
         raise ValueError("No hay columnas válidas para graficar")
     
     try:
-        # If 'Equipo' exists, show labels as "Nombre (Equipo)" to make team visible in the chart
+        # Build human-friendly labels: 'Nombre (Equipo)'. If there are duplicate labels
+        # (e.g., players with same name/team or repeated rows) make them unique by
+        # appending a small suffix so the plot shows each selected row separately.
+        labels = comp_df['Nombre'].astype(str)
         if 'Equipo' in comp_df.columns:
-            comp_df['__Label'] = comp_df['Nombre'].astype(str) + ' (' + comp_df['Equipo'].astype(str) + ')'
-            comp_df.set_index('__Label', inplace=True)
-        else:
-            comp_df.set_index('Nombre', inplace=True)
+            labels = labels + ' (' + comp_df['Equipo'].astype(str) + ')'
+
+        # Ensure uniqueness by appending counts for repeated labels
+        seen = {}
+        unique_labels = []
+        for lab in labels:
+            if lab in seen:
+                seen[lab] += 1
+                unique_labels.append(f"{lab} ({seen[lab]})")
+            else:
+                seen[lab] = 0
+                unique_labels.append(lab)
+
+        comp_df['__Label'] = unique_labels
+        comp_df.set_index('__Label', inplace=True)
 
         ax = comp_df[columnas_disponibles].plot(kind="bar", figsize=(12,6), colormap="viridis")
         plt.title("Comparación de Estadísticas de Jugadores")
@@ -149,12 +189,23 @@ def mapa_calor(comp_df, columnas=None):
         raise ValueError("No hay columnas válidas para el mapa de calor")
     
     try:
-        # If 'Equipo' exists, set index to "Nombre (Equipo)" so heatmap rows show the team
+        # Build human-friendly labels similar to graficar_comparacion and ensure uniqueness
+        labels = comp_df['Nombre'].astype(str)
         if 'Equipo' in comp_df.columns:
-            comp_df['__Label'] = comp_df['Nombre'].astype(str) + ' (' + comp_df['Equipo'].astype(str) + ')'
-            comp_df.set_index('__Label', inplace=True)
-        else:
-            comp_df.set_index('Nombre', inplace=True)
+            labels = labels + ' (' + comp_df['Equipo'].astype(str) + ')'
+
+        seen = {}
+        unique_labels = []
+        for lab in labels:
+            if lab in seen:
+                seen[lab] += 1
+                unique_labels.append(f"{lab} ({seen[lab]})")
+            else:
+                seen[lab] = 0
+                unique_labels.append(lab)
+
+        comp_df['__Label'] = unique_labels
+        comp_df.set_index('__Label', inplace=True)
 
         plt.figure(figsize=(12,6))
         sns.heatmap(comp_df[columnas_disponibles], annot=True, cmap="YlGnBu", cbar=True, fmt='.1f')

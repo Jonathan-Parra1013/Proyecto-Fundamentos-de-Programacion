@@ -42,27 +42,37 @@ function mostrarJugadores(equipo) {
     try {
         const jugadores = jugadoresPorEquipo[equipo] || [];
         if (jugadores.length > 0) {
-            jugadores.forEach(jugador => {
-                if (typeof jugador !== 'string') return;
+            jugadores.forEach(j => {
+                let nombre;
+                let dorsal = '';
+                if (typeof j === 'string') {
+                    nombre = j;
+                } else if (typeof j === 'object' && j !== null) {
+                    nombre = j.Nombre || j.nombre || '';
+                    dorsal = (j.Dorsal !== undefined) ? j.Dorsal : (j.dorsal !== undefined ? j.dorsal : '');
+                } else {
+                    return;
+                }
+
                 const li = document.createElement('li');
                 li.className = 'jugador-card';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.name = 'jugadores';
-                checkbox.value = jugador;
-                checkbox.id = `jugador-${jugador.replace(/[^a-z0-9]/gi, '-')}`;
-                
+                checkbox.value = nombre;
+                checkbox.id = `jugador-${String(nombre).replace(/[^a-z0-9]/gi, '-')}`;
+
                 const label = document.createElement('label');
                 label.htmlFor = checkbox.id;
-                
+
                 const numeroSpan = document.createElement('div');
                 numeroSpan.className = 'jugador-numero';
-                numeroSpan.textContent = Math.floor(Math.random() * 99) + 1;
-                
+                numeroSpan.textContent = dorsal !== '' && dorsal !== null ? String(dorsal) : '-';
+
                 const nombreSpan = document.createElement('div');
-                nombreSpan.textContent = jugador;
-                
+                nombreSpan.textContent = nombre;
+
                 label.appendChild(numeroSpan);
                 label.appendChild(nombreSpan);
                 li.appendChild(checkbox);

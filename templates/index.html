@@ -214,56 +214,66 @@
             try {
                 const jugadores = jugadoresPorEquipo[equipo] || [];
                 if (jugadores.length > 0) {
-                    jugadores.forEach(jugador => {
-                        if (typeof jugador !== 'string') return;
+                    jugadores.forEach(j => {
+                        // soportar lista de strings (retro-compatibilidad) o objetos {Nombre, Dorsal}
+                        let nombre;
+                        let dorsal = '';
+                        if (typeof j === 'string') {
+                            nombre = j;
+                        } else if (typeof j === 'object' && j !== null) {
+                            nombre = j.Nombre || j.nombre || '';
+                            dorsal = (j.Dorsal !== undefined) ? j.Dorsal : (j.dorsal !== undefined ? j.dorsal : '');
+                        } else {
+                            return;
+                        }
+
                         const li = document.createElement('li');
                         li.className = 'jugador-card';
-                        
+
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
                         checkbox.name = 'jugadores';
-                        checkbox.value = jugador;
-                        checkbox.id = `jugador-${jugador.replace(/[^a-z0-9]/gi, '-')}`;
-                        
+                        checkbox.value = nombre;
+                        checkbox.id = `jugador-${String(nombre).replace(/[^a-z0-9]/gi, '-')}`;
+
                         const label = document.createElement('label');
                         label.htmlFor = checkbox.id;
-                        
-                        // Número aleatorio para el dorsal (solo visual)
+
                         const numeroSpan = document.createElement('div');
                         numeroSpan.className = 'jugador-numero';
-                        numeroSpan.textContent = Math.floor(Math.random() * 99) + 1;
-                        
+                        numeroSpan.textContent = dorsal !== '' && dorsal !== null ? String(dorsal) : '-';
+
                         const nombreSpan = document.createElement('div');
-                        nombreSpan.textContent = jugador;
-                        
-                                label.appendChild(numeroSpan);
-                                label.appendChild(nombreSpan);
-                                li.appendChild(checkbox);
-                                li.appendChild(label);
-                                lista.appendChild(li);
+                        nombreSpan.textContent = nombre;
 
-                                // Si el jugador ya estaba seleccionado (de otra vista), marcarlo
-                                if (selectedPlayers.has(jugador)) {
-                                    checkbox.checked = true;
-                                    li.classList.add('selected');
+                        label.appendChild(numeroSpan);
+                        label.appendChild(nombreSpan);
+                        li.appendChild(checkbox);
+                        li.appendChild(label);
+                        lista.appendChild(li);
+
+                        // Si el jugador ya estaba seleccionado (de otra vista), marcarlo
+                        if (selectedPlayers.has(nombre)) {
+                            checkbox.checked = true;
+                            li.classList.add('selected');
+                        }
+
+                        // Manejar cambio del checkbox (solo aquí)
+                        checkbox.addEventListener('change', function() {
+                            if (this.checked) {
+                                if (selectedPlayers.size >= 4) {
+                                    // no permitir más de 4
+                                    this.checked = false;
+                                    return;
                                 }
-
-                                // Manejar cambio del checkbox (solo aquí)
-                                checkbox.addEventListener('change', function() {
-                                    if (this.checked) {
-                                        if (selectedPlayers.size >= 4) {
-                                            // no permitir más de 4
-                                            this.checked = false;
-                                            return;
-                                        }
-                                        selectedPlayers.add(jugador);
-                                        li.classList.add('selected');
-                                    } else {
-                                        selectedPlayers.delete(jugador);
-                                        li.classList.remove('selected');
-                                    }
-                                    actualizarContadorJugadores();
-                                });
+                                selectedPlayers.add(nombre);
+                                li.classList.add('selected');
+                            } else {
+                                selectedPlayers.delete(nombre);
+                                li.classList.remove('selected');
+                            }
+                            actualizarContadorJugadores();
+                        });
                     });
                 } else {
                     const li = document.createElement('li');
